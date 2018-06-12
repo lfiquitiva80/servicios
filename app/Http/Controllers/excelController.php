@@ -28,7 +28,7 @@ class excelController extends Controller
     {
         
 
-        $index = ordenesdeservicio::all();;
+        $index = ordenesdeservicio::all();
 
        return \Excel::create('ordenes_de_servicio', function($excel) use ($index) {
 

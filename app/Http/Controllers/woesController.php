@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\ordenesdeservicio;
-use App\estadoservicio;
 use App\wo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -16,7 +14,7 @@ use Carbon\Carbon;
 use Datatables;
 use Alert;
 
-class ordenesdeservicioController extends Controller
+class woesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -25,16 +23,18 @@ class ordenesdeservicioController extends Controller
      */
     public function index()
     {
-        Log::info('Ingreso a las ordenes de servicio: '. Auth::user()->name);
+        
+        Log::info('Ingreso a las ordenes de trabajo WO: '. Auth::user()->name);
 
-        $index = DB::table('ordenesdeservicio')->paginate();
+        $index = DB::table('wo')->paginate();
 
         //dd($index);
 
 
         //return \Datatables::of(empleado::all())->make(true);
 
-        return view('ordenesdeservicio.index',compact('index'));
+        return view('wo.index',compact('index'));
+
     }
 
     /**
@@ -44,11 +44,10 @@ class ordenesdeservicioController extends Controller
      */
     public function create()
     {
-        
-        $index = DB::table('ordenesdeservicio')->paginate();
-        $estadoservicio = estadoservicio::pluck('estadoservicio','id');
+                //$index = DB::table('ordenesdeservicio')->paginate();
+        //$estadoservicio = estadoservicio::pluck('estadoservicio','id');
         //dd($index);
-        return view('ordenesdeservicio.create', compact('estadoservicio'));
+        return view('wo.create');
     }
 
     /**
@@ -59,73 +58,74 @@ class ordenesdeservicioController extends Controller
      */
     public function store(Request $request)
     {
-          $input = $request->all();
+           $input = $request->all();
        //dd($input);
 
-            $store=ordenesdeservicio::create($input); 
-       Alert::success('Se guardo correctamente el nuevo servicio!')->persistent("Close");
+            $store=wo::create($input); 
+       Alert::success('Se guardo correctamente la nueva orden de servicio! con el WO ', $store->id)->persistent("Close");
 
-        return redirect()->route('home-principal');
+        return redirect()->route('wo.index');
         //return view('home');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\ordenesdeservicio  $ordenesdeservicio
+     * @param  \App\wo  $wo
      * @return \Illuminate\Http\Response
      */
-    public function show(ordenesdeservicio $ordenesdeservicio)
+    public function show(wo $wo)
     {
-        
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\ordenesdeservicio  $ordenesdeservicio
+     * @param  \App\wo  $wo
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-         $edit= ordenesdeservicio::findOrFail($id);
-         $estadoservicio = estadoservicio::pluck('estadoservicio','id');
-         $wo= wo::pluck('descripcion_wo','id');
-        //dd($wo);
+       $edit= wo::findOrFail($id);
+         //$estadoservicio = estadoservicio::pluck('estadoservicio','id');
+        //dd($edit);
 
       
-        return view('ordenesdeservicio.edit', compact('edit','estadoservicio','wo'));
+        return view('wo.edit', compact('edit'));          
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\ordenesdeservicio  $ordenesdeservicio
+     * @param  \App\wo  $wo
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-      $input = $request->all();
+        $input = $request->all();
         //sires::update($input);
         //sires::find($id)->update($input);
 
-        $updates=DB::table('ordenesdeservicio')->where('id',"=",$id)->update($input); 
-        Alert::success('Actualizo correctamente la orden de servicio!')->persistent("Close");
+        $updates=DB::table('wo')->where('id',"=",$id)->update($input); 
+        Alert::success('Actualizo correctamente la orden de Trabajo!')->persistent("Close");
 
-        return redirect()->route('home-principal');
+        //return redirect()->route('wo.index');
+        return back();
+    
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\ordenesdeservicio  $ordenesdeservicio
+     * @param  \App\wo  $wo
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-         $destruir=DB::table('ordenesdeservicio')->where('id', '=', $id)->delete();
-       Alert::success('Eliminó correctamente la orden de servicio!'.$id)->persistent("Close");
+        $destruir=DB::table('wo')->where('id', '=', $id)->delete();
+       Alert::success('Eliminó correctamente la orden de trabajo!'.$id)->persistent("Close");
         return back();
     }
 }

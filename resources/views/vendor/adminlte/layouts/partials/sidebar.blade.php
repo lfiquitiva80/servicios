@@ -30,13 +30,13 @@
         <!-- /.search form -->
 
         <!-- Sidebar Menu -->
-        <ul class="sidebar-menu">
+        <ul class="sidebar-menu" data-widget="tree">
             <li class="header">{{ trans('adminlte_lang::message.header') }}</li>
             <!-- Optionally, you can add icons to the links -->
             <li class="active"><a href="{{ url('home') }}"><i class='fa fa-home'></i> <span>{{ trans('adminlte_lang::message.home') }}</span></a></li>
-            <li><a href="{{ route('ordenesdeservicio.index') }}"><i class='fa fa-rocket'></i> <span>Ordenes de Servicio</span></a></li>
-            <li><a href="{{ route('servicios_adicionales.index') }}"><i class='fa fa-subway'></i> <span>Servicios Adicionales</span></a></li>
-            <li><a href="{{ route('occidental.index') }}"><i class='fa fa-space-shuttle'></i> <span>Servicios Adicionales Occidental</span></a></li>
+            <li><a href="{{ route('ordenesdeservicio.index') }}"><i class='fa fa-rocket'></i> <span>Servicios Adicionales</span></a></li>
+            <li><a href="{{ route('servicios_adicionales.index') }}"><i class='fa fa-subway'></i> <span>Prefactura</span></a></li>
+            <li><a href="{{ route('occidental.index') }}"><i class='fa fa-space-shuttle'></i> <span>Prefactura Occidental</span></a></li>
             <li class="treeview">
                 <a href="#"><i class='fa fa-bell'></i> <span>Otros</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">

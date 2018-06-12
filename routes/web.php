@@ -24,16 +24,14 @@ Route::group(['middleware' => 'auth'], function () {
     #adminlte_routes
     #
     #
-
+Route::get('/home','HomeController@index')->name('home-principal');
 Route::resource('ordenesdeservicio','ordenesdeservicioController');
 Route::resource('servicios_adicionales','servicios_adicionalesController');
 Route::resource('occidental','servicios_adicionales_occidentalController');
+Route::resource('wo','woesController');
 Route::get('excelordenes','excelController@excelordenes')->name('excelordenes');
-
 Route::get('import-export-view', 'excelController@excelordenes')->name('import.export.view');
-
 Route::post('import-file', 'excelController@excelordenes')->name('import.file');
-
 Route::get('export-file/{type}', 'excelController@excelordenes')->name('export.file');
 Route::get('export-file-servicios-adicionales/{type}', 'excelController@excelordenesservicios')->name('export.servicios');
 Route::get('export-file-servicios-adicionales-accidental/{type}', 'excelController@excelordenesoccidental')->name('export.occidental');
