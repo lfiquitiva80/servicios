@@ -6,7 +6,7 @@
 
 
 
-function loadJSON(callback) {   
+function loadJSON(callback) {
 
     var xobj = new XMLHttpRequest();
         xobj.overrideMimeType("application/json");
@@ -16,7 +16,7 @@ function loadJSON(callback) {
             callback(xobj.responseText);
           }
     };
-    xobj.send(null);  
+    xobj.send(null);
 }
 
 function init() {
@@ -1163,3 +1163,661 @@ $( function() {
       source: availableTags
     });
   } );
+
+  $('#editar_cliente').on('show.bs.modal', function (event) {
+var button = $(event.relatedTarget)
+var id = button.data('id')
+var nit = button.data('nit')
+var name = button.data('name')
+var solicitante = button.data('solicitante')
+var coordinador = button.data('coordinador')
+var telefono = button.data('telefono')
+var activo = button.data('activo')
+var email = button.data('email')
+var notas = button.data('notas')
+var nit = button.data('nit')
+// Extract info from data-* attributes
+// If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+// Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+var modal = $(this)
+modal.find('.modal-body #nit').val(nit);
+modal.find('.modal-body #nombre').val(name);
+modal.find('.modal-body #solicitante').val(solicitante);
+modal.find('.modal-body #coordinador').val(coordinador);
+modal.find('.modal-body #telefono').val(telefono);
+modal.find('.modal-body #activo').val(activo);
+modal.find('.modal-body #email').val(email);
+modal.find('.modal-body #id').val(id);
+modal.find('.modal-body #notas').val(notas);
+modal.find('.modal-body #nit').val(nit);
+})
+
+$('#editar_rentadora').on('show.bs.modal', function (event) {
+var button = $(event.relatedTarget)
+var id = button.data('id')
+var nombre = button.data('nombre')
+var contacto = button.data('contacto')
+var telefono = button.data('telefono')
+var activo = button.data('activo')
+var email = button.data('email')
+var notas = button.data('notas')
+// Extract info from data-* attributes
+// If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+// Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+var modal = $(this)
+modal.find('.modal-body #nombre').val(nombre);
+modal.find('.modal-body #contacto').val(contacto);
+modal.find('.modal-body #telefono').val(telefono);
+modal.find('.modal-body #email').val(email);
+modal.find('.modal-body #id').val(id);
+})
+$(document).ready(function() {
+       $('#reg_form').bootstrapValidator({
+           message: 'Este valor no es válido',
+           // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
+           feedbackIcons: {
+               valid: 'glyphicon glyphicon-ok',
+               invalid: 'glyphicon glyphicon-remove',
+               validating: 'glyphicon glyphicon-refresh'
+           },
+           fields: {
+               nombre: {
+                 validators: {
+                   notEmpty: {
+                       message: 'el nombre del escolta es necesario'
+                   },
+                   stringLength: {
+                       min:2,
+                       message: 'El nombre del escolta debe tener más de 2 caracteres '
+                   },
+
+                 }
+               },
+                cc: {
+                  validators: {
+                    notEmpty: {
+                        message: 'Este valor no es válido'
+                    }
+                  }
+               },
+
+               telefono: {
+                   validators: {
+                       integer: {
+                         min: 7,
+                            max: 20,
+
+                          },
+                             notEmpty: {
+                           message: 'ingrese  número de teléfono'
+                              }
+                       },
+                       telefono: {
+                           country: 'CO',
+                            notEmpty: {
+                           message: 'Please supply a vaild phone number with area code'
+                       }
+                         }
+
+               },
+               cargo: {
+                 validators: {
+                 notEmpty: {
+                     message: 'El cargo es necesario'
+                 },
+                 stringLength: {
+                     min:2,
+                     message: 'El cargo  debe tener más de 2 caracteres '
+                 },
+               }
+               },
+               activo: {
+                 validators: {
+                       notEmpty: {
+                           message: 'Seleccione '
+                       }
+                   }
+               },
+               ciudad: {
+                 validators: {
+                 notEmpty: {
+                     message: 'La cuidad es necesaria'
+                 },
+                 stringLength: {
+                     min:2,
+                     message: 'La cuidad  del escolta debe tener más de 2 caracteres '
+                 },
+                 }
+               },
+               bilingue: {
+                   validators: {
+                       notEmpty: {
+                           message: 'Seleccione'
+                       }
+                     }
+               },
+           escolta_externo: {
+             validators: {
+                   notEmpty: {
+                       message: 'Seleccione'
+                   }
+               }
+         },
+         foto:{
+         validators: {
+           file: {
+                             extension: 'png,jpeg,jpg',
+                             message: 'El archivo seleccionado no es una imagen'
+                         }
+               }
+           },
+
+
+               }
+           })
+
+
+           .on('success.form.bv', function(e) {
+               $('#success_message').slideDown({ opacity: "show" }, "slow") // Do something ...
+                   $('#reg_form').data('bootstrapValidator').resetForm();
+
+               // Prevent form submission
+               e.preventDefault();
+
+               // Get the form instance
+               var $form = $(e.target);
+
+               // Get the BootstrapValidator instance
+               var bv = $form.data('bootstrapValidator');
+
+               // Use Ajax to submit form data
+               $.post($form.attr('action'), $form.serialize(), function(result) {
+                   console.log(result);
+               }, 'json');
+           });
+   });
+   //
+   $(document).ready(function() {
+          $('#reg_form2').bootstrapValidator({
+             message: 'Este valor no es válido',
+              // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
+              feedbackIcons: {
+                  valid: 'glyphicon glyphicon-ok',
+                  invalid: 'glyphicon glyphicon-remove',
+                  validating: 'glyphicon glyphicon-refresh'
+              },
+              fields: {
+                  nit: {
+                      validators: {
+                              numeric: {
+                              min: 4,
+                          },
+                              notEmpty: {
+                              message: 'ingrese el nit del cliente'
+                          }
+                      }
+                  },
+                  telefono: {
+                      validators: {
+                          integer: {
+                            min: 3,
+                               max: 20,
+                               Empty:{
+                              message: 'ingrese número de teléfono'
+                            }
+                          },
+                          telefono: {
+                              country: 'CO',
+                              message: 'Please supply a vaild phone number with area code'
+                          }
+                      }
+                  },
+                  email: {
+                    validators: {
+                                emailAddress: {
+                              message: 'ingrese una dirección de correo electrónico válida'
+                            },
+                                Empty: {
+                              message: 'ingrese  una dirección de correo electrónico'
+                            }
+                        }
+            },
+                  activo: {
+                    validators: {
+                          notEmpty: {
+                              message: 'Seleccione'
+                          }
+                      }
+                  },
+                  notas: {
+                      validators: {
+                            stringLength: {
+                               min: 2,
+                           },
+                          Empty: {
+                              message: 'Ingrese notas '
+                          }
+                      }
+                  },
+                  coordinador: {
+                    validators: {
+                                stringLength: {
+                                min: 2,
+                            },
+                                Empty: {
+                                message: 'ingrese coordinador'
+                            }
+                        }
+                    },
+                    nombre: {
+                      validators: {
+                                  stringLength: {
+                                  min: 2,
+                                   message: 'El nombre del cliente debe tener más de 2 caracteres '
+                              },
+                                  notEmpty: {
+                                message: 'el nombre del cliente es necesario'
+                              }
+                          }
+                      },
+                      solicitante: {
+                        validators: {
+                                    stringLength: {
+                                    min: 2,
+                                       message: 'El nombre del escolta debe tener más de 2 caracteres '
+                                },
+                                    Empty: {
+                                      message: 'ingrese solicitante'
+
+                                }
+                            }
+                        },
+              }
+              })
+
+
+              .on('success.form.bv', function(e) {
+                  $('#success_message').slideDown({ opacity: "show" }, "slow") // Do something ...
+                      $('#reg_form2').data('bootstrapValidator').resetForm();
+
+                  // Prevent form submission
+                  e.preventDefault();
+
+                  // Get the form instance
+                  var $form = $(e.target);
+
+                  // Get the BootstrapValidator instance
+                  var bv = $form.data('bootstrapValidator');
+
+                  // Use Ajax to submit form data
+                  $.post($form.attr('action'), $form.serialize(), function(result) {
+                      console.log(result);
+                  }, 'json');
+              });
+      });
+      //
+      $(document).ready(function() {
+             $('#reg_form3').bootstrapValidator({
+                message: 'Este valor no es válido',
+                 // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
+                 feedbackIcons: {
+                     valid: 'glyphicon glyphicon-ok',
+                     invalid: 'glyphicon glyphicon-remove',
+                     validating: 'glyphicon glyphicon-refresh'
+                 },
+                 fields: {
+                     nit: {
+                         validators: {
+                                 numeric: {
+                                 min: 4,
+                             },
+                                 notEmpty: {
+                                 message: 'ingrese el nit del cliente'
+                             }
+                         }
+                     },
+                     telefono: {
+                         validators: {
+                             integer: {
+                               min: 3,
+                                  max: 20,
+                                  Empty:{
+                                 message: 'ingrese número de teléfono'
+                               }
+                             },
+                             telefono: {
+                                 country: 'CO',
+                                 message: 'Please supply a vaild phone number with area code'
+                             }
+                         }
+                     },
+                     email: {
+                       validators: {
+                                   emailAddress: {
+                                    message: 'ingrese una dirección de correo electrónico válida'
+                               },
+                                   Empty: {
+                                 message: 'ingrese  una dirección de correo electrónico'
+                               }
+                           }
+               },
+                     activo: {
+                       validators: {
+                             notEmpty: {
+                                 message: 'Seleccione'
+                             }
+                         }
+                     },
+                     notas: {
+                         validators: {
+                               stringLength: {
+                                  min: 2,
+                              },
+                             Empty: {
+                                 message: 'Ingrese notas '
+                             }
+                         }
+                     },
+                     coordinador: {
+                       validators: {
+                                   stringLength: {
+                                   min: 2,
+                               },
+                                   Empty: {
+                                   message: 'ingrese coordinador'
+                               }
+                           }
+                       },
+                       nombre: {
+                         validators: {
+                                     stringLength: {
+                                     min: 2,
+                                      message: 'El nombre del cliente debe tener más de 2 caracteres '
+                                 },
+                                     notEmpty: {
+                                   message: 'el nombre del cliente es necesario'
+                                 }
+                             }
+                         },
+                         solicitante: {
+                           validators: {
+                                       stringLength: {
+                                       min: 2,
+                                          message: 'El nombre del escolta debe tener más de 2 caracteres '
+                                   },
+                                       Empty: {
+                                         message: 'ingrese solicitante'
+
+                                   }
+                               }
+                           },
+                 }
+                 })
+
+
+                 .on('success.form.bv', function(e) {
+                     $('#success_message').slideDown({ opacity: "show" }, "slow") // Do something ...
+                         $('#reg_form3').data('bootstrapValidator').resetForm();
+
+                     // Prevent form submission
+                     e.preventDefault();
+
+                     // Get the form instance
+                     var $form = $(e.target);
+
+                     // Get the BootstrapValidator instance
+                     var bv = $form.data('bootstrapValidator');
+
+                     // Use Ajax to submit form data
+                     $.post($form.attr('action'), $form.serialize(), function(result) {
+                         console.log(result);
+                     }, 'json');
+                 });
+         });
+      //
+      $(document).ready(function() {
+             $('#reg_form4').bootstrapValidator({
+               message: 'Este valor no es válido',
+                 // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
+                 feedbackIcons: {
+                     valid: 'glyphicon glyphicon-ok',
+                     invalid: 'glyphicon glyphicon-remove',
+                     validating: 'glyphicon glyphicon-refresh'
+                 },
+                 fields: {
+                     telefono: {
+                         validators: {
+                             integer: {
+                               min: 7,
+                                  max: 20,
+                                },
+                                  notEmpty:{
+                                 message: 'ingrese número de teléfono'
+                               }
+                             }
+                        },
+                             email: {
+                               validators: {
+                                           emailAddress: {
+                                            message: 'ingrese una dirección de correo electrónico válida'
+                                       },
+                                           notEmpty: {
+                                         message: 'ingrese  una dirección de correo electrónico'
+                                       }
+                                   }
+                     },
+                     contacto: {
+                         validators: {
+                               stringLength: {
+                                  min: 2,
+                              },
+                             notEmpty: {
+                                 message: 'ingrese el contacto'
+                             }
+                         }
+
+
+                     },
+                       nombre: {
+                         validators: {
+                                     stringLength: {
+                                     min: 2,
+                                     message: 'El nombre la rentadora debe tener más de 2 caracteres '
+                                 },
+                                     notEmpty: {
+                                     message: 'ingrese el nombre de la rentadora'
+                                 }
+
+                         }
+                       }
+                     }
+                 })
+
+
+                 .on('success.form.bv', function(e) {
+                     $('#success_message').slideDown({ opacity: "show" }, "slow") // Do something ...
+                         $('#reg_form4').data('bootstrapValidator').resetForm();
+
+                     // Prevent form submission
+                     e.preventDefault();
+
+                     // Get the form instance
+                     var $form = $(e.target);
+
+                     // Get the BootstrapValidator instance
+                     var bv = $form.data('bootstrapValidator');
+
+                     // Use Ajax to submit form data
+                     $.post($form.attr('action'), $form.serialize(), function(result) {
+                         console.log(result);
+                     }, 'json');
+                 });
+         });
+         //
+         $(document).ready(function() {
+                $('#reg_form5').bootstrapValidator({
+                  message: 'Este valor no es válido',
+                    // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
+                    feedbackIcons: {
+                        valid: 'glyphicon glyphicon-ok',
+                        invalid: 'glyphicon glyphicon-remove',
+                        validating: 'glyphicon glyphicon-refresh'
+                    },
+                    fields: {
+                        telefono: {
+                            validators: {
+                                integer: {
+                                  min: 7,
+                                     max: 20,
+                                   },
+                                     notEmpty:{
+                                    message: 'ingrese número de teléfono'
+                                  }
+                                }
+                           },
+                                email: {
+                                  validators: {
+                                              emailAddress: {
+                                               message: 'ingrese una dirección de correo electrónico válida'
+                                          },
+                                              notEmpty: {
+                                            message: 'ingrese  una dirección de correo electrónico'
+                                          }
+                                      }
+                        },
+                        contacto: {
+                            validators: {
+                                  stringLength: {
+                                     min: 2,
+                                 },
+                                notEmpty: {
+                                    message: 'ingrese el contacto'
+                                }
+                            }
+
+
+                        },
+                          nombre: {
+                            validators: {
+                                        stringLength: {
+                                        min: 2,
+                                        message: 'El nombre la rentadora debe tener más de 2 caracteres '
+                                    },
+                                        notEmpty: {
+                                        message: 'ingrese el nombre de la rentadora'
+                                    }
+
+                            }
+                          }
+                        }
+                    })
+
+
+                    .on('success.form.bv', function(e) {
+                        $('#success_message').slideDown({ opacity: "show" }, "slow") // Do something ...
+                            $('#reg_form5').data('bootstrapValidator').resetForm();
+
+                        // Prevent form submission
+                        e.preventDefault();
+
+                        // Get the form instance
+                        var $form = $(e.target);
+
+                        // Get the BootstrapValidator instance
+                        var bv = $form.data('bootstrapValidator');
+
+                        // Use Ajax to submit form data
+                        $.post($form.attr('action'), $form.serialize(), function(result) {
+                            console.log(result);
+                        }, 'json');
+                    });
+            });
+            //
+            $(document).ready(function() {
+                   $('#reg_form6').bootstrapValidator({
+                       message: 'Este valor no es válido',
+                       // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
+                       feedbackIcons: {
+                           valid: 'glyphicon glyphicon-ok',
+                           invalid: 'glyphicon glyphicon-remove',
+                           validating: 'glyphicon glyphicon-refresh'
+                       },
+                       fields: {
+                           placa: {
+                             validators: {
+                               notEmpty: {
+                                   message: 'la placa del vehiculo es necesaria'
+                               },
+                               stringLength: {
+                                   min:6,
+                                   max:7,
+                                   message: 'la placa debe tener más de 6 y menos de 7 caracteres '
+                               },
+
+                             }
+                           },
+                           rentadora: {
+                             validators: {
+                               notEmpty: {
+                                   message: 'la rentadora es necesaria'
+                               },
+                               stringLength: {
+                                   min:2,
+                                   message: 'la rentadora debe tener más de 2  caracteres '
+                               },
+
+                             }
+                           },
+
+                          tipo_de_renta: {
+                             validators: {
+                             notEmpty: {
+                                 message: 'El tipo de renta es necesario'
+                             },
+                             stringLength: {
+                                 min:2,
+                                 message: 'El tipo de renta  debe tener más de 2 caracteres '
+                             },
+                           }
+                           },
+                           activo: {
+                             validators: {
+                                   notEmpty: {
+                                       message: 'Seleccione '
+                                   }
+                               }
+                           },
+
+                     foto:{
+                     validators: {
+                       file: {
+                                         extension: 'png,jpeg,jpg',
+                                         message: 'El archivo seleccionado no es una imagen'
+                                     }
+                           }
+                       },
+
+
+                           }
+                       })
+
+
+                       .on('success.form.bv', function(e) {
+                           $('#success_message').slideDown({ opacity: "show" }, "slow") // Do something ...
+                               $('#reg_form6').data('bootstrapValidator').resetForm();
+
+                           // Prevent form submission
+                           e.preventDefault();
+
+                           // Get the form instance
+                           var $form = $(e.target);
+
+                           // Get the BootstrapValidator instance
+                           var bv = $form.data('bootstrapValidator');
+
+                           // Use Ajax to submit form data
+                           $.post($form.attr('action'), $form.serialize(), function(result) {
+                               console.log(result);
+                           }, 'json');
+                       });
+               });

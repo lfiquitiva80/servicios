@@ -62,9 +62,14 @@ class woesController extends Controller
        //dd($input);
 
             $store=wo::create($input); 
+
+            $store->descripcion_wo = "N° de Orden ". $store->id;
+            $store->save();
+            
        Alert::success('Se guardo correctamente la nueva orden de servicio! con el WO ', $store->id)->persistent("Close");
 
-        return redirect()->route('wo.index');
+        //return redirect()->route('wo.index');
+          return back();  
         //return view('home');
     }
 

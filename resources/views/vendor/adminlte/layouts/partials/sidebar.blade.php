@@ -34,11 +34,29 @@
             <li class="header">{{ trans('adminlte_lang::message.header') }}</li>
             <!-- Optionally, you can add icons to the links -->
             <li class="active"><a href="{{ url('home') }}"><i class='fa fa-home'></i> <span>{{ trans('adminlte_lang::message.home') }}</span></a></li>
-            <li><a href="{{ route('ordenesdeservicio.index') }}"><i class='fa fa-rocket'></i> <span>Servicios Adicionales</span></a></li>
-            <li><a href="{{ route('servicios_adicionales.index') }}"><i class='fa fa-subway'></i> <span>Prefactura</span></a></li>
-            <li><a href="{{ route('occidental.index') }}"><i class='fa fa-space-shuttle'></i> <span>Prefactura Occidental</span></a></li>
+
+             <li><a href="{{ route('dashboard.index') }}"><i class="fa fa-tachometer" aria-hidden="true"></i><span> Dashboard</span></a></li>
+
+          <!--   <li><a href="{{ route('ordenesdeservicio.index') }}"><i class='fa fa-rocket'></i> <span>Servicios Adicionales</span></a></li> -->
+
+            <li><a href="{{ route('wo.index') }}"><i class="fa fa-list-ol" aria-hidden="true"></i> <span>Crear WO</span></a></li>
+
+
+
+            <!-- <li><a href="{{ route('servicios_adicionales.index') }}"><i class='fa fa-subway'></i> <span>Prefactura</span></a></li>
+            <li><a href="{{ route('occidental.index') }}"><i class='fa fa-space-shuttle'></i> <span>Prefactura Occidental</span></a></li> -->
+            <li><a href="{{route('Clientes.index')}}"><i class='fa  fa-user'></i> <span>Clientes</span></a></li>
+             <li><a href="{{route('Escolta.index')}}"><i class='fa fa-male'></i> <span>Escolta</span></a></li>
+              <li><a href="{{route('Vehiculo.index')}}"><i class='fa fa-automobile'></i> <span>Vehiculo</span></a></li>
+              <li><a href="{{route('Rentadora.index')}}"><i class='fa  fa-suitcase'></i> <span>Rentadora</span></a></li>
+               <li><a href="{{route('Agenda.index')}}"><i class='fa  fa-calendar'></i> <span>Agenda</span></a></li>
+              <li><a href="{{route('reportes.index')}}"><i class="fa fa-table" ></i> <span>Reportes</span></a></li>
+
+               <li><a href="{{route('logs')}}"><i class="fa fa-cogs" aria-hidden="true"></i> <span> Logs</span></a></li>
+
+
             <li class="treeview">
-                <a href="#"><i class='fa fa-bell'></i> <span>Otros</span> <i class="fa fa-angle-left pull-right"></i></a>
+                <a href="#"><i class='fa fa-bell'></i> <span></span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
                     <li><a href="#">{{ trans('adminlte_lang::message.linklevel2') }}</a></li>
                     <li><a href="#">{{ trans('adminlte_lang::message.linklevel2') }}</a></li>

@@ -11,6 +11,38 @@
 |
 */
 
+//COMANDOS ESPECIALES DE ARTISAN
+
+Route::get('/clear-cache', function() {
+    $exitCode = Artisan::call('cache:clear');
+    return '<h1>Cache facade value cleared</h1>';
+});
+//Reoptimized class loader:
+Route::get('/optimize', function() {
+    $exitCode = Artisan::call('optimize');
+    return '<h1>Reoptimized class loader</h1>';
+});
+//Route cache:
+Route::get('/route-cache', function() {
+    $exitCode = Artisan::call('route:cache');
+    return '<h1>Routes cached</h1>';
+});
+//Clear Route cache:
+Route::get('/route-clear', function() {
+    $exitCode = Artisan::call('route:clear');
+    return '<h1>Route cache cleared</h1>';
+});
+//Clear View cache:
+Route::get('/view-clear', function() {
+    $exitCode = Artisan::call('view:clear');
+    return '<h1>View cache cleared</h1>';
+});
+//Clear Config cache:
+Route::get('/config-cache', function() {
+    $exitCode = Artisan::call('config:cache');
+    return '<h1>Clear Config cleared</h1>';
+});
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -35,6 +67,24 @@ Route::post('import-file', 'excelController@excelordenes')->name('import.file');
 Route::get('export-file/{type}', 'excelController@excelordenes')->name('export.file');
 Route::get('export-file-servicios-adicionales/{type}', 'excelController@excelordenesservicios')->name('export.servicios');
 Route::get('export-file-servicios-adicionales-accidental/{type}', 'excelController@excelordenesoccidental')->name('export.occidental');
+Route::get('clientesGenerales','excelController@clientegeneral')->name('clientes');
+Route::get('escoltasGenerales','excelController@escoltasgeneral')->name('escoltas');
+Route::get('vehiculosGenerales','excelController@vehiculosgeneral')->name('vehiculos');
+Route::get('rentadorasGenerales','excelController@rentadorasgeneral')->name('rentadoras');
 
+Route::get('continuar/{id}','ordenesdeservicioController@continuar')->name('continuar');
+Route::resource('Clientes','clienteController');
+Route::resource('dashboard','dashboardController');
+Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index')->name('logs');
+Route::resource('Escolta','escoltaController');
+Route::resource('Vehiculo','vehiculoController');
+Route::resource('Rentadora','rentadoraController');
+Route::resource('Agenda','agendaController');
+Route::get('events','agendaController@get_events');
+Route::resource('reportes','excelController');
+Route::get('resourcesColumns','agendaController@resourcesColumns');
+Route::get('/allescolta','escoltaController@allescoltas')->name('allescolta');//ajax para leonidas
+Route::get('ordenesgenerales','excelController@escoltas_ordenes')->name('ordenesgenerales');
+Route::get('excelwogenerales','excelController@wodos')->name('excelwogenerales');
 
 });

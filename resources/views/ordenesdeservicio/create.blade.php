@@ -3,10 +3,12 @@
 
 @section('htmlheader_title')
   {{ trans('adminlte_lang::message.home') }}
+
 @endsection
 
 
 @section('main-content')
+
 
 <section class="content">
       <div class="row">
@@ -16,7 +18,7 @@
 <div class="container">
 <div class="panel panel-default">
   <div class="panel-body">
-  
+
   <a href="{{ URL::previous() }}" class="btn btn-primary"><i class="fa fa-hand-o-left" aria-hidden="true"></i> Regresar</a><p>
 
 {!! Form::open(['route' => 'ordenesdeservicio.store', 'method'=>'POST']) !!}
@@ -34,7 +36,7 @@
 		<label for="id">No_de_orden_de_servicio</label>
 		<input type="text" class="form-control input-lg" name="No_de_orden_de_servicio"  id="No_de_orden_de_servicio" placeholder="Número orden de sercivios">
 	</div>
-</div>	
+</div>
 <div class="col-xs-3">
 
     <label>Estado de Servicio</label>
@@ -47,7 +49,7 @@
 		<input type="date" class="form-control input-lg" name="fecha_inicio_servicio"  id="fecha_inicio_servicio" placeholder="Número orden de sercivios">
 	</div>
 </div>
-	
+
 	<div class="col-xs-2">
     <div class="form-group">
 		<label for="id">Hora_inicio_en_OT</label>
@@ -91,16 +93,17 @@
 	<div class="col-xs-4">
 	 <div class="form-group">
 		<label for="id">Escolta Asignado</label>
-		<input type="text" class="form-control input-lg" name="Escolta_asignado"  id="Escolta_asignado" placeholder="Escolta_asignado">
+    <!--{!! Form::select('Escolta_asignado', $escolta,null,['class' => 'form-control input-lg Escolta_asignado','placeholder'=>'Escolta_asignado']) !!}-->
+		  <input type="text" class="form-control input-lg" name="Escolta_asignado"  id="Escolta_asignado" placeholder="Escolta_asignado">
 	</div>
 	</div>
 
-<div class="col-xs-4">	
+<div class="col-xs-4">
  <div class="form-group">
 		<label for="id">Cédula</label>
 		<input type="number" class="form-control input-lg" name="cedula"  id="cedula" placeholder="cedula">
 	</div>
-</div>	
+</div>
 
 	<div class="col-xs-2">
 	 <div class="form-group">
@@ -123,7 +126,7 @@
 </div>
 
 <div class="col-xs-4">
-<div class="form-group">	
+<div class="form-group">
 		<label for="id">ID2</label>
 		<input type="text" class="form-control input-lg" name="ID2"  id="ID2" placeholder="ID2">
 	</div>
@@ -147,7 +150,7 @@
 		<label for="id">cliente</label>
 		<input type="text" class="form-control input-lg" name="cliente"  id="cliente" placeholder="cliente">
 	</div>
-</div>	
+</div>
 
 <div class="col-xs-4">
 <div class="form-group">
@@ -194,14 +197,14 @@
 		<label for="id">detalle_del_servicio</label>
 		<textarea  cols="53" rows="2" name="detalle_del_servicio" id="detalle_del_servicio"></textarea>
 	</div>
-</div>	
+</div>
 
 <div class="col-xs-4">
 <div class="form-group">
 		<label for="id">Novedades</label>
 		<textarea cols="53" rows="2" name="novedades" id="novedades"></textarea>
 	</div>
-</div>	
+</div>
 
 <div class="col-xs-4">
 <div class="form-group">
@@ -262,7 +265,7 @@
 </div>
 
 <input type="hidden" class="form-control input-lg" name="users_id"  id="users_id" placeholder=""
-value="{{Auth::user()->id}}">	
+value="{{Auth::user()->id}}">
 
 
 	<center><button type="submit" class="btn btn-primary" >Enviar</button>
@@ -276,4 +279,3 @@ value="{{Auth::user()->id}}">
 
 
 @endsection
-

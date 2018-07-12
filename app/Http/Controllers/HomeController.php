@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use App\ordenesdeservicio;
 use App\estadoservicio;
 use App\User;
+use App\cliente;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 use App\Http\Controllers\Flash;
@@ -47,13 +48,19 @@ class HomeController extends Controller
     public function index(Request $request)
     {
 
-        $input = $request->all();
+        //$input = $request->all();
+
+
+      //$Escolta= escolta::search($request->nombre)->orderBy('id', 'DSC')->paginate(10);
 
       
         Log::info('Ingreso a las ordenes de servicio: '. Auth::user()->name);
         $estadoservicio = estadoservicio::pluck('estadoservicio','id');
+        $cliente = cliente::pluck('Nombre','id');
+        $hoy = new Carbon();
+        //dd($hoy);
 
-        $index = DB::table('ordenesdeservicio')->orderBy('id', 'desc')->paginate();
+        $index = ordenesdeservicio::search($request->nombre)->orderBy('id', 'desc')->paginate();
 
         //$users = User::select(['id','name','email','created_at','updated_at']);
         //dd($users);
@@ -64,7 +71,7 @@ class HomeController extends Controller
 
         //return Datatables::of(ordenesdeservicio::all())->make(true);
 
-        return view('home',compact('index','estadoservicio'));
+        return view('home',compact('index','estadoservicio','cliente','hoy'));
        
     }
 }

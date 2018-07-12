@@ -20,6 +20,10 @@ body {
   margin: 0;
 }
 
+ul.ui-autocomplete {
+    z-index: 1100;
+}
+
 article,
 aside,
 details,

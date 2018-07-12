@@ -2,7 +2,16 @@
 
 @section('htmlheader_title')
   {{ trans('adminlte_lang::message.home') }}
+
 @endsection
+
+<style>
+
+  ul.ui-autocomplete {
+    z-index: 1100;
+}
+
+</style>
 
 
 @section('main-content')
@@ -16,14 +25,9 @@
 
   <div class="panel-body">
 
+
 <div class="container">
-{!! Form::open(['route' => 'home-principal', 'method'=>'GET', 'Class'=>'navbar-form navbar-right']) !!}
-<!--<form class="navbar-form navbar-right" role="search">-->
-  <div class="form-group">
-    <input type="text" class="form-control" placeholder="Search" name="buscar" id="buscar">
-  </div>
-  <button type="submit" class="btn btn-default">Submit</button>
-{!! Form::close() !!}
+
 <div class="panel panel-default">
 <h4><b><center>REGISTROS DE ORDENES DE SERVICIOS</h4></b></center>
 
@@ -31,7 +35,7 @@
     <div class="panel-body">
 
 
-<a href="{{ $url = route('ordenesdeservicio.create') }}" class="btn btn-primary"><i class="fa fa-users" aria-hidden="true"></i> Registar Ordenes de Servicios</a>
+
 
 <center> <div class="row">
 
@@ -48,13 +52,21 @@
 
 </center>
 
+{!! Form::open(['route' => 'home-principal', 'method'=>'GET', 'Class'=>'navbar-form navbar-right']) !!}
+<!--<form class="navbar-form navbar-right" role="search">-->
+  <div class="form-group">
+    <input type="text" class="form-control" placeholder="Buscar Orden de Trabajo" name="nombre" id="nombre">
+  </div>
+  <button type="submit" class="btn btn-default">Submit</button>
+{!! Form::close() !!}
+
 
 
 </div>
 
 <center>
-
-<a class="btn btn-info" data-toggle="modal" href='#modal-id'><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Crear Solicitud del Servicio</a>
+<div>
+<a class="btn btn-info" data-toggle="modal" href='#modal-id' ><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Crear Solicitud del Servicio</a>
 <div class="modal fade" id="modal-id">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -73,24 +85,24 @@
 
     <div class="form-group">
         <label for="id">id</label>
-        <input type="hidden" class="form-control input-lg" name="id"  id="id" placeholder="Id" readonly="readonly">
+        <input type="hidden" class="form-control" name="id"  id="id" placeholder="Id" readonly="readonly">
     </div>
 
 
     <label>Estado de Servicio</label>
-    {!! Form::select('estadoservicio_id',$estadoservicio, null, ['class' => 'form-control input-lg']) !!}
+    {!! Form::select('estadoservicio_id',$estadoservicio, null, ['class' => 'form-control']) !!}
 
 
 
 <div class="form-group">
         <label for="id">cliente</label>
-        <input type="text" class="form-control input-lg" name="cliente"  id="cliente" placeholder="cliente" required>
+        {!! Form::select('cliente',$cliente, null, ['class' => 'form-control']) !!}
     </div>
 
 
     {{-- <div class="form-group">
         <label for="id">fecha_inicio_servicio</label>
-        <input type="date" class="form-control input-lg" name="fecha_inicio_servicio"  id="fecha_inicio_servicio" placeholder="Número orden de sercivios">
+        <input type="date" class="form-control" name="fecha_inicio_servicio"  id="fecha_inicio_servicio" placeholder="Número orden de sercivios">
     </div> --}}
 
 
@@ -98,13 +110,13 @@
 
 {{-- <div class="form-group">
         <label for="id">ciudad_origen</label>
-        <input type="text" class="form-control input-lg" name="ciudad_origen"  id="ciudad_origen" placeholder="ciudad_origen">
+        <input type="text" class="form-control" name="ciudad_origen"  id="ciudad_origen" placeholder="ciudad_origen">
     </div> --}}
 
 
 <div class="form-group">
         <label for="id">ciudad_destino</label>
-        <input type="text" class="form-control input-lg" name="ciudad_destino"  id="ciudad_destino2" placeholder="ciudad_destino">
+        <input type="text" class="form-control" name="ciudad_destino"  id="ciudad_destino2" placeholder="ciudad_destino" value="BOGOTA, D.C.">
     </div>
 
  @php
@@ -117,7 +129,14 @@
 
 <div class="form-group">
         <label for="id">fecha_solicitud</label>
-        <input type="datetime-local" class="form-control input-lg" name="fecha_solicitud"  id="fecha_solicitud" placeholder="fecha_solicitud">
+        <input type="datetime-local" class="form-control" name="fecha_solicitud"  id="fecha_solicitud" placeholder="fecha_solicitud" value="">
+    </div>
+
+
+
+<div class="form-group">
+        <label for="id">Fecha Inicio del servicio</label>
+        <input type="datetime-local" class="form-control" name="fecha_inicio_servicio"  id="fecha_inicio_servicio" placeholder="fecha_inicio_servicio">
     </div>
 
 <div class="form-group">
@@ -125,7 +144,7 @@
         <textarea cols="80" rows="3" id="detalle_del_servicio" name="detalle_del_servicio"></textarea>
     </div>
 
-<input type="hidden" class="form-control input-lg" name="users_id"  id="users_id" placeholder=""
+<input type="hidden" class="form-control" name="users_id"  id="users_id" placeholder=""
 value="{{Auth::user()->id}}">
 
 
@@ -138,33 +157,78 @@ value="{{Auth::user()->id}}">
   </div>
 </div>
 
+</div>
+</div>
+
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
+
         </div>
     </div>
 </div>
 <br/>
 <br/>
 </center>
+</div>
 
+
+  <br>
+
+  <a href="{{ $url = route('ordenesdeservicio.create') }}" class="btn btn-primary"><i class="fa fa-users" aria-hidden="true"></i> Registar Ordenes de Servicios</a>
+
+
+  
+  <a class="btn bg-maroon btn-flat margin pull-right" data-toggle="modal" href='#modal-2'><i class="fa fa-inbox"></i> Crear W.O</a>
+  <div class="modal fade" id="modal-2">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">Crear WO new</h4>
+        </div>
+        <div class="modal-body">
+
+          {!! Form::open(['route' => 'wo.store', 'method'=>'POST']) !!}
+
+
+  La ultima W.O creada es la: (<strong><?php $wo =\DB::table('wo')->orderBy('id', 'desc')->first(); echo $wo->id; ?></strong>), <mark>Se va a crear una orden de trabajo Nueva .</mark>
+
+  <div class="col-xs-1">
+  <div class="form-group">
+   
+    <input type="hidden" class="form-control" name="id"  id="id" placeholder="Id" readonly="readonly">
+  </div>
+</div>
+
+      
+  
+
+
+    
+          <button type="submit" class="btn btn-primary pull-right" >Enviar</button>
+          {!! Form::close() !!}
+          
+        </div>
+        <div class="modal-footer">
+          
+        </div>
+      </div>
+    </div>
+  </div>
 
 <p>
-<div class="table-responsive ">
-<table class="table table-bordered">
+<div class="table-responsive">
+<table class="table table-bordered" id="table2" >
   <thead>
     <tr>
       <td>  id  </td>
       <td>  fecha_solicitud</td>
       <td>  Estado del Servicio</td>
-      <td>  Ckecklist </td>  
+      <td>  W.O y Ckecklist </td>
       <td>  Fecha Inicio del Servicio</td>
-      <td>  cliente</td>
+      <td>  cliente </td>
       <td>  ciudad_destino</td>
       <td>  detalle_del_servicio</td>
-      <td colspan="2">  Acción </td>
+      <td colspan="3">  Acción </td>
 
 
 
@@ -173,7 +237,7 @@ value="{{Auth::user()->id}}">
   <tbody>
 
   @foreach($index as $row)
-    <tr>
+    <tr id="controllinea" style="color:#456789;font-size:80%;">
 
           <td>{{$row->id}}</td>
           <td>{{$row->fecha_solicitud}}</td>
@@ -185,21 +249,30 @@ value="{{Auth::user()->id}}">
 
             @endif
 
-          <td><a href="{{ $url = route('wo.edit',$row->No_de_orden_de_servicio) }}" class="btn btn-warning" title="Lista de Chequeo"><i class="fa fa-list-ol" aria-hidden="true"></i></i></a><small> W.O. {{$row->No_de_orden_de_servicio}}</small>
+          <td>
+            @if ($row->No_de_orden_de_servicio==1)
+              Falta asignar W.O
+            @else
+            <a href="{{ $url = route('wo.edit',$row->No_de_orden_de_servicio) }}" class="btn btn-warning" title="Lista de Chequeo">{{$row->No_de_orden_de_servicio}}</small>
+            @endif
 
-       
-            </td> 
-  
+            </td>
+
           <td>{{$row->fecha_inicio_servicio}}</td>
-          <td>{{$row->cliente}}</td>
+          <td><?php $clientes= App\cliente::find($row->cliente); echo $clientes->nombre;  ?></td>
+          <!-- <td>{{$row->cliente}}</td> -->
           <td>{{$row->ciudad_destino}}</td>
-          <td>{{$row->detalle_del_servicio}}</td>
+          <td>{{str_limit($row->detalle_del_servicio,10)}}</td>
 
 
 
-          <td><a href="{{ $url = route('ordenesdeservicio.edit',$row->id) }}" class="btn btn-success"><i class="fa fa-pencil" aria-hidden="true"> Programar</i></a></td> <td>@include('ordenesdeservicio.destroy')</td>
+  
 
+          <td ><a href="{{ $url = route('ordenesdeservicio.edit',$row->id) }}" class="btn btn-success" title="Programar" onclick="return confirm('Va a ingresar a programar.');"><i class="fa fa-pencil" aria-hidden="true"> Programar</i></a></td>
+          <td><a href="{{ $url = route('continuar',$row->id) }}" class="btn btn-info" title="Continuar" onclick="return confirm('Desea duplicar el registro actual?')"><i class="fa fa-clipboard" aria-hidden="true"></i> Continuar</a></td>
+          <td id="eliminarhome">@include('ordenesdeservicio.destroy')</td>
     </tr>
+
   </tbody>
 
   @endforeach
@@ -207,27 +280,13 @@ value="{{Auth::user()->id}}">
 
 </table>
 </div>
-
+    
 <center>{{ $index->links() }}</center>
 
 </div>
 
 </div>
 </div>
-
-<script type="text/javascript">
-  
-  jQuery(document).ready(function($) {
-            $("#ckeck").click(function(event) {
-              alert("Aqui va un modal");
-            });   
-     
-  });
-
-
-
-
-</script>
 
 
 @endsection
