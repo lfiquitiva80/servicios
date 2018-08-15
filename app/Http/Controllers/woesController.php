@@ -93,6 +93,8 @@ class woesController extends Controller
     public function edit($id)
     {
        $edit= wo::findOrFail($id);
+
+       Log::info('Ingreso a la edición: '. Auth::user()->name." ".$id);
          //$estadoservicio = estadoservicio::pluck('estadoservicio','id');
         //dd($edit);
 
@@ -113,7 +115,8 @@ class woesController extends Controller
         //sires::update($input);
         //sires::find($id)->update($input);
 
-        $updates=DB::table('wo')->where('id',"=",$id)->update($input); 
+        $updates=DB::table('wo')->where('id',"=",$id)->update($input);
+        Log::info('Se modifico la lista de chequeo: '. Auth::user()->name." ".$updates); 
         Alert::success('Actualizo correctamente la orden de Trabajo!')->persistent("Close");
 
         //return redirect()->route('wo.index');

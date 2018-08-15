@@ -51,8 +51,69 @@
                     <h3 class="panel-title">Reportes Detallados</h3>
                   </div>
                   <div class="panel-body">
+                    {!! Form::open(['route' => 'rango', 'method'=>'get']) !!}
 
+                    <div class="container">
+                   <div class="row">
+                   <div class='col-xs-4'>
+                   <div class="form-group">
+                     <label for="id">fecha inicio  </label>
+                     <div class='input-group date datepicker-me'  data-provide="datepicker" >
+                         <input type='text' value="<?php echo date("Y-m-d");?>" class="form-control"  name="fecha1" />
+                          <span class="input-group-addon">
+                             <span class="glyphicon glyphicon-calendar"></span>
+                         </span>
+                     </div>
+                   </div>
+                   </div>
+
+                   <div class='col-xs-4'>
+                   <div class="form-group">
+                     <label for="id">fecha inicio  </label>
+                     <div class='input-group date datepicker-me'  data-provide="datepicker" >
+                         <input type='text' value="<?php echo date("Y/m/d");?>" class="form-control" name="fecha2" />
+                          <span class="input-group-addon">
+                             <span class="glyphicon glyphicon-calendar"></span>
+                         </span>
+                     </div>
+                   </div>
+                   </div>
+                    &nbsp; <br>
+                   <div class="col-xs-4">
+                     <div class="form-group">
+                       <button type="submit" class="btn btn-primary" >Descargar</button>
+                     </div>
+                   </div>
+                    </div>
+                  </div>
+
+                    <!-- <div class="col-xs-4">
+                    	<div class="form-group">
+                    		<label for="id">fecha inicio  </label>
+                    		<input type="date"  class="form-control" name="fecha1" id="fecha" >
+                    	</div>
+                    </div> -->
+                    <!-- <div class="col-xs-4">
+                    	<div class="form-group">
+                    		<label for="id"> fecha finalizacion  </label>
+                    		<input type="date"  class="form-control " name="fecha2" >
+                    	</div>
+                    </div> -->
+                    <br>
+
+
+                 </div>
+               </div>
+
+
+
+
+               {!! Form::close() !!}
+                 </div>
                 </div>
+
+
+
 
 
 

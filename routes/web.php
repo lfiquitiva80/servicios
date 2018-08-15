@@ -71,6 +71,7 @@ Route::get('clientesGenerales','excelController@clientegeneral')->name('clientes
 Route::get('escoltasGenerales','excelController@escoltasgeneral')->name('escoltas');
 Route::get('vehiculosGenerales','excelController@vehiculosgeneral')->name('vehiculos');
 Route::get('rentadorasGenerales','excelController@rentadorasgeneral')->name('rentadoras');
+Route::get('rango','excelController@rango')->name('rango');
 
 Route::get('continuar/{id}','ordenesdeservicioController@continuar')->name('continuar');
 Route::resource('Clientes','clienteController');
@@ -81,10 +82,18 @@ Route::resource('Vehiculo','vehiculoController');
 Route::resource('Rentadora','rentadoraController');
 Route::resource('Agenda','agendaController');
 Route::get('events','agendaController@get_events');
+Route::get('Vehiculosevents','agendaController@Vehiculos_events');
 Route::resource('reportes','excelController');
 Route::get('resourcesColumns','agendaController@resourcesColumns');
+Route::get('VehiculosColumns','agendaController@VehiculosColumns');
+Route::get('fecha','HomeController@fecha')->name('fecha');
+Route::resource('documento','documentoController');
 Route::get('/allescolta','escoltaController@allescoltas')->name('allescolta');//ajax para leonidas
 Route::get('ordenesgenerales','excelController@escoltas_ordenes')->name('ordenesgenerales');
 Route::get('excelwogenerales','excelController@wodos')->name('excelwogenerales');
 
+
+});
+Route::group(['middleware' => [ 'admin', 'auth']], function (){
+Route::resource('usuario','usuarioController');
 });

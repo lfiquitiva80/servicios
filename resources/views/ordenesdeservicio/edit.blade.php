@@ -7,9 +7,9 @@
 
 @section('main-content')
 
- 
+
  <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
-        @include('sweet::alert') 
+        @include('sweet::alert')
 
 
 {!! Form::open(['route' => ['ordenesdeservicio.update', $edit->id],'method'=>'PATCH','enctype'=>'multipart/form-data','file'=>true]) !!}
@@ -23,8 +23,8 @@
       <h3 class="panel-title"></h3>
     </div>
     <div class="panel-body">
-      
-    
+
+
 
 
   <div class="col-xs-1">
@@ -41,7 +41,7 @@
  --}}
     {!! Form::select('No_de_orden_de_servicio', $wo, $edit->No_de_orden_de_servicio, ['class'=>'form-control']) !!}
   </div>
-</div>  
+</div>
 <div class="col-xs-3">
 
     <label>Estado de Servicio</label>
@@ -58,20 +58,35 @@ echo $date->format('Y-m-d\TH:i'); ?>">
   </div>
 </div>
 
-
-
+<div class="col-xs-1">
+</div>
+<div class="col-xs-4">
+<div class="form-group">
+		<label for="id">propuesta económica</label>
+		<input type="text" class="form-control" name="propuesta_economica"  id="propuesta_economica" placeholder="propuesta económica." value="{{$edit->propuesta_economica}}">
+	</div>
+</div>
+<div class="col-xs-3">
+<div class="form-group">
+		<label for="id">Color agenda </label>
+		<input class="form-control" type="color" value="{{$edit->color_agenda}}" id="color_agenda" name="color_agenda">
+	</div>
+</div>
 
 
 </div>
 </div>
+<button type="button" class="btn btn-link" id="showhide2">Show/Hide</button>
+<div class="hora" style="display:none">
+
 
 <div class="panel panel-default">
   <div class="panel-body">
-    
+
  <div class="container">
    <div class="row">
-     
-  
+
+
 <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
     <div class="form-group">
     <label for="id">Hora_inicio_en_OT</label>
@@ -117,11 +132,11 @@ echo $date->format('Y-m-d\TH:i'); ?>">
 
  </div>
  </div>
-
+</div>
   <div class="panel panel-default">
     <div class="panel-body">
-     
-   
+
+
 
   <div class="col-xs-4">
    <div class="form-group">
@@ -130,30 +145,39 @@ echo $date->format('Y-m-d\TH:i'); ?>">
   </div>
   </div>
 
-<div class="col-xs-4">  
+<div class="col-xs-4">
  <div class="form-group">
     <label for="id">Cédula</label>
-    <input type="number" class="form-control" name="cedula"  id="cedula" placeholder="cedula" value="{{$edit->escoltas->cc}}" readonly>
+    <input type="number" class="form-control" name="cedula"  id="cedula" placeholder="cedula" value="" readonly>
   </div>
-</div>  
+</div>
+
 
   <div class="col-xs-2">
    <div class="form-group">
     <label for="id">Escolta Externo</label>
-      <input type="text" class="form-control" name="escolta_externo" id="escolta_externo" value="{{$edit->escolta_externo}}" readonly>   
-  </div>  
+      <input type="text" class="form-control" name="escolta_externo" id="escolta_externo" value="{{$edit->escolta_externo}}" readonly>
+  </div>
 </div>
+
+  @php
+
+    $sino= array ("SI","NO");
+
+  @endphp
 
    <div class="col-xs-2">
    <div class="form-group">
+
     <label for="id">Bilingue?</label>
-    
-    <input type="text" class="form-control" name="bilingue" id="bilingue" value="{{$edit->escoltas->bilingue}}" readonly> 
+
+
+   {!! Form::select('bilingue', $sino, $edit->bilingue, ['class'=>'form-control']) !!}
   </div>
 </div>
 
 <div class="col-xs-4">
-<div class="form-group">  
+<div class="form-group">
     <label for="id">ID2</label>
     <input type="text" class="form-control" name="ID2"  id="ID2" placeholder="ID2" value="{{$edit->ID2}}">
   </div>
@@ -163,7 +187,7 @@ echo $date->format('Y-m-d\TH:i'); ?>">
 <div class="col-xs-4">
 <div class="form-group">
     <label for="id">placa</label>
-    
+
      {!! Form::select('placa',$vehiculo, $edit->placa, ['class' => 'form-control']) !!}
   </div>
 </div>
@@ -200,7 +224,7 @@ echo $date->format('Y-m-d\TH:i'); ?>">
 
     {!! Form::select('cliente',$cliente, $edit->cliente, ['class' => 'form-control']) !!}
   </div>
-</div>  
+</div>
 
 @php
 
@@ -255,7 +279,7 @@ echo $date->format('Y-m-d\TH:i'); ?>">
 <div class="col-xs-4">
 <div class="form-group">
     <label for="id">tipo_de_servicio</label>
-    
+
 
     @php
         $tiposervicio= array("AGENDA",
@@ -271,7 +295,7 @@ echo $date->format('Y-m-d\TH:i'); ?>">
 "SCRAP"
 );
 
- 
+
 
     @endphp
 
@@ -287,7 +311,7 @@ echo $date->format('Y-m-d\TH:i'); ?>">
     <label for="id">detalle_del_servicio</label>
     <br><textarea cols="53" rows="2" name="detalle_del_servicio" id="detalle_del_servicio">{{$edit->detalle_del_servicio}}</textarea>
   </div>
-</div>  
+</div>
 
 <div class="col-xs-4">
 <div class="form-group">
@@ -302,11 +326,11 @@ echo $date->format('Y-m-d\TH:i'); ?>">
  </div>
   </div>
 
-<button type="button" class="btn btn-link" id="showhide">Show/Hide</button>  
+<button type="button" class="btn btn-link" id="showhide">Show/Hide</button>
 
 <div class="panel panel-default" id="prefactura">
       <div class="panel-body">
-           
+
 
 <div class="col-xs-4">
 <div class="form-group">
@@ -319,7 +343,7 @@ echo $date->format('Y-m-d\TH:i'); ?>">
 <div class="form-group">
     <label for="id">armado</label>
     <input type="text" class="form-control" name="armado"  id="armado" placeholder="armado" value="{{$edit->armado}}">
-  </div>  
+  </div>
 </div>
 
 <div class="col-xs-4">
@@ -360,6 +384,7 @@ echo $date->format('Y-m-d\TH:i'); ?>">
   </div>
 </div>
 
+
 <div class="col-xs-12">
 <div class="form-group">
     <label for="id">observaciones</label>
@@ -368,7 +393,7 @@ echo $date->format('Y-m-d\TH:i'); ?>">
 </div>
 
 <input type="hidden" class="form-control" name="users_id"  id="users_id" placeholder=""
-value="{{Auth::user()->id}}">  
+value="{{Auth::user()->id}}">
 
 
   <center><button type="submit" class="btn btn-info pull-right">Actualizar</button>
@@ -379,11 +404,11 @@ value="{{Auth::user()->id}}">
 
 
 <script type="text/javascript">
-  
+
 //ajax para traerme los escoltas para la vista /ordenesdeservicio/edit
 
 $(document).ready(function() {
-    
+
     $('#escoltas2').change(function(event) {
       /* Act on the event */
 
@@ -397,7 +422,7 @@ $(document).ready(function() {
         data: {id: leonidas},
       })
       .done(function(result) {
-      
+
         //console.log(result);
 
 
@@ -422,17 +447,17 @@ $(document).ready(function() {
       .always(function() {
         console.log("complete");
       });
-      
+
 
 
     });
-  });  
+  });
 
   $(function() {
 
 
-   //calculo total de horas 
-   
+   //calculo total de horas
+
     $('.horas').change(function(event) {
       /* Act on the event */
 
@@ -452,24 +477,24 @@ var resultado = minutosfinal-minutosinicial;
 var minutes = Math.floor( resultado / 60 );
 var seconds = resultado % 60;
 
-//Anteponiendo un 0 a los minutos si son menos de 10 
+//Anteponiendo un 0 a los minutos si son menos de 10
 minutes = minutes < 10 ? '0' + minutes : minutes;
- 
-//Anteponiendo un 0 a los segundos si son menos de 10 
+
+//Anteponiendo un 0 a los segundos si son menos de 10
 seconds = seconds < 10 ? '0' + seconds : seconds;
- 
+
 var result = minutes + ":" + seconds;  // 161:30
 
 $('#Total_Horas_del_Servicio').val(result);
-      
+
 
 
     });
 
-     
 
 
-    
+
+
 
 
 

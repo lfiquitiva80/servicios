@@ -59,7 +59,13 @@
   </div>
   <button type="submit" class="btn btn-default">Submit</button>
 {!! Form::close() !!}
+{!! Form::open(['route' => 'fecha', 'method'=>'GET', 'Class'=>'navbar-form navbar-left']) !!}
 
+  <div class="form-group">
+<input type="text"  value="<?php echo date("Y-m-d");?>" class="form-control buscador"  name="fecha_inicio_servicio" />
+  </div>
+  <button type="submit" class="btn btn-default">Submit</button>
+{!! Form::close() !!}
 
 
 </div>
@@ -129,7 +135,8 @@
 
 <div class="form-group">
         <label for="id">fecha_solicitud</label>
-        <input type="datetime-local" class="form-control" name="fecha_solicitud"  id="fecha_solicitud" placeholder="fecha_solicitud" value="">
+        <input type="datetime-local" class="form-control" name="fecha_solicitud"  id="fecha_solicitud" placeholder="fecha_solicitud" value="<?php $date = new DateTime();
+echo $date->format('Y-m-d\TH:i'); ?>" >
     </div>
 
 
@@ -176,7 +183,7 @@ value="{{Auth::user()->id}}">
   <a href="{{ $url = route('ordenesdeservicio.create') }}" class="btn btn-primary"><i class="fa fa-users" aria-hidden="true"></i> Registar Ordenes de Servicios</a>
 
 
-  
+
   <a class="btn bg-maroon btn-flat margin pull-right" data-toggle="modal" href='#modal-2'><i class="fa fa-inbox"></i> Crear W.O</a>
   <div class="modal fade" id="modal-2">
     <div class="modal-dialog">
@@ -194,28 +201,29 @@ value="{{Auth::user()->id}}">
 
   <div class="col-xs-1">
   <div class="form-group">
-   
+
     <input type="hidden" class="form-control" name="id"  id="id" placeholder="Id" readonly="readonly">
   </div>
 </div>
 
-      
-  
 
 
-    
+
+
+
           <button type="submit" class="btn btn-primary pull-right" >Enviar</button>
           {!! Form::close() !!}
-          
+
         </div>
         <div class="modal-footer">
-          
+
         </div>
       </div>
     </div>
   </div>
 
 <p>
+
 <div class="table-responsive">
 <table class="table table-bordered" id="table2" >
   <thead>
@@ -266,11 +274,13 @@ value="{{Auth::user()->id}}">
 
 
 
-  
+
 
           <td ><a href="{{ $url = route('ordenesdeservicio.edit',$row->id) }}" class="btn btn-success" title="Programar" onclick="return confirm('Va a ingresar a programar.');"><i class="fa fa-pencil" aria-hidden="true"> Programar</i></a></td>
           <td><a href="{{ $url = route('continuar',$row->id) }}" class="btn btn-info" title="Continuar" onclick="return confirm('Desea duplicar el registro actual?')"><i class="fa fa-clipboard" aria-hidden="true"></i> Continuar</a></td>
           <td id="eliminarhome">@include('ordenesdeservicio.destroy')</td>
+          <td ><a href="{{ $url = route('documento.edit',$row->id) }}" class=" btn btn-default" title="Imprimir"  ><i class="fa fa- fa-print" aria-hidden="true"> Imprimir  </i></a></td>
+
     </tr>
 
   </tbody>
@@ -280,7 +290,7 @@ value="{{Auth::user()->id}}">
 
 </table>
 </div>
-    
+
 <center>{{ $index->links() }}</center>
 
 </div>

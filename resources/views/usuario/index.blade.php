@@ -16,22 +16,23 @@
   <div class="panel-body">
 
 <div class="container">
-{!! Form::open(['route' => 'ordenesdeservicio.index', 'method'=>'GET', 'Class'=>'navbar-form navbar-right']) !!}
+{!! Form::open(['route' => 'usuario.index', 'method'=>'GET', 'Class'=>'navbar-form navbar-right']) !!}
 <!--<form class="navbar-form navbar-right" role="search">-->
   <div class="form-group">
-    <input type="text" class="form-control" placeholder="Search" name="namefuncionario" id="namefuncionario">
+    <input type="text" class="form-control" placeholder="Search" name="name" id="nombre">
   </div>
   <button type="submit" class="btn btn-default">Submit</button>
 {!! Form::close() !!}
 <div class="panel panel-default">
-<h4><b><center>REGISTROS DE ORDENES DE SERVICIOS</h4></b></center>
+<h4><b><center>REGISTROS DE USUARIOS</h4></b></center>
+<a class="btn btn-info" data-toggle="modal" href='#crear_usuario'><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Crear Usuario</a>
+
+  @include('usuario.create')
+
+   @include('usuario.edit')
 
 
-
-
-<a href="{{ $url = route('ordenesdeservicio.create') }}" class="btn btn-primary"><i class="fa fa-users" aria-hidden="true"></i> Registar Ordenes de Servicios</a>
-
-<center> <div class="row">
+<!-- <center> <div class="row">
 
       <div class="col-xs-12 col-sm-12 col-md-12">
 
@@ -46,7 +47,7 @@
       </div>
 
    </div>
-</center>
+</center> -->
 
 <p>
 <div class="table-responsive">
@@ -54,9 +55,9 @@
   <thead>
     <tr>
       <td>  id  </td>
-      <td>  No_de_orden_de_servicio</td>
-      <td>  Estado del Servicio</td>
-      <td>  Fecha Inicio del Servicio</td>
+      <td>  Nombre</td>
+      <td>  email</td>
+      <td>  Activo</td>
       <td>  Acción </td>
 
 
@@ -65,16 +66,16 @@
   </thead>
   <tbody>
 
-  @foreach($index as $row)
+  @foreach($usuario as $row)
     <tr>
 
           <td>{{$row->id}}</td>
-          <td>{{$row->No_de_orden_de_servicio}}</td>
-          <td>{{$row->estadoservicio_id}}</td>
-          <td>{{$row->fecha_inicio_servicio}}</td>
+          <td>{{$row->name}}</td>
+          <td>{{$row->email}}</td>
+          <td>{{$row->activo}}</td>
 
 
-          <td><a href="{{ $url = route('ordenesdeservicio.edit',$row->id) }}" class="btn btn-success"><i class="fa fa-pencil" aria-hidden="true"> Edición</i></a></td> <td>@include('ordenesdeservicio.destroy')</td>
+          <td><a    data-toggle="modal" data-target="#editar_usuario"   data-name="{{$row->name}}"   data-activo ="{{$row->activo}}" data-email="{{$row->email}}"  data-id="{{$row->id}}" data-type="{{$row->type}}"data-password="{{$row->password}}" class="btn btn-success"><i class="fa fa-pencil" aria-hidden="true"> Edición</i></a></td> <td>@include('usuario.destroy')</td>
 
     </tr>
   </tbody>
@@ -85,7 +86,7 @@
 </table>
 </div>
 
-<center>{{ $index->links() }}</center>
+<center>{{ $usuario->links() }}</center>
 
 </div>
 

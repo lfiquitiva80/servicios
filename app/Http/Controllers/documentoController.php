@@ -3,20 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\cliente;
-use Alert;
+use App\ordenesdeservicio;
 
-class ClienteController extends Controller
+
+
+class documentoController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-      $Cliente = cliente::search($request->nombre)->orderBy('nombre', 'asc')->paginate(10);
-   return view('cliente.index',compact('Cliente'));
+        //
     }
 
     /**
@@ -37,10 +37,7 @@ class ClienteController extends Controller
      */
     public function store(Request $request)
     {
-      $Cliente =  new cliente($request-> all());
-      $Cliente->save();
-  Alert::success('', 'el cliente ha sido registrado con exito !')->persistent('Close');
-  return redirect()->route('Clientes.index');
+        //
     }
 
     /**
@@ -62,9 +59,9 @@ class ClienteController extends Controller
      */
     public function edit($id)
     {
-        $Cliente = cliente::find($id);
-        return view('cliente.edit',compact('$Cliente'));
+        $edit= ordenesdeservicio::findOrFail($id);
 
+        return view('documento.edit', compact('edit'));
     }
 
     /**
@@ -76,11 +73,7 @@ class ClienteController extends Controller
      */
     public function update(Request $request, $id)
     {
-      $Cliente = cliente::findOrFail($request->id);
- $Cliente->update($request->all());
-
-      Alert::success('', 'el cliente ha sido editado con exito !')->persistent('Close');
-      return redirect()->route('Clientes.index');
+        //
     }
 
     /**
@@ -91,9 +84,6 @@ class ClienteController extends Controller
      */
     public function destroy($id)
     {
-         $Cliente = cliente::find($id);
-          $Cliente->delete();
-            Alert::success('', 'el cliente ha sido sido borrado de forma exita!')->persistent('Close');
-            return redirect()->route('Clientes.index');
+        //
     }
 }

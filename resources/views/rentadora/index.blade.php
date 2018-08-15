@@ -73,7 +73,7 @@
           <td>{{$row->contacto}}</td>
 
 
-          <td><a    data-toggle="modal" data-target="#editar_rentadora"   data-nombre="{{$row->nombre}}"  data-contacto="{{$row->contacto}}"  data-telefono ="{{$row->telefono}}" data-email="{{$row->email}}"  data-id="{{$row->id}}" class="btn btn-success"><i class="fa fa-pencil" aria-hidden="true"> Edición</i></a></td> <td>@include('rentadora.destroy')</td>
+          <td><a    data-toggle="modal" data-target="#editar_rentadora"   data-nombre="{{$row->nombre}}"  data-contacto="{{$row->contacto}}"  data-telefono ="{{$row->telefono}}" data-email="{{$row->email}}"  data-id="{{$row->id}}" data-telefono_2="{{$row->telefono_2}}" data-telefono_3="{{$row->telefono_3}}" data-email_2="{{$row->email_2}}" data-email_3="{{$row->email_3}}" class="btn btn-success"><i class="fa fa-pencil" aria-hidden="true"> Edición</i></a></td> <td>@include('rentadora.destroy')</td>
 
     </tr>
   </tbody>

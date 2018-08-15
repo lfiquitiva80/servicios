@@ -74,15 +74,15 @@
   <div class="form-group">
     <label for="id">fecha</label>
 
-    @if(!empty($edit->fecha_ingresar_solicitud))  
+    @if(!empty($edit->fecha_ingresar_solicitud) && Auth::user()->User())
     <input type="text" class="form-control" name="fecha_ingresar_solicitud"  id="fecha_ingresar_solicitud" placeholder="fecha_ingresar_solicitud" value="{{$edit->fecha_ingresar_solicitud}}" title="{{$edit->fecha_ingresar_solicitud}}" disabled>
 
     @else
-
-    <input type="datetime-local" class="form-control" name="fecha_ingresar_solicitud"  id="fecha_ingresar_solicitud" placeholder="fecha_ingresar_solicitud" value="" title="{{$edit->fecha_ingresar_solicitud}}">
+    <input type="datetime-local"class="form-control" name="fecha_ingresar_solicitud"  id="fecha_ingresar_solicitud" placeholder="fecha_ingresar_solicitud" value="<?php $date = new DateTime($edit->fecha_ingresar_solicitud);
+    echo $date->format('Y-m-d\TH:i'); ?>" >
     @endif
 
-    
+
   </div>
 </div>
 
@@ -90,7 +90,7 @@
   <div class="form-group">
     <label for="id">usuario</label>
 
-    @if(!empty($edit->usuario_ingresar_solicitud)) 
+    @if(!empty($edit->usuario_ingresar_solicitud))
     <input type="text" class="form-control" name="usuario_ingresar_solicitud"  id="usuario_ingresar_solicitud" placeholder="usuario_ingresar_solicitud" value="{{$edit->usuario_ingresar_solicitud}}" disabled>
     @else
     <input type="text" class="form-control" name="usuario_ingresar_solicitud"  id="usuario_ingresar_solicitud" placeholder="usuario_ingresar_solicitud" value="{{$edit->usuario_ingresar_solicitud}}" >
@@ -121,11 +121,12 @@
 
 <div class="col-xs-3">
   <div class="form-group">
-    @if(!empty($edit->fecha_programacion))
+    @if(!empty($edit->fecha_programacion) && Auth::user()->User())
     <input type="text"class="form-control" name="fecha_programacion"  id="fecha_programacion" placeholder="fecha_programacion" value="<?php $date = new DateTime($edit->fecha_programacion);
 echo $date->format('Y-m-d\TH:i'); ?>" disabled>
     @else
-<input type="datetime-local"class="form-control" name="fecha_programacion"  id="fecha_programacion" placeholder="fecha_programacion" value="">
+<input type="datetime-local"class="form-control" name="fecha_programacion"  id="fecha_programacion" placeholder="fecha_programacion" value="<?php $date = new DateTime($edit->fecha_programacion);
+echo $date->format('Y-m-d\TH:i'); ?>" >
 
 
     @endif
@@ -139,7 +140,7 @@ echo $date->format('Y-m-d\TH:i'); ?>" disabled>
   @else
   <input type="text" class="form-control" name="usuario_programacion"  id="usuario_programacion" placeholder="usuario_programacion" value="{{$edit->usuario_programacion}}" >
 
-  @endif  
+  @endif
   </div>
 </div>
 
@@ -160,13 +161,14 @@ echo $date->format('Y-m-d\TH:i'); ?>" disabled>
 
 <div class="col-xs-3">
   <div class="form-group">
-    @if(!empty($edit->fecha_respuesta_cliente))
+    @if(!empty($edit->fecha_respuesta_cliente) && Auth::user()->User())
     <input type="datetime-local"class="form-control" name="fecha_respuesta_cliente"  id="fecha_respuesta_cliente" placeholder="fecha_respuesta_cliente" value="<?php $date = new DateTime($edit->fecha_respuesta_cliente);
 echo $date->format('Y-m-d\TH:i'); ?>" disabled>
 
 @else
 
- <input type="datetime-local"class="form-control" name="fecha_respuesta_cliente"  id="fecha_respuesta_cliente" placeholder="fecha_respuesta_cliente" >
+ <input type="datetime-local"class="form-control" name="fecha_respuesta_cliente"  id="fecha_respuesta_cliente" placeholder="fecha_respuesta_cliente"  value="<?php $date = new DateTime($edit->fecha_respuesta_cliente);
+echo $date->format('Y-m-d\TH:i'); ?>" >
 
 @endif
   </div>
@@ -179,7 +181,7 @@ echo $date->format('Y-m-d\TH:i'); ?>" disabled>
 
     @else
 
-    <input type="text" class="form-control" name="usuario_respuesta_cliente"  id="usuario_respuesta_cliente" placeholder="usuario_respuesta_cliente">    
+    <input type="text" class="form-control" name="usuario_respuesta_cliente"  id="usuario_respuesta_cliente" placeholder="usuario_respuesta_cliente">
 
     @endif
   </div>
@@ -202,13 +204,14 @@ echo $date->format('Y-m-d\TH:i'); ?>" disabled>
 
 <div class="col-xs-3">
   <div class="form-group">
-    @if(!empty($edit->fecha_contratacion_personal))
+    @if(!empty($edit->fecha_contratacion_personal) && Auth::user()->User())
     <input type="datetime-local"class="form-control" name="fecha_contratacion_personal"  id="fecha_contratacion_personal" placeholder="fecha_contratacion_personal" value="<?php $date = new DateTime($edit->fecha_contratacion_personal);
 echo $date->format('Y-m-d\TH:i'); ?>" disabled>
     @else
 
-   <input type="datetime-local"class="form-control" name="fecha_contratacion_personal"  id="fecha_contratacion_personal" placeholder="fecha_contratacion_personal">
-    
+   <input type="datetime-local"class="form-control" name="fecha_contratacion_personal"  id="fecha_contratacion_personal" placeholder="fecha_contratacion_personal" value="<?php $date = new DateTime($edit->fecha_contratacion_personal);
+echo $date->format('Y-m-d\TH:i'); ?>">
+
     @endif
 
   </div>
@@ -221,7 +224,7 @@ echo $date->format('Y-m-d\TH:i'); ?>" disabled>
 
     @else
 
-   <input type="text" class="form-control" name="usuario_contratacion_personal"  id="usuario_contratacion_personal" placeholder="usuario_contratacion_personal" value="{{$edit->usuario_contratacion_personal}}" >  
+   <input type="text" class="form-control" name="usuario_contratacion_personal"  id="usuario_contratacion_personal" placeholder="usuario_contratacion_personal" value="{{$edit->usuario_contratacion_personal}}" >
 
     @endif
   </div>
@@ -244,10 +247,10 @@ echo $date->format('Y-m-d\TH:i'); ?>" disabled>
 
 <div class="col-xs-3">
   <div class="form-group">
-    @if(!empty($edit->fecha_contratacion_vehiculo))
+    @if(!empty($edit->fecha_contratacion_vehiculo) && Auth::user()->User())
     <input type="text"class="form-control" name="fecha_contratacion_vehiculo"  id="fecha_contratacion_vehiculo" placeholder="fecha_contratacion_vehiculo" value="{{$edit->fecha_contratacion_vehiculo}}" disabled>
     @else
-    <input type="datetime-local"class="form-control" name="fecha_contratacion_vehiculo"  id="fecha_contratacion_vehiculo" placeholder="fecha_contratacion_vehiculo" value="">
+    <input type="datetime-local"class="form-control" name="fecha_contratacion_vehiculo"  id="fecha_contratacion_vehiculo" placeholder="fecha_contratacion_vehiculo"  value="{{$edit->fecha_contratacion_vehiculo}}">
 
     @endif
 
@@ -256,7 +259,7 @@ echo $date->format('Y-m-d\TH:i'); ?>" disabled>
 
 <div class="col-xs-4">
   <div class="form-group">
-     @if(!empty($edit->usuario_contratacion_vehiculo))
+     @if(!empty($edit->usuario_contratacion_vehiculo) )
     <input type="text" class="form-control" name="usuario_contratacion_vehiculo"  id="usuario_contratacion_vehiculo" placeholder="usuario_contratacion_vehiculo" value="{{$edit->usuario_contratacion_vehiculo}}" disabled>
 
     @else
@@ -284,11 +287,11 @@ echo $date->format('Y-m-d\TH:i'); ?>" disabled>
 
 <div class="col-xs-3">
   <div class="form-group">
-     @if(!empty($edit->fecha_giro_anticipo))
+     @if(!empty($edit->fecha_giro_anticipo) && Auth::user()->User())
     <input type="text"class="form-control" name="fecha_giro_anticipo"  id="fecha_giro_anticipo" placeholder="fecha_giro_anticipo" value="{{$edit->fecha_giro_anticipo}}" disabled>
     @else
 
-    <input type="datetime-local"class="form-control" name="fecha_giro_anticipo"  id="fecha_giro_anticipo" placeholder="fecha_giro_anticipo" value="" >
+    <input type="datetime-local"class="form-control" name="fecha_giro_anticipo"  id="fecha_giro_anticipo" placeholder="fecha_giro_anticipo" value="{{$edit->fecha_giro_anticipo}}">
 
     @endif
   </div>
@@ -300,7 +303,7 @@ echo $date->format('Y-m-d\TH:i'); ?>" disabled>
     <input type="text" class="form-control" name="usuario_giro_anticipo"  id="usuario_giro_anticipo" placeholder="usuario_giro_anticipo" value="{{$edit->usuario_giro_anticipo}}" disabled>
     @else
     <input type="text" class="form-control" name="usuario_giro_anticipo"  id="usuario_giro_anticipo" placeholder="usuario_giro_anticipo">
-    
+
     @endif
   </div>
 </div>
@@ -324,13 +327,13 @@ echo $date->format('Y-m-d\TH:i'); ?>" disabled>
 <div class="col-xs-3">
   <div class="form-group">
 
-    @if(!empty($edit->fecha_notificacion_agencia))
+    @if(!empty($edit->fecha_notificacion_agencia) && Auth::user()->User())
 
     <input type="text"class="form-control" name="fecha_notificacion_agencia"  id="fecha_notificacion_agencia" placeholder="fecha_notificacion_agencia" value="{{$edit->fecha_notificacion_agencia}}" disabled>
 
     @else
 
-    <input type="datetime-local"class="form-control" name="fecha_notificacion_agencia"  id="fecha_notificacion_agencia" placeholder="fecha_notificacion_agencia" >
+    <input type="datetime-local"class="form-control" name="fecha_notificacion_agencia"  id="fecha_notificacion_agencia" placeholder="fecha_notificacion_agencia"  value="{{$edit->fecha_notificacion_agencia}}">
 
     @endif
   </div>
@@ -367,11 +370,11 @@ echo $date->format('Y-m-d\TH:i'); ?>" disabled>
 
 <div class="col-xs-3">
   <div class="form-group">
-    @if(!empty($edit->fecha_impresion_orden))
+    @if(!empty($edit->fecha_impresion_orden) && Auth::user()->User())
     <input type="text"class="form-control" name="fecha_impresion_orden"  id="fecha_impresion_orden" placeholder="fecha_impresion_orden" value="{{$edit->fecha_impresion_orden}}" disabled>
     @else
 
-    <input type="datetime-local"class="form-control" name="fecha_impresion_orden"  id="fecha_impresion_orden" placeholder="fecha_impresion_orden">
+    <input type="datetime-local"class="form-control" name="fecha_impresion_orden"  id="fecha_impresion_orden" placeholder="fecha_impresion_orden" value="{{$edit->fecha_impresion_orden}}">
 
     @endif
   </div>
@@ -410,11 +413,11 @@ echo $date->format('Y-m-d\TH:i'); ?>" disabled>
 
 <div class="col-xs-3">
   <div class="form-group">
-    @if(!empty($edit->fecha_instructivo_escolta))  
+    @if(!empty($edit->fecha_instructivo_escolta) && Auth::user()->User())
     <input type="text"class="form-control" name="fecha_instructivo_escolta"  id="fecha_instructivo_escolta" placeholder="fecha_instructivo_escolta" value="{{$edit->fecha_instructivo_escolta}}" disabled>
     @else
 
-    <input type="datetime-local"class="form-control" name="fecha_instructivo_escolta"  id="fecha_instructivo_escolta" placeholder="fecha_instructivo_escolta">
+    <input type="datetime-local"class="form-control" name="fecha_instructivo_escolta"  id="fecha_instructivo_escolta" placeholder="fecha_instructivo_escolta" value="{{$edit->fecha_instructivo_escolta}}">
 
     @endif
   </div>
@@ -422,7 +425,7 @@ echo $date->format('Y-m-d\TH:i'); ?>" disabled>
 
 <div class="col-xs-4">
   <div class="form-group">
-    @if(!empty($edit->usuario_instructivo_escolta))  
+    @if(!empty($edit->usuario_instructivo_escolta))
     <input type="text" class="form-control" name="usuario_instructivo_escolta"  id="usuario_instructivo_escolta" placeholder="usuario_instructivo_escolta" value="{{$edit->usuario_instructivo_escolta}}" disabled>
     @else
 
@@ -449,11 +452,11 @@ echo $date->format('Y-m-d\TH:i'); ?>" disabled>
 
 <div class="col-xs-3">
   <div class="form-group">
-    @if(!empty($edit->fecha_aviso_terminacion_personal))  
+    @if(!empty($edit->fecha_aviso_terminacion_personal) && Auth::user()->User())
     <input type="text"class="form-control" name="fecha_aviso_terminacion_personal"  id="fecha_aviso_terminacion_personal" placeholder="fecha_aviso_terminacion_personal" value="{{$edit->fecha_aviso_terminacion_personal}}" disabled>
     @else
 
-    <input type="datetime-local"class="form-control" name="fecha_aviso_terminacion_personal"  id="fecha_aviso_terminacion_personal" placeholder="fecha_aviso_terminacion_personal">
+    <input type="datetime-local"class="form-control" name="fecha_aviso_terminacion_personal"  id="fecha_aviso_terminacion_personal" placeholder="fecha_aviso_terminacion_personal" value="{{$edit->fecha_aviso_terminacion_personal}}">
 
     @endif
   </div>
@@ -461,11 +464,11 @@ echo $date->format('Y-m-d\TH:i'); ?>" disabled>
 
 <div class="col-xs-4">
   <div class="form-group">
-    @if(!empty($edit->usuario_aviso_terminacion_personal)) 
+    @if(!empty($edit->usuario_aviso_terminacion_personal))
     <input type="text" class="form-control" name="usuario_aviso_terminacion_personal"  id="usuario_aviso_terminacion_personal" placeholder="usuario_aviso_terminacion_personal" value="{{$edit->usuario_aviso_terminacion_personal}}" disabled>
     @else
 
-    <input type="text" class="form-control" name="usuario_aviso_terminacion_personal"  id="usuario_aviso_terminacion_personal" placeholder="usuario_aviso_terminacion_personal">
+    <input type="text" class="form-control" name="usuario_aviso_terminacion_personal"  id="usuario_aviso_terminacion_personal" placeholder="usuario_aviso_terminacion_personal" >
 
     @endif
   </div>
@@ -489,11 +492,11 @@ echo $date->format('Y-m-d\TH:i'); ?>" disabled>
 
 <div class="col-xs-3">
   <div class="form-group">
-    @if(!empty($edit->fecha_entrega_vehiculo)) 
+    @if(!empty($edit->fecha_entrega_vehiculo) && Auth::user()->User())
     <input type="text"class="form-control" name="fecha_entrega_vehiculo"  id="fecha_entrega_vehiculo" placeholder="fecha_entrega_vehiculo" value="{{$edit->fecha_entrega_vehiculo}}" disabled>
     @else
 
-    <input type="datetime-local"class="form-control" name="fecha_entrega_vehiculo"  id="fecha_entrega_vehiculo" placeholder="fecha_entrega_vehiculo">
+    <input type="datetime-local"class="form-control" name="fecha_entrega_vehiculo"  id="fecha_entrega_vehiculo" placeholder="fecha_entrega_vehiculo"  value="{{$edit->fecha_entrega_vehiculo}}">
 
     @endif
   </div>
@@ -528,18 +531,18 @@ echo $date->format('Y-m-d\TH:i'); ?>" disabled>
 
 <div class="col-xs-3">
   <div class="form-group">
-     @if(!empty($edit->fecha_finalizado))
+     @if(!empty($edit->fecha_finalizado) && Auth::user()->User())
     <input type="text"class="form-control" name="fecha_finalizado"  id="fecha_finalizado" placeholder="fecha_finalizado" value="{{$edit->fecha_finalizado}}" disabled>
     @else
 
-    <input type="datetime-local"class="form-control" name="fecha_finalizado"  id="fecha_finalizado" placeholder="fecha_finalizado">
+    <input type="datetime-local"class="form-control" name="fecha_finalizado"  id="fecha_finalizado" placeholder="fecha_finalizado"  value="{{$edit->fecha_finalizado}}">
 
 
     @endif
   </div>
 </div>
 
-<div class="col-xs-4">  
+<div class="col-xs-4">
   <div class="form-group">
 
     <center><button type="submit" class="btn btn-info pull-right">Actualizar</button>

@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\cliente;
+use Illuminate\Support\Facades\Auth;
+use App\User;
 use Alert;
 
-class ClienteController extends Controller
+
+class usuarioController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +17,8 @@ class ClienteController extends Controller
      */
     public function index(Request $request)
     {
-      $Cliente = cliente::search($request->nombre)->orderBy('nombre', 'asc')->paginate(10);
-   return view('cliente.index',compact('Cliente'));
+        $usuario =User::search($request->name)->orderBy('id', 'asc')->paginate(10);
+         return view('usuario.index',compact('usuario'));
     }
 
     /**
@@ -37,10 +39,10 @@ class ClienteController extends Controller
      */
     public function store(Request $request)
     {
-      $Cliente =  new cliente($request-> all());
-      $Cliente->save();
-  Alert::success('', 'el cliente ha sido registrado con exito !')->persistent('Close');
-  return redirect()->route('Clientes.index');
+        $usuario =  new User($request-> all());
+        $usuario->save();
+        Alert::success('', 'el usuario ha sido registrado con exito !')->persistent('Close');
+        return redirect()->route('usuario.index');
     }
 
     /**
@@ -62,9 +64,8 @@ class ClienteController extends Controller
      */
     public function edit($id)
     {
-        $Cliente = cliente::find($id);
-        return view('cliente.edit',compact('$Cliente'));
-
+      $usuario = User:: find($id);
+          return view('escolta.edit',compact('usuario'));
     }
 
     /**
@@ -76,11 +77,11 @@ class ClienteController extends Controller
      */
     public function update(Request $request, $id)
     {
-      $Cliente = cliente::findOrFail($request->id);
- $Cliente->update($request->all());
+      $usuario = User::findOrFail($request->id);
+ $usuario->update($request->all());
 
-      Alert::success('', 'el cliente ha sido editado con exito !')->persistent('Close');
-      return redirect()->route('Clientes.index');
+      Alert::success('', 'el usuario ha sido editado con exito !')->persistent('Close');
+      return redirect()->route('usuario.index');
     }
 
     /**
@@ -91,9 +92,9 @@ class ClienteController extends Controller
      */
     public function destroy($id)
     {
-         $Cliente = cliente::find($id);
-          $Cliente->delete();
-            Alert::success('', 'el cliente ha sido sido borrado de forma exita!')->persistent('Close');
-            return redirect()->route('Clientes.index');
+      $usuario = User::find($id);
+       $usuario->delete();
+         Alert::success('', 'el usuario ha sido sido borrado de forma exita!')->persistent('Close');
+         return redirect()->route('Clientes.index');
     }
 }

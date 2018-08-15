@@ -13,4 +13,9 @@ class vehiculo extends Model
   {
   return $query ->where('placa','LIKE' ,  "%$placa%");
   }
+  public  function ordenesdeservicios()
+   {
+      return $this->HasMany('App\ordenesdeservicio');
+   }
+
 }

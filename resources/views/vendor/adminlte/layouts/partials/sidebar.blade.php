@@ -51,18 +51,19 @@
               <li><a href="{{route('Rentadora.index')}}"><i class='fa  fa-suitcase'></i> <span>Rentadora</span></a></li>
                <li><a href="{{route('Agenda.index')}}"><i class='fa  fa-calendar'></i> <span>Agenda</span></a></li>
               <li><a href="{{route('reportes.index')}}"><i class="fa fa-table" ></i> <span>Reportes</span></a></li>
-
+                  @if(Auth::user()->admin())
+                <li><a href="{{route('usuario.index')}}"><i class="fa fa- fa-users" ></i> <span>Usuarios</span></a></li>
                <li><a href="{{route('logs')}}"><i class="fa fa-cogs" aria-hidden="true"></i> <span> Logs</span></a></li>
+               @endif
 
-
-            <li class="treeview">
+            <!-- <li class="treeview">
                 <a href="#"><i class='fa fa-bell'></i> <span></span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
                     <li><a href="#">{{ trans('adminlte_lang::message.linklevel2') }}</a></li>
                     <li><a href="#">{{ trans('adminlte_lang::message.linklevel2') }}</a></li>
                 </ul>
-            </li>
-        </ul><!-- /.sidebar-menu -->
+            </li> -->
+        </ul><!-- /.sidebar-menu  -->
     </section>
     <!-- /.sidebar -->
 </aside>

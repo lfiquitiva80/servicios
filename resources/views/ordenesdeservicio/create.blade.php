@@ -22,7 +22,7 @@
   <a href="{{ URL::previous() }}" class="btn btn-primary"><i class="fa fa-hand-o-left" aria-hidden="true"></i> Regresar</a><p>
 
 {!! Form::open(['route' => 'ordenesdeservicio.store', 'method'=>'POST']) !!}
-	<legend>CREAR ORDEN DE SERVICIOS</legend>
+	<legend>CREAR ORDEN DE SERVICIOS  </legend>
 
 	<div class="col-xs-1">
 	<div class="form-group">
@@ -31,25 +31,36 @@
 	</div>
 </div>
 
-<div class="col-xs-4">
+<div class="col-xs-2">
 	<div class="form-group">
-		<label for="id">No_de_orden_de_servicio</label>
+		<label for="id">No_de_orden_de_servicio  </label>
 		<input type="text" class="form-control input-lg" name="No_de_orden_de_servicio"  id="No_de_orden_de_servicio" placeholder="Número orden de sercivios">
 	</div>
 </div>
 <div class="col-xs-3">
 
-    <label>Estado de Servicio</label>
+    <label>  &nbsp;&nbsp;&nbsp;Estado de Servicio</label>
     {!! Form::select('estadoservicio_id',$estadoservicio, null, ['class' => 'form-control input-lg']) !!}
 </div>
 
-<div class="col-xs-4">
+<div class="col-xs-2">
 	<div class="form-group">
 		<label for="id">fecha_inicio_servicio</label>
 		<input type="date" class="form-control input-lg" name="fecha_inicio_servicio"  id="fecha_inicio_servicio" placeholder="Número orden de sercivios">
 	</div>
 </div>
-
+<div class="col-xs-2">
+<div class="form-group">
+		<label for="id">propuesta económica</label>
+		<input type="text" class="form-control input-lg" name="propuesta_economica"  id="propuesta_economica" placeholder="propuesta económica.">
+	</div>
+</div>
+<div class="col-xs-2">
+<div class="form-group">
+		<label for="id">Color agenda </label>
+		<input class="form-contro input-lg" type="color" value="#2EFE9A" id="color_agenda" name="color_agenda">
+	</div>
+</div>
 	<div class="col-xs-2">
     <div class="form-group">
 		<label for="id">Hora_inicio_en_OT</label>
@@ -242,7 +253,6 @@
 	</div>
 </div>
 
-
 <div class="col-xs-2">
 <div class="form-group">
 		<label for="id">tiempo_rta_cliente</label>
@@ -257,6 +267,7 @@
 	</div>
 </div>
 
+
 <div class="col-xs-12">
 <div class="form-group">
 		<label for="id">observaciones</label>
@@ -266,6 +277,9 @@
 
 <input type="hidden" class="form-control input-lg" name="users_id"  id="users_id" placeholder=""
 value="{{Auth::user()->id}}">
+
+
+
 
 
 	<center><button type="submit" class="btn btn-primary" >Enviar</button>

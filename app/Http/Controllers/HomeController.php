@@ -53,12 +53,14 @@ class HomeController extends Controller
 
       //$Escolta= escolta::search($request->nombre)->orderBy('id', 'DSC')->paginate(10);
 
-      
+
         Log::info('Ingreso a las ordenes de servicio: '. Auth::user()->name);
         $estadoservicio = estadoservicio::pluck('estadoservicio','id');
-        $cliente = cliente::pluck('Nombre','id');
+        $cliente = cliente::orderBy('Nombre','asc')->pluck('Nombre','id');
+
         $hoy = new Carbon();
-        //dd($hoy);
+
+        //dd($cliente);
 
         $index = ordenesdeservicio::search($request->nombre)->orderBy('id', 'desc')->paginate();
 
@@ -72,6 +74,17 @@ class HomeController extends Controller
         //return Datatables::of(ordenesdeservicio::all())->make(true);
 
         return view('home',compact('index','estadoservicio','cliente','hoy'));
-       
+
+    }
+    public function fecha(Request $request){
+    
+      $index=ordenesdeservicio::search1($request->fecha_inicio_servicio)->orderBy('id', 'desc')->paginate();
+      Log::info('Ingreso a las ordenes de servicio: '. Auth::user()->name);
+      $estadoservicio = estadoservicio::pluck('estadoservicio','id');
+      $cliente = cliente::orderBy('Nombre','asc')->pluck('Nombre','id');
+
+      $hoy = new Carbon();
+
+        return view('home',compact('index','estadoservicio','cliente','hoy'));
     }
 }

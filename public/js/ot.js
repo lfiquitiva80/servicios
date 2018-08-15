@@ -1201,6 +1201,10 @@ var telefono = button.data('telefono')
 var activo = button.data('activo')
 var email = button.data('email')
 var notas = button.data('notas')
+var email_2 = button.data('email_2')
+var email_3 = button.data('email_3')
+var telefono_2 = button.data('telefono_2')
+var telefono_3 = button.data('telefono_3')
 // Extract info from data-* attributes
 // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
 // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
@@ -1210,6 +1214,31 @@ modal.find('.modal-body #contacto').val(contacto);
 modal.find('.modal-body #telefono').val(telefono);
 modal.find('.modal-body #email').val(email);
 modal.find('.modal-body #id').val(id);
+modal.find('.modal-body #email_2').val(email_2);
+modal.find('.modal-body #email_3').val(email_3);
+modal.find('.modal-body #telefono_2').val(telefono_2);
+modal.find('.modal-body #telefono_3').val(telefono_3);
+
+})
+
+$('#editar_usuario').on('show.bs.modal', function (event) {
+var button = $(event.relatedTarget)
+var id = button.data('id')
+var name = button.data('name')
+var type = button.data('type')
+var password = button.data('password')
+var activo = button.data('activo')
+var email = button.data('email')
+// Extract info from data-* attributes
+// If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+// Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+var modal = $(this)
+modal.find('.modal-body #name').val(name);
+modal.find('.modal-body #type').val(type);
+modal.find('.modal-body #password').val(password);
+modal.find('.modal-body #email').val(email);
+modal.find('.modal-body #id').val(id);
+modal.find('.modal-body #activo').val(activo);
 })
 $(document).ready(function() {
        $('#reg_form').bootstrapValidator({
@@ -1543,7 +1572,7 @@ $(document).ready(function() {
                            validators: {
                                        stringLength: {
                                        min: 2,
-                                          message: 'El nombre del escolta debe tener más de 2 caracteres '
+                                          message: 'Este campo  debe tener más de 2 caracteres '
                                    },
                                        Empty: {
                                          message: 'ingrese solicitante'
@@ -1596,6 +1625,28 @@ $(document).ready(function() {
                                }
                              }
                         },
+                        telefono_2: {
+                            validators: {
+                                integer: {
+                                  min: 7,
+                                     max: 20,
+                                   },
+                                     Empty:{
+                                    message: 'ingrese número de teléfono'
+                                  }
+                                }
+                           },
+                           telefono_1: {
+                               validators: {
+                                   integer: {
+                                     min: 7,
+                                        max: 20,
+                                      },
+                                        Empty:{
+                                       message: 'ingrese número de teléfono'
+                                     }
+                                   }
+                              },
                              email: {
                                validators: {
                                            emailAddress: {
@@ -1606,6 +1657,26 @@ $(document).ready(function() {
                                        }
                                    }
                      },
+                     email_1: {
+                       validators: {
+                                   emailAddress: {
+                                    message: 'ingrese una dirección de correo electrónico válida'
+                               },
+                                   tEmpty: {
+                                 message: 'ingrese  una dirección de correo electrónico'
+                               }
+                           }
+             },
+             email_2: {
+               validators: {
+                           emailAddress: {
+                            message: 'ingrese una dirección de correo electrónico válida'
+                       },
+                           Empty: {
+                         message: 'ingrese  una dirección de correo electrónico'
+                       }
+                   }
+     },
                      contacto: {
                          validators: {
                                stringLength: {
@@ -1675,6 +1746,28 @@ $(document).ready(function() {
                                   }
                                 }
                            },
+                           telefono_2: {
+                               validators: {
+                                   integer: {
+                                     min: 7,
+                                        max: 20,
+                                      },
+                                        Empty:{
+                                       message: 'ingrese número de teléfono'
+                                     }
+                                   }
+                              },
+                              telefono_3: {
+                                  validators: {
+                                      integer: {
+                                        min: 7,
+                                           max: 20,
+                                         },
+                                           Empty:{
+                                          message: 'ingrese número de teléfono'
+                                        }
+                                      }
+                                 },
                                 email: {
                                   validators: {
                                               emailAddress: {
@@ -1685,6 +1778,26 @@ $(document).ready(function() {
                                           }
                                       }
                         },
+                        email_2: {
+                          validators: {
+                                      emailAddress: {
+                                       message: 'ingrese una dirección de correo electrónico válida'
+                                  },
+                                      Empty: {
+                                    message: 'ingrese  una dirección de correo electrónico'
+                                  }
+                              }
+                },
+                email_3: {
+                  validators: {
+                              emailAddress: {
+                               message: 'ingrese una dirección de correo electrónico válida'
+                          },
+                              Empty: {
+                            message: 'ingrese  una dirección de correo electrónico'
+                          }
+                      }
+        },
                         contacto: {
                             validators: {
                                   stringLength: {
@@ -1821,3 +1934,218 @@ $(document).ready(function() {
                            }, 'json');
                        });
                });
+
+$(document).ready(function() {
+       $('#reg_form7').bootstrapValidator({
+           message: 'Este valor no es válido',
+           // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
+           feedbackIcons: {
+               valid: 'glyphicon glyphicon-ok',
+               invalid: 'glyphicon glyphicon-remove',
+               validating: 'glyphicon glyphicon-refresh'
+           },
+           fields: {
+               password: {
+                 validators: {
+                   notEmpty: {
+                       message: 'la contraseña  es necesaria'
+                   },
+                   stringLength: {
+                       min:6,
+                       message: 'la contraseña debe tener más de 6  caracteres '
+                   },
+
+                 }
+               },
+               password_confirmation: {
+                 validators: {
+                   notEmpty: {
+                       message: 'Confirmar Contraseña'
+                   },
+                   stringLength: {
+                       min:6,
+                       message: 'la contraseña debe tener más de 6  caracteres  '
+                   },
+                   identical: {
+                          field: 'password',
+                          message: 'la contraseña no coincide'
+                      },
+                 }
+               },
+
+               name: {
+                  validators: {
+                  notEmpty: {
+                      message: 'el nombre e es necesario'
+                  },
+                  stringLength: {
+                      min:2,
+                      message: 'El tipo de renta  debe tener más de 2 caracteres '
+                  },
+                }
+                },
+
+
+            email: {
+              validators: {
+                          emailAddress: {
+                           message: 'ingrese una dirección de correo electrónico válida'
+                      },
+                          notEmpty: {
+                        message: 'ingrese  una dirección de correo electrónico'
+                      }
+                  }
+                },
+
+
+                    }
+                })
+
+
+                .on('success.form.bv', function(e) {
+                    $('#success_message').slideDown({ opacity: "show" }, "slow") // Do something ...
+                        $('#reg_form7').data('bootstrapValidator').resetForm();
+
+                    // Prevent form submission
+                    e.preventDefault();
+
+                    // Get the form instance
+                    var $form = $(e.target);
+
+                    // Get the BootstrapValidator instance
+                    var bv = $form.data('bootstrapValidator');
+
+                    // Use Ajax to submit form data
+                    $.post($form.attr('action'), $form.serialize(), function(result) {
+                        console.log(result);
+                    }, 'json');
+                });
+                });
+//   //
+  $(document).ready(function() {
+         $('#reg_form8').bootstrapValidator({
+             message: 'Este valor no es válido',
+             // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
+             feedbackIcons: {
+                 valid: 'glyphicon glyphicon-ok',
+                 invalid: 'glyphicon glyphicon-remove',
+                 validating: 'glyphicon glyphicon-refresh'
+             },
+             fields: {
+                 password: {
+                   validators: {
+                     Empty: {
+                         message: 'la contraseña  es necesaria'
+                     },
+                     stringLength: {
+                         min:6,
+                         message: 'la contraseña debe tener más de 6  caracteres '
+                     },
+
+                   }
+                 },
+
+                 name: {
+                    validators: {
+                    notEmpty: {
+                        message: 'el nombre e es necesario'
+                    },
+                    stringLength: {
+                        min:2,
+                        message: 'El tipo de renta  debe tener más de 2 caracteres '
+                    },
+                  }
+                  },
+
+
+              email: {
+                validators: {
+                            emailAddress: {
+                             message: 'ingrese una dirección de correo electrónico válida'
+                        },
+                            notEmpty: {
+                          message: 'ingrese  una dirección de correo electrónico'
+                        }
+                    }
+                  },
+                  activo: {
+                    validators: {
+                          notEmpty: {
+                              message: 'Seleccione '
+                          }
+                      }
+                  },
+                  type: {
+                    validators: {
+                          notEmpty: {
+                              message: 'Seleccione '
+                          }
+                      }
+                  },
+
+
+
+                 }
+             })
+
+
+           .on('success.form.bv', function(e) {
+               $('#success_message').slideDown({ opacity: "show" }, "slow") // Do something ...
+                   $('#reg_form8').data('bootstrapValidator').resetForm();
+
+               // Prevent form submission
+               e.preventDefault();
+
+               // Get the form instance
+               var $form = $(e.target);
+
+               // Get the BootstrapValidator instance
+               var bv = $form.data('bootstrapValidator');
+
+               // Use Ajax to submit form data
+               $.post($form.attr('action'), $form.serialize(), function(result) {
+                   console.log(result);
+               }, 'json');
+           });
+   });
+
+   $(document).ready(function(){
+   $('.email').on('click',function(){
+      $('.email_1').toggle('slow');
+   });
+});
+$(document).ready(function(){
+$('.telefono').on('click',function(){
+   $('.telefon_1').toggle('slow');
+});
+});
+$(document).ready(function(){
+$('#showhide2').on('click',function(){
+   $('.hora').toggle('slow');
+});
+});
+
+//  $(function () {
+// $('.date').datepicker({
+// $.fn.datepicker.defaults.format = 'dd/mm/yyyy';
+//    autoclose: true
+//
+// });
+// });
+$(document).ready(function(){
+   $.fn.datepicker.defaults.format = 'yyyy/mm/dd';
+$('.datepicker-me').datepicker({
+   language: 'es',
+       format: "yyyy/mm/dd",
+    autoclose: true
+    });
+    });
+
+    $(document).ready(function(){
+       // $.fn.datepicker.defaults.format = 'dd/mm/yyyy';
+    $('.buscador').datepicker({
+       language: 'es',
+           format: "yyyy-mm-dd",
+        autoclose: true
+        });
+        });

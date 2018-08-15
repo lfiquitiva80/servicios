@@ -54,7 +54,7 @@ class ordenesdeservicioController extends Controller
         $estadoservicio = estadoservicio::pluck('estadoservicio','id');
          $escolta = escolta::pluck('nombre','nombre');
 
-        
+
         //dd($index);
         return view('ordenesdeservicio.create', compact('estadoservicio','escolta'));
     }
@@ -74,7 +74,7 @@ class ordenesdeservicioController extends Controller
        Alert::success('Se guardo correctamente el nuevo servicio!')->persistent("Close");
 
      //  \Mail::to($request->get('para'))->send(new part($order));
-        \Mail::to('jefe.command@omnitempus.com')->cc('leonidas.fiquitiva@omnitempus.com')->send(new servicioadd($store));
+    // \Mail::to('jefe.command@omnitempus.com')->cc('leonidas.fiquitiva@omnitempus.com')->send(new servicioadd($store));
 
         return redirect()->route('home-principal');
         //return view('home');
@@ -100,12 +100,13 @@ class ordenesdeservicioController extends Controller
     public function edit($id)
     {
          $edit= ordenesdeservicio::findOrFail($id);
+         //dd($edit);
          $estadoservicio = estadoservicio::pluck('estadoservicio','id');
-         $escolta = escolta::pluck('nombre','id');
-         $cliente = cliente::pluck('Nombre','id');
-         $vehiculo = vehiculo::pluck('placa','id');
+         $escolta = escolta::orderBy('nombre','ASC')->pluck('nombre','id');
+         $cliente = cliente::orderBy('Nombre','ASC')->pluck('Nombre','id');
+         $vehiculo = vehiculo::orderBy('placa','ASC')->pluck('placa','id');
          $wo= wo::pluck('descripcion_wo','id');
-        //dd($vehiculo);
+        //dd($escolta);
 
 
         return view('ordenesdeservicio.edit', compact('edit','estadoservicio','wo','cliente','escolta','vehiculo'));
@@ -190,9 +191,9 @@ class ordenesdeservicioController extends Controller
         'observaciones' => $edit->observaciones,
         'tiempo_rta_cliente' => $edit->tiempo_rta_cliente,
         'tiempo_prefactura' => $edit->tiempo_prefactura,
-        'users_id' => $edit->users_id
-
-
+        'users_id' => $edit->users_id,
+        'propuesta_economica' => $edit->propuesta_economica,
+         'color_agenda' =>$edit->color_agenda
          ];
 
        //DB::table('criterios_evaluacion')->insert($edit);
