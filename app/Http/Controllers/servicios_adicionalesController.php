@@ -60,9 +60,18 @@ class servicios_adicionalesController extends Controller
     public function store(Request $request)
     {
          $input = $request->all();
-       //dd($input);
+         $idwo =  $request->id;
+         dd($input);
 
-            $store=servicios_adicionales::create($input); 
+            $store=servicios_adicionales::create($input);
+            $wo=wo::create($idwo); 
+            $wo->descripcion_wo = "N° de Orden ". $wo->id;
+            $wo->save();
+            $store->No_de_orden_de_servicio = $wo->id;
+            $store->save();
+
+
+
        Alert::success('Se guardo correctamente el servicio adicional!')->persistent("Close");
 
         return redirect()->route('servicios_adicionales.index');

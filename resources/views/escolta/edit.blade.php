@@ -52,8 +52,11 @@
 
 <br><br><br><br><br><br><br><br>
 {!!   Form::file('foto')!!}
+
 </div>
+
 </div>
+
 
 
 @endif
@@ -66,8 +69,12 @@
 <img src="{{asset($Escolta->foto)}}" style="width:140px; height:140px; position:absolute; top:10px; left:10px; border-radius:50%">
 <br><br><br><br><br><br><br><br>
 {!!   Form::file('foto')!!}
+
+
 </div>
+
 </div>
+
 
 
 @endif
@@ -110,6 +117,8 @@
                                                         <label for="id">Escolta Externo</label>
                                                                      {!! Form::select('escolta_externo',[ ''=>'SELECCIONE','si'=>'SI', 'no' =>'NO'],$Escolta->escolta_externo,['class'=> 'form-control','name'=>'escolta_externo'])!!}
                                                           </div>
+
+
   <center><button type="submit" class="btn btn-info pull-right">Actualizar</button>
 
   </center><p>

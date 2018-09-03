@@ -24,9 +24,6 @@
     </div>
     <div class="panel-body">
 
-
-
-
   <div class="col-xs-1">
   <div class="form-group">
     <label for="id">id</label>
@@ -39,7 +36,7 @@
     <label for="id">No_de_orden_de_servicio</label>
    {{--  <input type="text" class="form-control" name="No_de_orden_de_servicio"  id="No_de_orden_de_servicio" placeholder="Número orden de sercivios" value="{{$edit->No_de_orden_de_servicio}}">
  --}}
-    {!! Form::select('No_de_orden_de_servicio', $wo, $edit->No_de_orden_de_servicio, ['class'=>'form-control']) !!}
+    {!! Form::select('No_de_orden_de_servicio', $wo, $edit->No_de_orden_de_servicio, ['class'=>'form-control', 'disabled']) !!}
   </div>
 </div>
 <div class="col-xs-3">
@@ -55,6 +52,7 @@
     <label for="id">fecha_inicio_servicio</label>
     <input type="datetime-local" class="form-control" name="fecha_inicio_servicio"  id="fecha_inicio_servicio" placeholder="Número orden de sercivios" value="<?php $date = new DateTime($edit->fecha_inicio_servicio);
 echo $date->format('Y-m-d\TH:i'); ?>">
+  <span style="display: none; color: red" id="fechacontrol">La fecha es menor a la fecha de solicitud</span>
   </div>
 </div>
 
@@ -72,12 +70,20 @@ echo $date->format('Y-m-d\TH:i'); ?>">
 		<input class="form-control" type="color" value="{{$edit->color_agenda}}" id="color_agenda" name="color_agenda">
 	</div>
 </div>
+El servicio se debe ejecutar <b>{{ \Carbon\Carbon::parse($edit->fecha_inicio_servicio)->diffForHumans() }} </b>
+<div class="col-xs-3">
+<div class="form-group">
+<br>
+    	<a  href="{{route('pdf', $edit->id )}}" class="btn btn-info" target="_blank">PDF Presentación de Escoltas y Vehículos</a>
 
+
+	</div>
+</div>
 
 </div>
 </div>
-<button type="button" class="btn btn-link" id="showhide2">Show/Hide</button>
-<div class="hora" style="display:none">
+<button type="button" class="btn btn-link" id="showhide2">Mostrar/Ocultar</button>
+<div class="hora" >
 
 
 <div class="panel panel-default">
@@ -123,7 +129,8 @@ echo $date->format('Y-m-d\TH:i'); ?>">
   <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
     <div class="form-group">
     <label for="id">Total_Horas_del_Servicio</label>
-    <input type="time" class="form-control" name="Total_Horas_del_Servicio"  id="Total_Horas_del_Servicio" placeholder="Total_Horas_del_Servicio" value="{{$edit->Total_Horas_del_Servicio}}" disabled>
+    <input type="time" class="form-control" name="Total_Horas_del_Servicio"  id="Total_Horas_del_Servicio" placeholder="Total_Horas_del_Servicio" value="{{$edit->Total_Horas_del_Servicio}}" readonly>
+
   </div>
    </div>
 
@@ -148,7 +155,7 @@ echo $date->format('Y-m-d\TH:i'); ?>">
 <div class="col-xs-4">
  <div class="form-group">
     <label for="id">Cédula</label>
-    <input type="number" class="form-control" name="cedula"  id="cedula" placeholder="cedula" value="" readonly>
+    <input type="number" class="form-control" name="cedula"  id="cedula" placeholder="cedula" value="{{$edit->cedula}}" readonly>
   </div>
 </div>
 
@@ -178,8 +185,8 @@ echo $date->format('Y-m-d\TH:i'); ?>">
 
 <div class="col-xs-4">
 <div class="form-group">
-    <label for="id">ID2</label>
-    <input type="text" class="form-control" name="ID2"  id="ID2" placeholder="ID2" value="{{$edit->ID2}}">
+    <label for="id">AVANTEL</label>
+    <input type="text" class="form-control" name="ID2"  id="ID2" placeholder="AVANTEL" value="{{$edit->ID2}}">
   </div>
 </div>
 
@@ -250,6 +257,15 @@ $solicitante_interno = array("N/A",
 
 <div class="col-xs-4">
 <div class="form-group">
+    <label for="id">Solicitante</label>
+    <input type="text" class="form-control" name="solicitante_interno2"  id="solicitante_interno2" placeholder="ciudad_origen" value="{{$edit->solicitante_interno2}}">
+  </div>
+</div>
+
+
+
+<div class="col-xs-4">
+<div class="form-group">
     <label for="id">ciudad_origen</label>
     <input type="text" class="form-control" name="ciudad_origen"  id="ciudad_origen" placeholder="ciudad_origen" value="{{$edit->ciudad_origen}}">
   </div>
@@ -273,6 +289,7 @@ echo $date->format('Y-m-d\TH:i'); ?>">
     <label for="id">Fecha_de_respuesta_al_cliente</label>
     <input type="datetime-local" class="form-control" name="Fecha_de_respuesta_al_cliente"  id="Fecha_de_respuesta_al_cliente" placeholder="Fecha_de_respuesta_al_cliente" value="<?php $date = new DateTime($edit->Fecha_de_respuesta_al_cliente);
 echo $date->format('Y-m-d\TH:i'); ?>">
+    <span id="fechacontrol2" style="display: none; color: red">La Fecha_de_respuesta_al_cliente es inferior a la fecha de solicitud</span>
   </div>
 </div>
 
@@ -282,7 +299,7 @@ echo $date->format('Y-m-d\TH:i'); ?>">
 
 
     @php
-        $tiposervicio= array("AGENDA",
+        $tiposervicio= array("AGENDA 8 HORAS","AGENDA 10 HORAS","AGENDA 12 HORAS",
 "AVANZADA",
 "BACK UP",
 "CARGA CRÍTICA",
@@ -320,13 +337,19 @@ echo $date->format('Y-m-d\TH:i'); ?>">
   </div>
 </div>
 
+
+
 <center><button type="submit" class="btn btn-info pull-right">Actualizar</button>
+
+  <small><b>Usuario que modífico la solicitud</b>:<?php $usuario= App\User::find($edit->users_id); echo $usuario->name; ?><br>  <b>Fecha de Creación</b>: {{$edit->created_at}}
+  <br><b>Fecha de la Ultima Actualización:</b> {{$edit->updated_at}}
+  </small>
   </center><p>
 
  </div>
   </div>
 
-<button type="button" class="btn btn-link" id="showhide">Show/Hide</button>
+<button type="button" class="btn btn-link" id="showhide">Mostrar/Ocultar</button>
 
 <div class="panel panel-default" id="prefactura">
       <div class="panel-body">
@@ -472,7 +495,13 @@ var e = new Date("0001-01-01T"+horafinal);
 var minutosinicial = d.getHours() * 60 + d.getMinutes();
 var minutosfinal= e.getHours() * 60 + e.getMinutes();
 
-var resultado = minutosfinal-minutosinicial;
+if (minutosfinal<minutosinicial) {
+    var resultado = (1440-minutosinicial)+minutosfinal;
+    console.log(resultado);
+} else {
+  var resultado = minutosfinal-minutosinicial;
+}
+
 
 var minutes = Math.floor( resultado / 60 );
 var seconds = resultado % 60;
@@ -485,7 +514,10 @@ seconds = seconds < 10 ? '0' + seconds : seconds;
 
 var result = minutes + ":" + seconds;  // 161:30
 
-$('#Total_Horas_del_Servicio').val(result);
+
+  $('#Total_Horas_del_Servicio').val(result);
+
+
 
 
 
@@ -509,6 +541,52 @@ $('#Total_Horas_del_Servicio').val(result);
     $('#showhide').click(function(event) {
       $('#prefactura').toggle();
     });
+  });
+
+
+
+  $(function() {
+      
+    
+      
+    $('#fecha_inicio_servicio').change(function(event) {
+      var fecha_solicitud = Date.parse($('#fecha_solicitud').val());
+      var fecha_inicio_servicio =Date.parse($('#fecha_inicio_servicio').val());
+      var Fecha_de_respuesta_al_cliente =Date.parse($('#Fecha_de_respuesta_al_cliente').val());
+
+      if (fecha_inicio_servicio < fecha_solicitud || Fecha_de_respuesta_al_cliente < fecha_solicitud) {
+          confirm('La fecha es inferior a la fecha de solicitud *');
+          $(this).css('background-color','yellow');
+          $('#fechacontrol').css('display','block');
+       } else {
+        $('#fechacontrol').css('display','none');
+        $('#fecha_inicio_servicio').removeAttr("style")
+
+       }
+
+    });
+   
+    $('#Fecha_de_respuesta_al_cliente').change(function(event) {
+      var fecha_solicitud = Date.parse($('#fecha_solicitud').val());
+      var fecha_inicio_servicio =Date.parse($('#fecha_inicio_servicio').val());
+      var Fecha_de_respuesta_al_cliente =Date.parse($('#Fecha_de_respuesta_al_cliente').val());
+
+      if (Fecha_de_respuesta_al_cliente < fecha_solicitud) {
+          confirm('La fecha es inferior a la fecha de solicitud *');
+          $(this).css('background-color','yellow');
+          $('#fechacontrol2').css('display','block');
+       } else {
+        $('#fechacontrol2').css('display','none');
+        $('#Fecha_de_respuesta_al_cliente').removeAttr("style")
+
+       }
+
+    });
+   
+    
+
+
+
   });
 
 

@@ -21,11 +21,19 @@
         {!! Form::text('name', null,['class' => 'form-control', 'placeholder' => 'Nombre completo','name'=>'name','id'=>'name']) !!}
     </div>
 
-      <div class="form-group">
-                    <label for="id">Email</label>
-                    {!! Form::text('email', null,['class' => 'form-control', 'placeholder' => 'Email','name'=>'email','id'=>'email']) !!}
+    <div class="form-group has-feedback {{ $errors->has('email') ? ' has-error' : '' }}">
+                  <label for="id">Email</label>
+                  <input type="email" class="form-control" name="email"value="{{ old('email') }}" required placeholder="Email" autofocus  id="email">
 
-                </div>
+                 @if ($errors->has('email'))
+                  <span  id="email"class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true">  </span>
+                  <span class="help-block">
+                      <strong> el email ya existe. </strong>
+                  </span>
+                  @else
+                  @endif
+
+              </div>
       <div class="form-group">
                         <label for="id">Contraseña </label>
                         <input  type="password" class="form-control" name="password" placeholder="Contraseña">

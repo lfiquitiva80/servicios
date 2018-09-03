@@ -39,6 +39,11 @@ class usuarioController extends Controller
      */
     public function store(Request $request)
     {
+      $validatedData = $request->validate([
+          'email'  =>'required|unique:users,email'
+    ]);
+
+
         $usuario =  new User($request-> all());
         $usuario->save();
         Alert::success('', 'el usuario ha sido registrado con exito !')->persistent('Close');
@@ -64,6 +69,7 @@ class usuarioController extends Controller
      */
     public function edit($id)
     {
+
       $usuario = User:: find($id);
           return view('escolta.edit',compact('usuario'));
     }
@@ -77,6 +83,9 @@ class usuarioController extends Controller
      */
     public function update(Request $request, $id)
     {
+      $validatedData = $request->validate([
+          'email'  =>'required|unique:users,email,'.$request->id
+    ]);
       $usuario = User::findOrFail($request->id);
  $usuario->update($request->all());
 
@@ -95,6 +104,6 @@ class usuarioController extends Controller
       $usuario = User::find($id);
        $usuario->delete();
          Alert::success('', 'el usuario ha sido sido borrado de forma exita!')->persistent('Close');
-         return redirect()->route('Clientes.index');
+         return redirect()->route('usuario.index');
     }
 }

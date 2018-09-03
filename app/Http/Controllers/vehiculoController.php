@@ -7,6 +7,7 @@ use App\vehiculo;
 use Alert;
 use Illuminate\Http\File;
 use Illuminate\Support\Facades\Storage;
+use PDF;
 
 class vehiculoController extends Controller
 {
@@ -113,5 +114,11 @@ class vehiculoController extends Controller
        $Vehiculo->delete();
          Alert::success('', 'el vehiculo ha sido sido borrado de forma exita!')->persistent('Close');
          return redirect()->route('Vehiculo.index');
+    }
+
+    public function pdf($id){
+      $Vehiculo= vehiculo::findOrFail($id);
+       $pdf = PDF::loadView('vehiculo.pdf',compact('Vehiculo'))->setPaper('A4', 'landscape');
+      return $pdf->stream('Presentacion_Vehiculo.pdf');
     }
 }

@@ -51,30 +51,26 @@
                     <h3 class="panel-title">Reportes Detallados</h3>
                   </div>
                   <div class="panel-body">
-                    {!! Form::open(['route' => 'rango', 'method'=>'get']) !!}
+                    {!! Form::open(['route' => 'rango', 'method'=>'get','id'=>'reg_form10' ]) !!}
 
                     <div class="container">
                    <div class="row">
                    <div class='col-xs-4'>
                    <div class="form-group">
                      <label for="id">fecha inicio  </label>
-                     <div class='input-group date datepicker-me'  data-provide="datepicker" >
-                         <input type='text' value="<?php echo date("Y-m-d");?>" class="form-control"  name="fecha1" />
-                          <span class="input-group-addon">
-                             <span class="glyphicon glyphicon-calendar"></span>
-                         </span>
+                     <div class='input-group '   >
+                         <input type='text'  value="<?php echo date("Y-m-d-H");?>" class="form-control"  name="fecha1"   id="datepicker-me"   />
+
                      </div>
                    </div>
                    </div>
 
                    <div class='col-xs-4'>
                    <div class="form-group">
-                     <label for="id">fecha inicio  </label>
-                     <div class='input-group date datepicker-me'  data-provide="datepicker" >
-                         <input type='text' value="<?php echo date("Y/m/d");?>" class="form-control" name="fecha2" />
-                          <span class="input-group-addon">
-                             <span class="glyphicon glyphicon-calendar"></span>
-                         </span>
+                     <label for="id">fecha finalizacion  </label>
+                     <div class='input-group'  >
+                         <input type='text'  value="<?php echo date("Y-m-d-H");?>"  class="form-control" name="fecha2"     id="datepicker-me2"/>
+
                      </div>
                    </div>
                    </div>

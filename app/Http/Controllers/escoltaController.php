@@ -7,6 +7,7 @@ use App\escolta;
 use Alert;
 use Illuminate\Http\File;
 use Illuminate\Support\Facades\Storage;
+use PDF;
 
 class escoltaController extends Controller
 {
@@ -130,5 +131,10 @@ if ($request->hasFile('foto')) {
     public function allescoltas(Request $request){
       $data=escolta::all();
         return response()->json($data);
+    }
+    public function pdf($id){
+      $Escolta= escolta::findOrFail($id);
+       $pdf = PDF::loadView('escolta.pdf',compact('Escolta'))->setPaper('A4', 'landscape');
+      return $pdf->stream('Presentacion_Escolta.pdf');
     }
 }

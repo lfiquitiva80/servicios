@@ -80,7 +80,14 @@
 
 
 
-          <td><a  href="{{ route('Vehiculo.edit',$row->id) }}"   class="btn btn-success"><i class="fa fa-pencil" aria-hidden="true"> Edición</i></a></td> <td>@include('vehiculo.destroy')</td>
+          <td><a  href="{{ route('Vehiculo.edit',$row->id) }}"   class="btn btn-success"><i class="fa fa-pencil" aria-hidden="true"> Edición</i></a></td> <td>
+  <td><a  href="{{route('vehiculopdf',$row->id )}}" class="btn btn-default" ><i class="fa  fa-file-pdf-o" aria-hidden="true">  Presentación de vehículos</a></td>
+
+          @if ( Auth::user()->email == 'leonidas.fiquitiva@omnitempus.com')
+          <td>@include('vehiculo.destroy')</td>
+          @else
+
+          @endif
 
     </tr>
   </tbody>

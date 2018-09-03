@@ -85,7 +85,7 @@
 
 
 
-{!! Form::open(['route' => 'ordenesdeservicio.store', 'method'=>'POST']) !!}
+{!! Form::open(['route' => 'ordenesdeservicio.store', 'method'=>'POST','id'=>'reg_form9']) !!}
     <legend>CREAR ORDEN DE SERVICIOS</legend>
 
 
@@ -96,15 +96,20 @@
 
 
     <label>Estado de Servicio</label>
-    {!! Form::select('estadoservicio_id',$estadoservicio, null, ['class' => 'form-control']) !!}
+    {!! Form::select('estadoservicio_id',$estadoservicio, null, ['class' => 'form-control','name'=>'estadoservicio_id']) !!}
 
 
 
 <div class="form-group">
         <label for="id">cliente</label>
-        {!! Form::select('cliente',$cliente, null, ['class' => 'form-control']) !!}
+        {!! Form::select('cliente',$cliente, null, ['class' => 'form-control','name'=>'cliente']) !!}
     </div>
 
+
+<div class="form-group">
+        <label for="id">Solicitante</label>
+        <input type="text" class="form-control" name="solicitante_interno2"  id="solicitante_interno2" placeholder="Digite el solicitante">
+</div>
 
     {{-- <div class="form-group">
         <label for="id">fecha_inicio_servicio</label>
@@ -114,10 +119,7 @@
 
 
 
-{{-- <div class="form-group">
-        <label for="id">ciudad_origen</label>
-        <input type="text" class="form-control" name="ciudad_origen"  id="ciudad_origen" placeholder="ciudad_origen">
-    </div> --}}
+
 
 
 <div class="form-group">
@@ -178,13 +180,16 @@ value="{{Auth::user()->id}}">
 </div>
 
 
-  <br>
-
-  <a href="{{ $url = route('ordenesdeservicio.create') }}" class="btn btn-primary"><i class="fa fa-users" aria-hidden="true"></i> Registar Ordenes de Servicios</a>
 
 
+  <div class="panel panel-primary">
+    <div class="panel-body">
 
-  <a class="btn bg-maroon btn-flat margin pull-right" data-toggle="modal" href='#modal-2'><i class="fa fa-inbox"></i> Crear W.O</a>
+      <!--<a href="{{ $url = route('ordenesdeservicio.create') }}" class="btn btn-primary"><i class="fa fa-users" aria-hidden="true"></i> Registar Ordenes de Servicios</a>-->
+
+
+
+  <!--<a class="btn bg-maroon btn-flat margin pull-right" data-toggle="modal" href='#modal-2'><i class="fa fa-inbox" ></i> Crear W.O</a>-->
   <div class="modal fade" id="modal-2">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -222,6 +227,11 @@ value="{{Auth::user()->id}}">
     </div>
   </div>
 
+    </div>
+  </div>
+
+
+
 <p>
 
 <div class="table-responsive">
@@ -236,7 +246,7 @@ value="{{Auth::user()->id}}">
       <td>  cliente </td>
       <td>  ciudad_destino</td>
       <td>  detalle_del_servicio</td>
-      <td colspan="3">  Acción </td>
+      <td colspan="4">  Acción </td>
 
 
 
@@ -252,9 +262,12 @@ value="{{Auth::user()->id}}">
         <td>
             @if ($row->estadoservicio_id==1 )
             <span class="label label-success"><?php $var = App\estadoservicio::find($row->estadoservicio_id); echo $var->estadoservicio; ?> </span></td>
+
+            @elseif ($row->estadoservicio_id==6 )
+            <span class="label label-danger"><?php $var = App\estadoservicio::find($row->estadoservicio_id); echo $var->estadoservicio; ?> <i class="fa fa-check" aria-hidden="true"></i></span> </td>
             @else
             <span class="label label-primary"><?php $var = App\estadoservicio::find($row->estadoservicio_id); echo $var->estadoservicio; ?> </span></td>
-
+            
             @endif
 
           <td>
@@ -265,15 +278,19 @@ value="{{Auth::user()->id}}">
             @endif
 
             </td>
+          <?php  ?>
+          <td >{{$row->fecha_inicio_servicio}}
+         <font color="red">Servicio {{ \Carbon\Carbon::parse($row->fecha_inicio_servicio)->diffForHumans() }} </font>
+    
+          </td>
 
-          <td>{{$row->fecha_inicio_servicio}}</td>
           <td><?php $clientes= App\cliente::find($row->cliente); echo $clientes->nombre;  ?></td>
           <!-- <td>{{$row->cliente}}</td> -->
           <td>{{$row->ciudad_destino}}</td>
           <td>{{str_limit($row->detalle_del_servicio,10)}}</td>
 
 
-
+          
 
 
           <td ><a href="{{ $url = route('ordenesdeservicio.edit',$row->id) }}" class="btn btn-success" title="Programar" onclick="return confirm('Va a ingresar a programar.');"><i class="fa fa-pencil" aria-hidden="true"> Programar</i></a></td>

@@ -319,7 +319,7 @@ echo $date->format('Y-m-d\TH:i'); ?>">
 <div class="col-xs-3">
   <div class="form-group">
 
-  <li>Notoficación Agencia</li>
+  <li>Notificación Agencia</li>
 
   </div>
 </div>

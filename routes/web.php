@@ -91,6 +91,9 @@ Route::resource('documento','documentoController');
 Route::get('/allescolta','escoltaController@allescoltas')->name('allescolta');//ajax para leonidas
 Route::get('ordenesgenerales','excelController@escoltas_ordenes')->name('ordenesgenerales');
 Route::get('excelwogenerales','excelController@wodos')->name('excelwogenerales');
+Route::get('pdf/{id}','ordenesdeservicioController@pdf')->name('pdf');
+Route::get('escoltapdf/{id}','escoltaController@pdf')->name('escoltapdf');
+Route::get('vehiculopdf/{id}','vehiculoController@pdf')->name('vehiculopdf');
 
 
 });

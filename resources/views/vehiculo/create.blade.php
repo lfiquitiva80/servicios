@@ -58,6 +58,19 @@
               {!! Form::text('tipo_de_renta', null,['class' => 'form-control', 'placeholder' => 'Tipo_de_renta','name'=>'tipo_de_renta']) !!}
 
           </div>
+          <div class="form-group">
+                        <label for="id">Descripción</label>
+                        {!! Form::text('descripcion', null,['class' => 'form-control', 'placeholder' => 'Descripción','name'=>'descripcion']) !!}
+
+                    </div>
+        <div class="form-group">
+                  <label for="id">Armadura</label>
+                   {!! Form::text('armadura', null,['class' => 'form-control', 'placeholder' => 'Armadura','name'=>'armadura']) !!}
+                    </div>
+      <div class="form-group">
+                <label for="id">Color</label>
+                   {!! Form::text('color', null,['class' => 'form-control', 'placeholder' => 'Color','name'=>'color']) !!}
+                  </div>
 <div class="form-group">
                       <label for="id">Activo</label>
                       {!! Form::select('activo',[ ''=>'SELECCIONE','si'=>'Activo', 'no' =>'Inactivo'],null,['class'=> 'form-control','name'=>'activo'] )!!}

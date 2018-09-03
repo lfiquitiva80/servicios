@@ -1892,6 +1892,42 @@ $(document).ready(function() {
                                  message: 'El tipo de renta  debe tener más de 2 caracteres '
                              },
                            }
+                         },
+                           descripcion: {
+                             validators: {
+                               notEmpty: {
+                                   message: 'la descripcion del vehiculo es necesaria'
+                               },
+                               stringLength: {
+                                   min:2,
+                                   message: 'la  descripcion  del vehiculo debe  tener más de 2 caracteres '
+                               },
+
+                             }
+                           },
+                           armadura: {
+                             validators: {
+                               notEmpty: {
+                                   message: 'la armadura del vehiculo es necesaria'
+                               },
+                               stringLength: {
+                                   min:2,
+                                   message: 'la  armadura del vehiculo tener más de 2 caracteres '
+                               },
+
+                             }
+                           },
+                           color: {
+                             validators: {
+                               notEmpty: {
+                                   message: 'el color del vehiculo es necesario'
+                               },
+                               stringLength: {
+                                   min:2,
+                                   message: 'el color  del vehiculo tener más de 2 caracteres '
+                               },
+
+                             }
                            },
                            activo: {
                              validators: {
@@ -1994,6 +2030,7 @@ $(document).ready(function() {
                           notEmpty: {
                         message: 'ingrese  una dirección de correo electrónico'
                       }
+
                   }
                 },
 
@@ -2109,6 +2146,178 @@ $(document).ready(function() {
            });
    });
 
+//
+$(document).ready(function() {
+       $('#reg_form9').bootstrapValidator({
+           message: 'Este valor no es válido',
+           // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
+           feedbackIcons: {
+               valid: 'glyphicon glyphicon-ok',
+               invalid: 'glyphicon glyphicon-remove',
+               validating: 'glyphicon glyphicon-refresh'
+           },
+           fields: {
+               solicitante_interno2: {
+                 validators: {
+                   notEmpty: {
+                       message: 'el solicitante  es necesario'
+                   },
+                   stringLength: {
+                       min:2,
+                       message: 'el solicitante debe tener más de 2  caracteres '
+                   },
+
+                 }
+               },
+
+               ciudad_destino: {
+                  validators: {
+                  notEmpty: {
+                      message: 'la cuidad de destino  es necesaria'
+                  },
+                  stringLength: {
+                      min:2,
+                      message: 'la cuidad de detino  debe tener más de 2 caracteres '
+                  },
+                }
+                },
+
+
+            fecha_solicitud: {
+              validators: {
+                notEmpty: {
+		   message: 'la fecha de solicitud es necesaria'
+		 },
+
+           date:{
+                format: 'DD/MM/YYYY',
+                 message: 'la fecha de solicitud debe ser formato fecha'
+               }
+
+                }
+                },
+
+
+            fecha_inicio_servicio: {
+                  validators: {
+                    notEmpty: {
+              message: 'la fecha de  inico del servicio es necesaria'
+              },
+               date:{
+                        format: 'DD/MM/YYYY',
+                     message: 'la fecha  de inico del servicio debe ser formato fecha'
+                   }
+
+                    }
+                    },
+
+                cliente: {
+                  validators: {
+                        notEmpty: {
+                            message: 'Seleccione '
+                        }
+                    }
+                },
+                detalle_del_servicio: {
+                   validators: {
+                   notEmpty: {
+                       message: 'el detalle del  servicio  es necesario'
+                   },
+                   stringLength: {
+                       min:2,
+                       message: 'el detalle del servicio  debe tener más de 2 caracteres '
+                   },
+                 }
+                 },
+
+
+
+               }
+           })
+
+
+         .on('success.form.bv', function(e) {
+             $('#success_message').slideDown({ opacity: "show" }, "slow") // Do something ...
+                 $('#reg_form8').data('bootstrapValidator').resetForm();
+
+             // Prevent form submission
+             e.preventDefault();
+
+             // Get the form instance
+             var $form = $(e.target);
+
+             // Get the BootstrapValidator instance
+             var bv = $form.data('bootstrapValidator');
+
+             // Use Ajax to submit form data
+             $.post($form.attr('action'), $form.serialize(), function(result) {
+                 console.log(result);
+             }, 'json');
+         });
+ });
+
+ //   //
+   $(document).ready(function() {
+          $('#reg_form10').bootstrapValidator({
+              message: 'Este valor no es válido',
+              // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
+              feedbackIcons: {
+                  valid: 'glyphicon glyphicon-ok',
+                  invalid: 'glyphicon glyphicon-remove',
+                  validating: 'glyphicon glyphicon-refresh'
+              },
+              fields: {
+                fecha1: {
+                      validators: {
+                        notEmpty: {
+                  message: 'la fecha de  inico es necesaria'
+                  },
+                   date:{
+                            format: 'YYYY/MM/DD HH:mm',
+                         message: 'la fecha de inicio debe ser formato fecha'
+                       }
+
+                        }
+                        },
+                        fecha2: {
+                              validators: {
+                                notEmpty: {
+                          message: 'la fecha de  finalizacion es necesaria'
+                          },
+                           date:{
+                                      format: 'YYYY/MM/DD HH:mm',
+                                 message: 'la fecha finalizacion debe ser formato fecha'
+                               }
+
+                                }
+                                },
+
+
+
+                  }
+              })
+
+
+            .on('success.form.bv', function(e) {
+                $('#success_message').slideDown({ opacity: "show" }, "slow") // Do something ...
+                    $('#reg_form10').data('bootstrapValidator').resetForm();
+
+                // Prevent form submission
+                e.preventDefault();
+
+                // Get the form instance
+                var $form = $(e.target);
+
+                // Get the BootstrapValidator instance
+                var bv = $form.data('bootstrapValidator');
+
+                // Use Ajax to submit form data
+                $.post($form.attr('action'), $form.serialize(), function(result) {
+                    console.log(result);
+                }, 'json');
+            });
+    });
+
    $(document).ready(function(){
    $('.email').on('click',function(){
       $('.email_1').toggle('slow');
@@ -2119,27 +2328,29 @@ $('.telefono').on('click',function(){
    $('.telefon_1').toggle('slow');
 });
 });
-$(document).ready(function(){
-$('#showhide2').on('click',function(){
-   $('.hora').toggle('slow');
-});
-});
+$(function () {
+                $('#datepicker-me').datetimepicker({
+                  locale: 'es',
+                   format: 'YYYY/MM/DD HH:mm'
+                });
+            });
+  $(function () {
+                            $('#datepicker-me2').datetimepicker({
+                              locale: 'es',
+                              format: 'YYYY/MM/DD HH:mm'
 
-//  $(function () {
-// $('.date').datepicker({
-// $.fn.datepicker.defaults.format = 'dd/mm/yyyy';
-//    autoclose: true
+                            });
+                        });
+
+// $(document).ready(function(){
+//     $.fn.datetimepicker.defaults.format = 'yyyy/mm/dd hh:ii';
+// $('.datepicker-me').datetimepicker({
+//    language: 'es',
+//        format: "yyyy/mm/dd hh:ii ",
+//     autoclose: true
 //
-// });
-// });
-$(document).ready(function(){
-   $.fn.datepicker.defaults.format = 'yyyy/mm/dd';
-$('.datepicker-me').datepicker({
-   language: 'es',
-       format: "yyyy/mm/dd",
-    autoclose: true
-    });
-    });
+//     });
+//     });
 
     $(document).ready(function(){
        // $.fn.datepicker.defaults.format = 'dd/mm/yyyy';

@@ -7,7 +7,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class servicioadd extends Mailable
+class servicioadd extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
@@ -41,6 +41,7 @@ class servicioadd extends Mailable
                         'detalle_del_servicio' => $this->store->detalle_del_servicio,
                         'users_id' => $this->store->users_id,
                         'id' => $this->store->id,
+                        'wo' => $this->store->No_de_orden_de_servicio,
                     ]);
     }
 }

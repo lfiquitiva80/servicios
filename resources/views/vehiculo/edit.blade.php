@@ -89,6 +89,19 @@
                 {!! Form::text('tipo_de_renta',$Vehiculo->tipo_de_renta ,['class' => 'form-control', 'placeholder' => 'Tipo_de_renta','name'=>'tipo_de_renta']) !!}
 
             </div>
+            <div class="form-group">
+                          <label for="id">Descripción</label>
+                          {!! Form::text('descripcion',$Vehiculo->descripcion,['class' => 'form-control', 'placeholder' => 'Descripción','name'=>'descripcion']) !!}
+
+                      </div>
+          <div class="form-group">
+                    <label for="id">Armadura</label>
+                     {!! Form::text('armadura',$Vehiculo->armadura,['class' => 'form-control', 'placeholder' => 'Armadura','name'=>'armadura']) !!}
+                      </div>
+        <div class="form-group">
+                  <label for="id">Color</label>
+                     {!! Form::text('color',$Vehiculo->color,['class' => 'form-control', 'placeholder' => 'Color','name'=>'color']) !!}
+                    </div>
   <div class="form-group">
                         <label for="id">Activo</label>
                         {!! Form::select('activo',[ ''=>'SELECCIONE','si'=>'Activo', 'no' =>'Inactivo'],$Vehiculo->activo,['class'=> 'form-control','name'=>'activo'] )!!}

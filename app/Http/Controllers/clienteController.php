@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\cliente;
 use Alert;
 
@@ -78,7 +79,7 @@ class ClienteController extends Controller
     {
       $Cliente = cliente::findOrFail($request->id);
  $Cliente->update($request->all());
-
+        Alert::success('Good job!');
       Alert::success('', 'el cliente ha sido editado con exito !')->persistent('Close');
       return redirect()->route('Clientes.index');
     }
