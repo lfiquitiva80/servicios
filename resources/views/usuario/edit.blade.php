@@ -45,7 +45,7 @@
                 </div>
                 <div class="form-group">
                                       <label for="id">Tipo de usuario</label>
-                                      {!! Form::select('type',[ ''=>'SELECCIONE','0'=>'usuario', '1' =>'administrator'],null,['class'=> 'form-control','id' => 'type','name'=>'type'] )!!}
+                                      {!! Form::select('type',[ ''=>'SELECCIONE','0'=>'usuario', '1' =>'administrator', '2' =>'Supra-administrator', '3' =>'Consulta'],null,['class'=> 'form-control','id' => 'type','name'=>'type'] )!!}
                           </div>
 
     <center><button type="submit" class="btn btn-primary" >Enviar</button>

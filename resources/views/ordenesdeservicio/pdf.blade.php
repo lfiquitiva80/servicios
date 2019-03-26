@@ -40,6 +40,9 @@
 }
 
 </style>
+
+
+
   </head>
   <body background="{{ asset('img/fondopdf.jpg')}}" style="background: no-repeat center center fixed;
 -webkit-background-size: cover;
@@ -85,22 +88,22 @@ background-size: cover;">
   </div>
   <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
    <div id="Datos_Escolta">
-            <font color="#f3994b"  face="Verdana" size=12>&nbsp;NAME</font>
-            <font  color="black"  face="Verdana" size=12 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{$edit->escoltas->nombre}}</font>
+            <font color="#00F"  face="Verdana" size=12>&nbsp;NAME</font>
+            <font  color="black"  face="Verdana" size=12 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>{{$edit->escoltas->nombre}}</b></font>
 
             <br>
-              <font color="#f3994b"  face="Verdana" size=12>&nbsp;CITY</font>
+              <font color="#00F"  face="Verdana" size=12>&nbsp;CITY</font>
               <!-- Descripcion  Vehiculo-->
               <font  color="black"  face="Verdana" size=12 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{$edit->escoltas->ciudad}}</font>
 
               <br>
-              <font color="#f3994b"  face="Verdana" size=12>&nbsp;OCCUPATION</font>
+              <font color="#00F"  face="Verdana" size=12>&nbsp;OCCUPATION</font>
               <font  color="black"  face="Verdana" size=12 >{{$edit->escoltas->cargo}}</font>
               <br>
-              <font color="#f3994b"  face="Verdana" size=12>&nbsp;MOBILE</font>
-              <font  color="black"  face="Verdana" size=12 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{$edit->escoltas->telefono}}</font>
+              <font color="#00F"  face="Verdana" size=12>&nbsp;MOBILE</font>
+              <font  color="black"  face="Verdana" size=12 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="tel://+57{{$edit->escoltas->telefono}}"><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span>{{$edit->escoltas->telefono}}</a></b></font>
               <br>
-              <font color="#f3994b"  face="Verdana" size=12>&nbsp;ID </font>
+              <font color="#00F"  face="Verdana" size=12>&nbsp;ID </font>
               <font  color="black"  face="Verdana" size=12 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{$edit->escoltas->cc}}</font>
               <br><br><br>
             </div> 
@@ -109,17 +112,17 @@ background-size: cover;">
    <div id="vehiculos_informacion">
 
 
-               <font  color="#e26c0c"  face="Tahoma" size=12 >LICENSE PLATE :
-            <font  color="black"  face="Tahoma" size=12 >{{$edit->vehiculos->placa}}
+               <font  color="#00F"  face="Tahoma" size=12 >LICENSE PLATE :
+            <font  color="black"  face="Tahoma" size=12 ><b>{{$edit->vehiculos->placa}}</b>
            <br>
-            <font  color="#e26c0c"  face="Tahoma" size=12 >VEHICLE :
+            <font  color="#00F"  face="Tahoma" size=12 >VEHICLE :
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font  color="black"  face="Tahoma" size=12 >{{$edit->vehiculos->descripcion}}
 
            <br>
-                  <font  color="e26c0c"  face="Tahoma" size=12 >ARMOR :
+                  <font  color="#00F"  face="Tahoma" size=12 >ARMOR :
                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  <font  color="black"  face="Tahoma" size=12 >{{$edit->vehiculos->armadura}}
            <br>
-                     <font  color="e26c0c"  face="Tahoma" size=12 >COLOR  :
+                     <font  color="#00F"  face="Tahoma" size=12 >COLOR  :
                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  <font  color="black"  face="Tahoma" size=12 >{{$edit->vehiculos->color}}
 
 

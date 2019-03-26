@@ -7,12 +7,11 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class servicioadd extends Mailable implements ShouldQueue
+class alertaservicios extends Mailable
 {
     use Queueable, SerializesModels;
 
-
-    public $store;
+ public $store;
 
     /**
      * Create a new message instance.
@@ -31,8 +30,7 @@ class servicioadd extends Mailable implements ShouldQueue
      */
     public function build()
     {
-        //dd($this->store);
-        return $this->markdown('emails.servicioadd.servicioadd')->subject('Servicio Adicional Command Center '.$this->store->ciudad_destino.' # Orden de Trabajo: '.$this->store->No_de_orden_de_servicio)->with([
+          return $this->markdown('emails.alertaservicios')->subject('[¡Alerta!] Servicio Dentro de Dos Horas en: '.$this->store->ciudad_destino.' # Orden de Trabajo: '.$this->store->No_de_orden_de_servicio)->with([
                         'estado' => $this->store->estadoservicio_id,
                         'cliente' => $this->store->cliente,
                         'ciudad_destino' => $this->store->ciudad_destino,

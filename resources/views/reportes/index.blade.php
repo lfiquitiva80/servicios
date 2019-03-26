@@ -31,6 +31,8 @@
 <a  class="btn btn-large btn-block btn-info" href="{{url('ordenesgenerales')}}">Ordenes de Servicio</a>
 <a  class="btn btn-large btn-block btn-info" href="{{url('excelwogenerales')}}">Ordenes de Trabajo W.O</a>
 
+<a  class="btn btn-large btn-block btn-info" href="{{url('excelcontrolhorario')}}">Control de Horario</a>
+
 
 
 </div>
@@ -80,6 +82,11 @@
                        <button type="submit" class="btn btn-primary" >Descargar</button>
                      </div>
                    </div>
+
+<!-- <a href="{{ route('export.file',['type'=>'xlsx']) }}" title="Bajar excel en versión superior al 2016 " class="btn btn-danger" target="_top"> <i class="fa fa-file-excel-o" aria-hidden="true"></i> XLSX</a> -->
+
+  <a href="{{ route('export.file',['type'=>'csv']) }}" title="Bajar excel en versión superior al 2016 " class="btn btn-danger"> <i class="fa fa-file-excel-o" aria-hidden="true"></i> CSV (Separado por Comas)</a>
+
                     </div>
                   </div>
 

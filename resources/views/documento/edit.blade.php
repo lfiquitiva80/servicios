@@ -227,7 +227,7 @@ margin-bottom: 0px;
 	</tr>
 	<tr>
 		<td style="border-left: 2px solid #000000" height="47" align="left" valign=middle bgcolor="#FFFFFF"><font color="#333333"><br></font></td>
-		<td style="border-top: 2px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000" align="center" valign=middle bgcolor="#FFFFFF"><b><font size=4 color="#333333">{{$edit->No_de_orden_de_servicio}}</font></b></td>
+		<td style="border-top: 2px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000" align="center" valign=middle bgcolor="#FFFFFF"><b><font size=12 color="#333333">{{$edit->No_de_orden_de_servicio}}</font></b></td>
 		<td align="left" valign=middle bgcolor="#FFFFFF"><font color="#333333"><br></font></td>
 	</tr>
 	<tr>
@@ -262,17 +262,17 @@ margin-bottom: 0px;
 	</tr>
 	<tr>
 		<td style="border-left: 2px solid #000000; border-right: 2px solid #000000" height="56" align="left" valign=middle bgcolor="#FFFFFF"><b><font size=4 color="#333333"><br></font></b></td>
-		<td style="border-top: 2px solid #000000; border-bottom: 4px solid #000000; border-right: 2px solid #000000" align="center" valign=middle bgcolor="#FFFFFF"><b><font size=4 color="#333333">{{$edit->ciudad_destino}}</font></b></td>
+		<td style="border-top: 2px solid #000000; border-bottom: 4px solid #000000; border-right: 2px solid #000000" align="center" valign=middle bgcolor="#FFFFFF"><b><font size=6 color="#333333">{{$edit->ciudad_destino}}</font></b></td>
 		<td align="center" valign=middle bgcolor="#FFFFFF"><b><font size=4 color="#333333"><br></font></b></td>
-		<td style="border-top: 0px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000" colspan=2 align="center" valign=middle bgcolor="#FFFFFF"><b><font size=4 color="#333333">{{$edit->clientes->nombre}}</font></b></td>
+		<td style="border-top: 0px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000" colspan=2 align="center" valign=middle bgcolor="#FFFFFF"><b><font size=6 color="#333333">{{$edit->clientes->nombre}}</font></b></td>
 		<td align="center" valign=middle bgcolor="#FFFFFF"><b><font size=4 color="#333333"><br></font></b></td>
-		<td style="border-top: 2px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000" colspan=3 align="center" valign=middle bgcolor="#FFFFFF"><b><font size=4 color="#333333">{{$edit->solicitante_interno2}}</font></b></td>
+		<td style="border-top: 2px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000" colspan=3 align="center" valign=middle bgcolor="#FFFFFF"><b><font size=6 color="#333333">{{$edit->solicitante_interno2}}</font></b></td>
 		<td align="center" valign=middle bgcolor="#FFFFFF"><font size=4 color="#333333"><br></font></td>
-		<td style="border-top: 2px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000" colspan=3 align="center" valign=middle bgcolor="#FFFFFF" sdnum="1033;1033;M/D/YYYY"><b><font size=4 color="#333333">
+		<td style="border-top: 2px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000" colspan=3 align="center" valign=middle bgcolor="#FFFFFF" sdnum="1033;1033;M/D/YYYY"><b><font size=6 color="#333333">
 		<?php $date = date_create($edit->fecha_inicio_servicio);
 echo date_format($date, 'Y-m-d'); ?></font></b></td>
 		<td align="center" valign=middle bgcolor="#FFFFFF" sdnum="1033;1033;H:MM"><font size=4 color="#333333"><br></font></td>
-		<td style="border-top: 2px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000" align="center" valign=middle  sdnum="1033;1033;H:MM"><b><font size=5 color="#333333"><input type="time" style="width:100%;height:50px;color:#333333; font-weight: bold #000000; font-size: 19PX;" value="<?php $date = date_create($edit->fecha_inicio_servicio);
+		<td style="border-top: 2px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000" align="center" valign=middle  sdnum="1033;1033;H:MM"><b><font size=6 color="#333333"><input type="time" style="width:100%;height:50px;color:#333333; font-weight: bold #000000; font-size: 50PX; " value="<?php $date = date_create($edit->fecha_inicio_servicio);
 echo date_format($date, 'H:i:s'); ?>"></font></b></td>
 		<td style="border-left: 2px solid #000000; border-right: 2px solid #000000" align="left" valign=middle sdnum="1033;1033;H:MM"><b><font size=5 color="#333333"><br></font></b></td>
 		<td align="left" valign=middle bgcolor="#FFFFFF" sdnum="1033;1033;H:MM"><font color="#333333"></font></td>
@@ -300,11 +300,11 @@ echo date_format($date, 'H:i:s'); ?>"></font></b></td>
 	</tr>
 	<tr>
 		<td style="border-left: 2px solid #000000; border-right: 2px solid #000000" height="67" align="left" valign=middle bgcolor="#FFFFFF"><b><font size=4 color="#333333"><br></font></b></td>
-		<td style="border-top: 2px solid #000000; border-bottom: 2px solid #000000; border-right: 2px solid #000000" colspan=4 align="center" valign=middle bgcolor="#FFFFFF"><b><font size=4 color="#333333">{{ Auth::user()->name }}</font></b></td>
+		<td style="border-top: 2px solid #000000; border-bottom: 2px solid #000000; border-right: 2px solid #000000" colspan=4 align="center" valign=middle bgcolor="#FFFFFF"><b><font size=6 color="#333333">{{ Auth::user()->name }}</font></b></td>
 		<td align="center" valign=middle bgcolor="#FFFFFF" sdnum="1033;1033;M/D/YYYY"><font size=4 color="#333333"><br></font></td>
-		<td style="border-top: 2px solid #000000; border-bottom: 4px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000" colspan=3 align="center" valign=middle bgcolor="#FFFFFF" sdnum="1033;1033;M/D/YYYY"><b><font size=4 color="#333333">{{$edit->fecha_solicitud}}</font></b></td>
+		<td style="border-top: 2px solid #000000; border-bottom: 4px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000" colspan=3 align="center" valign=middle bgcolor="#FFFFFF" sdnum="1033;1033;M/D/YYYY"><b><font size=6 color="#333333">{{$edit->fecha_solicitud}}</font></b></td>
 		<td align="center" valign=middle bgcolor="#FFFFFF" sdnum="1033;1033;D-MMM"><font size=4 color="#333333"><br></font></td>
-		<td style="border-top: 0px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000; border-right: 0px solid #000000" colspan=5 align="center" valign=middle bgcolor="#FFFFFF" sdnum="1033;1033;M/D/YYYY"><b><font size=4 color="#333333"><input type="text"  style="width:100%;height:70px;color:#333333; font-weight: bold #000000; text-align: center; font-size: 19PX"></font></b></td>
+		<td style="border-top: 0px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000; border-right: 0px solid #000000" colspan=5 align="center" valign=middle bgcolor="#FFFFFF" sdnum="1033;1033;M/D/YYYY"><b><font size=6 color="#333333"><input type="text"  style="width:100%;height:70px;color:#333333; font-weight: bold #000000; text-align: center; font-size: 30PX"></font></b></td>
 		<td style="border-left: 2px solid #000000; border-right: 2px solid #000000" align="left" valign=middle bgcolor="#FFFFFF"><b><font size=4 color="#333333"><br></font></b></td>
 		<td align="left" valign=middle bgcolor="#FFFFFF"><font color="#333333"><br></font></td>
 	</tr>
@@ -323,7 +323,7 @@ echo date_format($date, 'H:i:s'); ?>"></font></b></td>
 	</tr>
 	<tr>
 		<td style="border-left: 2px solid #000000" height="36" align="left" valign=middle bgcolor="#FFFFFF"><font color="#333333"><br></font></td>
-		<td style="border-top: 2px solid #000000; border-bottom: 0px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000" colspan=14 rowspan=2 align="center" valign=middle bgcolor="#FFFFFF"><font size=5 color="#333333"><input type="text" style="width:100%;height:70px;color:#333333; font-weight: bold #000000; font-size: 19PX; text-align: center;"></font></td>
+		<td style="border-top: 2px solid #000000; border-bottom: 0px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000" colspan=14 rowspan=2 align="center" valign=middle bgcolor="#FFFFFF"><font size=5 color="#333333"><input type="text" style="width:100%;height:70px;color:#333333; font-weight: bold #000000; font-size: 30PX; text-align: center;"></font></td>
 		<td style="border-right: 2px solid #000000" align="left" valign=middle bgcolor="#FFFFFF"><b><font size=5 color="#333333"><br></font></b></td>
 		<td align="left" valign=middle bgcolor="#FFFFFF"><font color="#333333"><br></font></td>
 	</tr>
@@ -347,8 +347,8 @@ echo date_format($date, 'H:i:s'); ?>"></font></b></td>
 	</tr>
 	<tr>
 		<td style="border-left: 2px solid #000000" height="46" align="left" valign=middle bgcolor="#FFFFFF"><font color="#333333"><br></font></td>
-		<td style="border-top: 0px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000" colspan=4 align="center" valign=middle bgcolor="#FFFFFF" sdnum="1033;1033;H:MM"><b><font size=4 color="#333333"><input type="text" style="width:100%;height:70px;color:#333333; font-weight: bold #000000; font-size: 19PX; text-align: center;"></font></b></td>
-		<td style="border-top: 0px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000" colspan=5 align="center" valign=middle bgcolor="#FFFFFF" sdnum="1033;1033;H:MM"><b><font size=5 color="#333333"><input type="text" style="width:100%;height:70px;color:#333333; font-weight: bold #000000; font-size: 19PX; text-align: center;"></font></b></td>
+		<td style="border-top: 0px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000" colspan=4 align="center" valign=middle bgcolor="#FFFFFF" sdnum="1033;1033;H:MM"><b><font size=4 color="#333333"><input type="text" style="width:100%;height:70px;color:#333333; font-weight: bold #000000; font-size: 30PX; text-align: center;"></font></b></td>
+		<td style="border-top: 0px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000" colspan=5 align="center" valign=middle bgcolor="#FFFFFF" sdnum="1033;1033;H:MM"><b><font size=5 color="#333333"><input type="text" style="width:100%;height:70px;color:#333333; font-weight: bold #000000; font-size: 30PX; text-align: center;"></font></b></td>
 		<td style="border-right: 2px solid #000000" align="left" valign=middle bgcolor="#FFFFFF" sdnum="1033;1033;H:MM"><b><font size=4 color="#333333"><br></font></b></td>
 		<td align="left" valign=middle bgcolor="#FFFFFF"><font color="#333333"><br></font></td>
 	</tr>
@@ -374,15 +374,15 @@ echo date_format($date, 'H:i:s'); ?>"></font></b></td>
 	</tr>
 	<tr>
 		<td style="border-left: 2px solid #000000" height="36" align="left" valign=middle bgcolor="#FFFFFF"><font color="#333333"><br></font></td>
-		<td style="border-top: 2px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000" align="center" valign=middle><b><font size=4 color="#333333"><input type="text" style="width:100%;height:70px;color:#333333; font-weight: bold #000000; font-size: 19PX; text-align: center;"></font></b></td>
+		<td style="border-top: 2px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000" align="center" valign=middle><b><font size=4 color="#333333"><input type="text" style="width:100%;height:70px;color:#333333; font-weight: bold #000000; font-size: 30PX; text-align: center;"></font></b></td>
 		<td style="border-left: 2px solid #000000; border-right: 2px solid #000000" align="left" valign=middle><b><font size=5 color="#333333"><br></font></b></td>
-		<td style="border-top: 0px solid #000000; border-bottom: 2px solid #000000; border-left: 0px solid #000000; border-right: 2px solid #000000" colspan=2 align="center" valign=middle><b><font size=5 color="#333333"><input type="text" style="width:100%;height:70px;color:#333333; font-weight: bold #000000; font-size: 19PX; text-align: center;"></font></b></td>
+		<td style="border-top: 0px solid #000000; border-bottom: 2px solid #000000; border-left: 0px solid #000000; border-right: 2px solid #000000" colspan=2 align="center" valign=middle><b><font size=5 color="#333333"><input type="text" style="width:100%;height:70px;color:#333333; font-weight: bold #000000; font-size: 30PX; text-align: center;"></font></b></td>
 		<td align="center" valign=middle><font size=4 color="#333333"><br></font></td>
-		<td style="border-top: 2px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000" colspan=3 align="center" valign=middle sdnum="1033;1033;H:MM"><b><font size=5 color="#333333"><input type="text" style="width:100%;height:70px;color:#333333; font-weight: bold #000000; font-size: 19PX; text-align: center;"></font></b></td>
+		<td style="border-top: 2px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000" colspan=3 align="center" valign=middle sdnum="1033;1033;H:MM"><b><font size=5 color="#333333"><input type="text" style="width:100%;height:70px;color:#333333; font-weight: bold #000000; font-size: 30PX; text-align: center;"></font></b></td>
 		<td align="center" valign=middle><font size=4 color="#333333"><br></font></td>
-		<td style="border-top: 0px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000" colspan=3 align="center" valign=middle sdnum="1033;1033;H:MM"><b><font size=5 color="#333333"><input type="text" style="width:100%;height:70px;color:#333333; font-weight: bold #000000; font-size: 19PX; text-align: center;"></font></b></td>
+		<td style="border-top: 0px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000" colspan=3 align="center" valign=middle sdnum="1033;1033;H:MM"><b><font size=5 color="#333333"><input type="text" style="width:100%;height:70px;color:#333333; font-weight: bold #000000; font-size: 30PX; text-align: center;"></font></b></td>
 		<td align="left" valign=middle sdnum="1033;1033;H:MM"><b><font size=5 color="#333333"><br></font></b></td>
-		<td style="border-top: 0px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000" align="center" valign=middle bgcolor="#FFFFFF" sdnum="1033;1033;H:MM"><b><input type="text" style="width:100%;height:70px;color:#333333; font-weight: bold #000000; font-size: 19PX; text-align: center;"><font size=5 color="#333333"></font></b></td>
+		<td style="border-top: 0px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000" align="center" valign=middle bgcolor="#FFFFFF" sdnum="1033;1033;H:MM"><b><input type="text" style="width:100%;height:70px;color:#333333; font-weight: bold #000000; font-size: 30PX; text-align: center;"><font size=5 color="#333333"></font></b></td>
 		<td style="border-right: 2px solid #000000" align="left" valign=middle sdnum="1033;1033;H:MM"><b><font size=5 color="#333333"><br></font></b></td>
 		<td align="left" valign=middle bgcolor="#FFFFFF"><font color="#333333"><br></font></td>
 	</tr>
@@ -410,9 +410,9 @@ echo date_format($date, 'H:i:s'); ?>"></font></b></td>
 	</tr>
 	<tr>
 		<td style="border-left: 2px solid #000000" height="48" align="left" valign=middle bgcolor="#FFFFFF"><font color="#333333"><br></font></td>
-		<td style="border-top: 2px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000" colspan=7 align="center" valign=middle bgcolor="#FFFFFF"><b><font size=5 color="#333333">{{$edit->escoltas->nombre}}</font></b></td>
+		<td style="border-top: 2px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000" colspan=7 align="center" valign=middle bgcolor="#FFFFFF"><b><font size=6 color="#333333">{{$edit->escoltas->nombre}}</font></b></td>
 		<td align="center" valign=middle bgcolor="#FFFFFF"><font size=4 color="#333333"><br></font></td>
-		<td style="border-top: 2px solid #000000; border-bottom: 0px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000" colspan=6 align="center" valign=middle bgcolor="#C0C0C0" sdnum="1033;1033;H:MM"><b><i><font size=5><input type="text" style="width:100%;height:70px;color:#333333; font-weight: bold #000000; font-size: 19PX; text-align: center;"></font></i></b></td>
+		<td style="border-top: 2px solid #000000; border-bottom: 0px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000" colspan=6 align="center" valign=middle bgcolor="#C0C0C0" sdnum="1033;1033;H:MM"><b><i><font size=5><input type="text" style="width:100%;height:70px;color:#333333; font-weight: bold #000000; font-size: 30PX; text-align: center;"></font></i></b></td>
 		<td style="border-right: 2px solid #000000" align="left" valign=middle sdnum="1033;1033;H:MM"><b><i><font size=5 color="#333333"><br></font></i></b></td>
 		<td align="left" valign=middle bgcolor="#FFFFFF"><font color="#333333"><br></font></td>
 	</tr>
@@ -443,7 +443,7 @@ echo date_format($date, 'H:i:s'); ?>"></font></b></td>
 		<td align="center" valign=middle bgcolor="#FFFFFF"><font size=4 color="#333333"><br></font></td>
 		<td align="left" valign=middle bgcolor="#FFFFFF"><b><font size=4 color="#333333"><br>&nbsp; &nbsp; &nbsp;
 				<span class="checkboxtext">
-			<input type="checkbox" value="">
+			<input type="checkbox" value="" >
 
 			</span>
 
@@ -454,13 +454,13 @@ echo date_format($date, 'H:i:s'); ?>"></font></b></td>
 		</font></b></td>
 		<td align="left" valign=middle bgcolor="#FFFFFF"><b><font size=4 color="#333333"><br></font></b></td>
 		<td align="left" valign=middle bgcolor="#FFFFFF"><font color="#333333"><br></font></td>
-		<td style="border-top: 0px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000" colspan=4 rowspan=2 align="center" valign=middle bgcolor="#FFFFFF"><b><font size=4><input type="text" style="width:100%;height:100PX;color:#333333; font-weight: bold #000000; font-size: 19PX; text-align: center"></font></b></td>
+		<td style="border-top: 0px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000" colspan=4 rowspan=2 align="center" valign=middle bgcolor="#FFFFFF"><b><font size=4><input type="text" style="width:100%;height:100PX;color:#333333; font-weight: bold #000000; font-size: 29PX; text-align: center" value="{{$edit->vehiculos->placa}}"></font></b></td>
 		<td align="right" valign=middle bgcolor="#FFFFFF"><font size=5 color="#333333"><br></font></td>
 		<td style="border-top: 0px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000" colspan=2 rowspan=2 align="center" valign=middle bgcolor="#FFFFFF"><b><font size=4 color="#333333">
-<input type="text" style="width:100%;height:100PX;color:#333333; font-weight: bold #000000; font-size: 19PX;"></font></b></td>
+<input type="text" style="width:100%;height:100PX;color:#333333; font-weight: bold #000000; font-size: 30PX;"></font></b></td>
 		<td align="center" valign=middle bgcolor="#FFFFFF"><font size=4 color="#333333"><br></font></td>
 		<td style="border-top: 2px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000" rowspan=2 align="center" valign=middle bgcolor="#FFFFFF"><b><font size=5 color="#333333">
-<input type="text" style="width:100%;height:100PX;color:#333333; font-weight: bold #000000; font-size: 19PX;"></font></b></td>
+<input type="text" style="width:100%;height:100PX;color:#333333; font-weight: bold #000000; font-size: 30PX;"></font></b></td>
 		<td style="border-right: 2px solid #000000" align="center" valign=middle bgcolor="#FFFFFF"><b><font size=4 color="#333333"><br></font></b></td>
 		<td align="left" valign=middle bgcolor="#FFFFFF"><font color="#333333"><br></font></td>
 	</tr>
@@ -508,7 +508,7 @@ echo date_format($date, 'H:i:s'); ?>"></font></b></td>
 		<td style="border-left: 2px solid #000000" height="37" align="left" valign=middle bgcolor="#FFFFFF"><font color="#333333"><br></font></td>
 		<td align="right" valign=middle bgcolor="#FFFFFF"><font size=5 color="#333333">Otro:</font></td>
 		<td colspan=3 align="left" valign=middle bgcolor="#FFFFFF"><font color="#333333"><br><img src="f3_html_df8e45f63cb42756.png" width=222 height=1 hspace=33 vspace=18>
-		</font><input type="text" style="width:100%;height:30PX;color:#333333; font-weight: bold #000000; font-size: 19PX;"></td>
+		</font><input type="text" style="width:100%;height:30PX;color:#333333; font-weight: bold #000000; font-size: 30PX;"></td>
 		<td align="left" valign=middle bgcolor="#FFFFFF"><font color="#333333"><br></font></td>
 		<td align="left" valign=middle bgcolor="#FFFFFF"><font color="#333333"><br></font></td>
 		<td align="left" valign=middle bgcolor="#FFFFFF"><font color="#333333"><br></font></td>
@@ -520,7 +520,7 @@ echo date_format($date, 'H:i:s'); ?>"></font></b></td>
 		</font></b></td>
 		<td align="left" valign=middle bgcolor="#FFFFFF"><font color="#333333"><br></font></td>
 		<td style="border-top: 0px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000" colspan=4 align="center" valign=middle bgcolor="#FFFFFF"><font color="#333333">
-<input type="text" style="width:100%;height:70px;color:#333333; font-weight: bold #000000; font-size: 19PX; text-align: center;"></font></td>
+<input type="text" style="width:100%;height:70px;color:#333333; font-weight: bold #000000; font-size: 30PX; text-align: center;"></font></td>
 		<td style="border-right: 2px solid #000000" align="left" valign=middle bgcolor="#FFFFFF"><font size=4 color="#333333"><br></font></td>
 		<td align="left" valign=middle bgcolor="#FFFFFF"><font color="#333333"><br></font></td>
 	</tr>
@@ -543,7 +543,7 @@ echo date_format($date, 'H:i:s'); ?>"></font></b></td>
 	<tr>
 		<td style="border-left: 2px solid #000000" height="35" align="left" valign=middle bgcolor="#FFFFFF"><font color="#333333"><br></font></td>
 		<td style="border-top: 0px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000" colspan=14 rowspan=3 align="center" valign=middle bgcolor="#FFFFFF"><b><font size=4>
-<input type="text" style="width:100%;height:100px;color:#333333; font-weight: bold #000000; font-size: 19PX; text-align: center;"></font></b></td>
+<input type="text" style="width:100%;height:100px;color:#333333; font-weight: bold #000000; font-size: 30PX; text-align: center;"></font></b></td>
 		<td style="border-right: 2px solid #000000" align="left" valign=middle><b><font size=4 color="#333333"><br></font></b></td>
 		<td align="left" valign=middle bgcolor="#FFFFFF"><font color="#333333"><br></font></td>
 	</tr>
@@ -581,13 +581,13 @@ echo date_format($date, 'H:i:s'); ?>"></font></b></td>
 	<tr>
 		<td style="border-left: 2px solid #000000" height="36" align="left" valign=middle bgcolor="#FFFFFF"><font color="#333333"><br></font></td>
 		<td style="border-top: 2px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000" colspan=4 align="center" valign=middle bgcolor="#FFFFFF"><b><font size=5 color="#333333">
-<input type="text" style="width:100%;height:70px;color:#333333; font-weight: bold #000000; font-size: 19PX; text-align: center;" value="{{$edit->ID2}}"></font></b></td>
+<input type="text" style="width:100%;height:70px;color:#333333; font-weight: bold #000000; font-size: 30PX; text-align: center;" value="{{$edit->ID2}}"></font></b></td>
 		<td align="center" valign=middle bgcolor="#FFFFFF"><font color="#333333"><br></font></td>
 		<td  style="border-top: 0px solid #000000; border-bottom: 2.5px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000" colspan=5 align="center" valign=middle bgcolor="#FFFFFF"><b><font size=4 color="#333333">
-<input type="text" style="width:100%;height:70px;color:#333333; font-weight: bold #000000; font-size: 19PX; text-align: center;"></font></b></td>
+<input type="text" style="width:100%;height:70px;color:#333333; font-weight: bold #000000; font-size: 30PX; text-align: center;"></font></b></td>
 		<td align="left" valign=middle bgcolor="#FFFFFF"><b><font size=4 color="#333333"><br></font></b></td>
 		<td style="border-top: 0px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000" colspan=3 align="center" valign=middle bgcolor="#FFFFFF"><b><font size=4 color="#333333">
-<input type="text" style="width:100%;height:70px;color:#333333; font-weight: bold #000000; font-size: 19PX; text-align: center;"></font></b></td>
+<input type="text" style="width:100%;height:70px;color:#333333; font-weight: bold #000000; font-size: 30PX; text-align: center;"></font></b></td>
 		<td style="border-right: 2px solid #000000" align="center" valign=middle bgcolor="#FFFFFF"><font color="#333333"><br></font></td>
 		<td align="left" valign=middle bgcolor="#FFFFFF"><font color="#333333"><br></font></td>
 	</tr>
@@ -620,15 +620,15 @@ echo date_format($date, 'H:i:s'); ?>"></font></b></td>
 	<tr>
 		<td style="border-left: 2px solid #000000" height="36" align="left" valign=middle bgcolor="#FFFFFF"><font color="#333333"><br></font></td>
 		<td style="border-top: 2px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000" align="center" valign=middle bgcolor="#FFFFFF" sdnum="1033;1033;H:MM"><b><font size=5 color="#333333">
-<input type="text" style="width:100%;height:30px;color:#333333; font-weight: bold #000000; font-size: 19PX;"></font></b></td>
+<input type="text" style="width:100%;height:30px;color:#333333; font-weight: bold #000000; font-size: 30PX;"></font></b></td>
 		<td align="left" valign=middle bgcolor="#FFFFFF" sdnum="1033;1033;H:MM"><b><font size=5 color="#333333"><br></font></b></td>
 		<td style="border-top: 0px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000" colspan=3 align="center" valign=middle bgcolor="#FFFFFF" sdnum="1033;1033;H:MM"><b><font size=5 color="#333333">
-<input type="text" style="width:100%;height:30PX;color:#333333; font-weight: bold #000000; font-size: 19PX;"></font></b></td>
+<input type="text" style="width:100%;height:30PX;color:#333333; font-weight: bold #000000; font-size: 30PX;"></font></b></td>
 		<td style="border-top: 2px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000" colspan=3 align="center" valign=middle  sdnum="1033;1033;H:MM"><b><font size=5 color="#333333">
-<input type="text" style="width:100%;height:30px;color:#333333; font-weight: bold #000000; font-size: 19PX;"></font></b></td>
+<input type="text" style="width:100%;height:30px;color:#333333; font-weight: bold #000000; font-size: 30PX;"></font></b></td>
 		<td align="center" valign=middle bgcolor="#FFFFFF"><font color="#333333"><br></font></td>
 		<td style="border-top: 2px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000" align="center" valign=middle  sdnum="1033;1033;H:MM"><b><font size=5 color="#333333">
-<input type="text" style="width:100%;height:30px;color:#333333; font-weight: bold #000000; font-size: 19PX;"></font></b></td>
+<input type="text" style="width:100%;height:30px;color:#333333; font-weight: bold #000000; font-size: 30PX;"></font></b></td>
 		<td style="border-right: 2px solid #000000" align="center" valign=middle bgcolor="#FFFFFF" sdnum="1033;1033;H:MM"><b><font size=5 color="#333333"><br></font></b></td>
 		<td align="left" valign=middle bgcolor="#FFFFFF"><font color="#333333"><br></font></td>
 	</tr>
@@ -662,13 +662,13 @@ echo date_format($date, 'H:i:s'); ?>"></font></b></td>
 	<tr>
 		<td style="border-left: 2px solid #000000" height="39" align="left" valign=middle bgcolor="#FFFFFF"><font color="#333333"><br></font></td>
 		<td style="border-top: 2px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000" colspan=6 align="center" valign=middle bgcolor="#FFFFFF"><font size=4 color="#333333">
-<input type="text" style="width:100%;height:30px;color:#333333; font-weight: bold #000000; font-size: 19PX;"></font></td>
+<input type="text" style="width:100%;height:30px;color:#333333; font-weight: bold #000000; font-size: 30PX;"></font></td>
 		<td align="center" valign=middle bgcolor="#FFFFFF"><font size=4 color="#333333"><br></font></td>
 		<td style="border-top: 2px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000" colspan=3 align="center" valign=middle bgcolor="#FFFFFF" sdnum="1033;1033;M/D/YYYY H:MM"><font size=4 color="#333333">
-<input type="text" style="width:100%;height:30px;color:#333333; font-weight: bold #000000; font-size: 19PX;"></font></td>
+<input type="text" style="width:100%;height:30px;color:#333333; font-weight: bold #000000; font-size: 30PX;"></font></td>
 		<td align="center" valign=middle bgcolor="#FFFFFF"><font size=4 color="#333333"><br></font></td>
 		<td style="border-top: 0px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000" colspan=3 align="center" valign=middle bgcolor="#FFFFFF"><font size=4 color="#333333">
-<input type="text" style="width:100%;height:30px;color:#333333; font-weight: bold #000000; font-size: 19PX;"></font></td>
+<input type="text" style="width:100%;height:30px;color:#333333; font-weight: bold #000000; font-size: 30PX;"></font></td>
 		<td style="border-right: 2px solid #000000" align="center" valign=middle bgcolor="#FFFFFF"><font size=4 color="#333333"><br></font></td>
 		<td align="left" valign=middle bgcolor="#FFFFFF"><font color="#333333"><br></font></td>
 	</tr>
@@ -879,6 +879,30 @@ echo date_format($date, 'H:i:s'); ?>"></font></b></td>
 </table>
 
 </div>
+<br>
+<br>
+<br>
+<br>
+<br><br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+	<br>
+<br>
+<br>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 <div id="imagen">
 <img src="{{ asset('img/con_servicio.jpg')}}"class="horizontal"  width ="2050px" >

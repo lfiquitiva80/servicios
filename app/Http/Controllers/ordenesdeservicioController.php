@@ -9,6 +9,9 @@ use App\escolta;
 use App\cliente;
 use App\vehiculo;
 use App\User;
+use App\tipodevehiculo;
+use App\tiposervicio;
+use App\solicitanteinterno;
 use App\Mail\servicioadd;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -86,7 +89,13 @@ class ordenesdeservicioController extends Controller
        Alert::success('Se guardo correctamente el nuevo servicio!')->persistent("Close");
 
      //  \Mail::to($request->get('para'))->send(new part($order));
-   \Mail::to('planeacioncc@omnitempus.com')->send(new servicioadd($store));
+       try {
+        \Mail::to('planeacioncc@omnitempus.com')->send(new servicioadd($store));
+        Log::info('Se envio con exito el correo'); 
+       } catch (Exception $e) {
+           Alert::success('Se guardo correctamente el nuevo servicio!')->persistent("Close");
+       }
+   
 
         return redirect()->route('home-principal');
         //return view('home');
@@ -117,13 +126,16 @@ class ordenesdeservicioController extends Controller
          $escolta = escolta::orderBy('nombre','ASC')->pluck('nombre','id');
          $cliente = cliente::orderBy('Nombre','ASC')->pluck('Nombre','id');
          $vehiculo = vehiculo::orderBy('placa','ASC')->pluck('placa','id');
+         $tipodevehiculo = tipodevehiculo::pluck('descripcion_tipo_vehiculo','id');
+         $tiposervicio = tiposervicio::pluck('desc_tipo_serv','id');
+         $solicitanteinterno = solicitanteinterno::pluck('descripcion_solicitante','id');
          $wo= wo::pluck('descripcion_wo','id');
          Log::info('El usuario ingreso a editar el id => : '. $id.' '. Auth::user()->name);
         //dd($escolta);
          $email=User::find(1);
     //\Notification::send($email, new notificacionservicio($estadoservicio));
 
-        return view('ordenesdeservicio.edit', compact('edit','estadoservicio','wo','cliente','escolta','vehiculo'));
+        return view('ordenesdeservicio.edit', compact('edit','estadoservicio','wo','cliente','escolta','vehiculo','tipodevehiculo','tiposervicio','solicitanteinterno'));
     }
 
     /**

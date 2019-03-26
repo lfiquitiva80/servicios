@@ -181,12 +181,34 @@ value="{{Auth::user()->id}}">
 
 
 
-
   <div class="panel panel-primary">
     <div class="panel-body">
 
       <!--<a href="{{ $url = route('ordenesdeservicio.create') }}" class="btn btn-primary"><i class="fa fa-users" aria-hidden="true"></i> Registar Ordenes de Servicios</a>-->
 
+<?php 
+
+$lastWeek = \Carbon\Carbon::now()->subWeek();  
+
+$ordenesdeservicio2= App\ordenesdeservicio::where('fecha_inicio_servicio','>',$lastWeek)->get();
+
+?>
+
+@foreach($ordenesdeservicio2 as $value)
+
+
+@if($value->fecha_inicio_servicio > \Carbon\Carbon::now())
+    @if (\Carbon\Carbon::parse($value->fecha_inicio_servicio)->diffInMinutes() > 0 && \Carbon\Carbon::parse($value->fecha_inicio_servicio)->diffInMinutes() <= 120 && $value->estadoservicio_id != 7)
+
+    <div class="alert alert-danger"> 
+      <marquee><strong><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Alerta!</strong> La siguiente Orden de Trabajo esta a menos DOS HORAS {{$value->No_de_orden_de_servicio}} Servicio {{ \Carbon\Carbon::parse($value->fecha_inicio_servicio)->diffForHumans() }} !Alerta!</marquee>
+    </div>
+ 
+
+    @endif
+@endif
+
+@endforeach
 
 
   <!--<a class="btn bg-maroon btn-flat margin pull-right" data-toggle="modal" href='#modal-2'><i class="fa fa-inbox" ></i> Crear W.O</a>-->
@@ -198,6 +220,8 @@ value="{{Auth::user()->id}}">
           <h4 class="modal-title">Crear WO new</h4>
         </div>
         <div class="modal-body">
+
+          <marquee>hola</marquee>
 
           {!! Form::open(['route' => 'wo.store', 'method'=>'POST']) !!}
 
@@ -265,6 +289,8 @@ value="{{Auth::user()->id}}">
 
             @elseif ($row->estadoservicio_id==6 )
             <span class="label label-danger"><?php $var = App\estadoservicio::find($row->estadoservicio_id); echo $var->estadoservicio; ?> <i class="fa fa-check" aria-hidden="true"></i></span> </td>
+            @elseif ($row->estadoservicio_id==7 )
+            <span class="label label-warning"><?php $var = App\estadoservicio::find($row->estadoservicio_id); echo $var->estadoservicio; ?> <i class="fa fa-ban" aria-hidden="true"></i></span> </td>
             @else
             <span class="label label-primary"><?php $var = App\estadoservicio::find($row->estadoservicio_id); echo $var->estadoservicio; ?> </span></td>
             
@@ -280,7 +306,14 @@ value="{{Auth::user()->id}}">
             </td>
           <?php  ?>
           <td >{{$row->fecha_inicio_servicio}}
-         <font color="red">Servicio {{ \Carbon\Carbon::parse($row->fecha_inicio_servicio)->diffForHumans() }} </font>
+
+         @if ($row->fecha_inicio_servicio < \Carbon\Carbon::now())
+         <font color="blue">Servicio {{ \Carbon\Carbon::parse($row->fecha_inicio_servicio)->diffForHumans() }} </font>
+         @else
+
+         <font color="red"><b>Servicio {{ \Carbon\Carbon::parse($row->fecha_inicio_servicio)->diffForHumans() }} </b></font>
+
+         @endif
     
           </td>
 
@@ -294,9 +327,14 @@ value="{{Auth::user()->id}}">
 
 
           <td ><a href="{{ $url = route('ordenesdeservicio.edit',$row->id) }}" class="btn btn-success" title="Programar" onclick="return confirm('Va a ingresar a programar.');"><i class="fa fa-pencil" aria-hidden="true"> Programar</i></a></td>
+          @if(Auth::user()->type != 3)
           <td><a href="{{ $url = route('continuar',$row->id) }}" class="btn btn-info" title="Continuar" onclick="return confirm('Desea duplicar el registro actual?')"><i class="fa fa-clipboard" aria-hidden="true"></i> Continuar</a></td>
+          @endif
+         @if(Auth::user()->type == 1 || Auth::user()->type == 2)
           <td id="eliminarhome">@include('ordenesdeservicio.destroy')</td>
+           @endif
           <td ><a href="{{ $url = route('documento.edit',$row->id) }}" class=" btn btn-default" title="Imprimir"  ><i class="fa fa- fa-print" aria-hidden="true"> Imprimir  </i></a></td>
+
 
     </tr>
 

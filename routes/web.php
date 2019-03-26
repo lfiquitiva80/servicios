@@ -47,6 +47,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/jsonordenes','excelController@jsonordenes')->name('jsonordenes');
+
 Route::group(['middleware' => 'auth'], function () {
     //    Route::get('/link1', function ()    {
 //        // Uses Auth Middleware
@@ -60,8 +62,10 @@ Route::get('/home','HomeController@index')->name('home-principal');
 Route::resource('ordenesdeservicio','ordenesdeservicioController');
 Route::resource('servicios_adicionales','servicios_adicionalesController');
 Route::resource('occidental','servicios_adicionales_occidentalController');
+Route::resource('controlhorario','controlhorarioController');
 Route::resource('wo','woesController');
 Route::get('excelordenes','excelController@excelordenes')->name('excelordenes');
+Route::get('excelcontrolhorario','excelController@controlhorario')->name('controlhorario');
 Route::get('import-export-view', 'excelController@excelordenes')->name('import.export.view');
 Route::post('import-file', 'excelController@excelordenes')->name('import.file');
 Route::get('export-file/{type}', 'excelController@excelordenes')->name('export.file');
@@ -94,9 +98,12 @@ Route::get('excelwogenerales','excelController@wodos')->name('excelwogenerales')
 Route::get('pdf/{id}','ordenesdeservicioController@pdf')->name('pdf');
 Route::get('escoltapdf/{id}','escoltaController@pdf')->name('escoltapdf');
 Route::get('vehiculopdf/{id}','vehiculoController@pdf')->name('vehiculopdf');
-
-
-});
-Route::group(['middleware' => [ 'admin', 'auth']], function (){
 Route::resource('usuario','usuarioController');
+
+
+
+
 });
+// Route::group(['middleware' => [ 'admin', 'auth']], function (){
+// Route::resource('usuario','usuarioController');
+// });

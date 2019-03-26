@@ -20,8 +20,10 @@ use App\cliente;
 use App\escolta;
 use App\vehiculo;
 use App\rentadora;
+use App\controlhorario;
 use App\User;
 use Alert;
+use Excel;
 
 
 class excelController extends Controller
@@ -34,19 +36,30 @@ class excelController extends Controller
     {
 
 
-        $index = ordenesdeservicio::all();
+      $index = DB::table('ordenesdeservicio')
+            ->join('estadoservicio', 'estadoservicio.id', '=', 'ordenesdeservicio.estadoservicio_id')
+            ->join('escolta', 'escolta.id', '=', 'ordenesdeservicio.Escolta_asignado')
+            ->join('vehiculo', 'vehiculo.id', '=', 'ordenesdeservicio.placa')
+            ->join('cliente', 'cliente.id', '=', 'ordenesdeservicio.cliente')
+            ->join('tipodevehiculo', 'tipodevehiculo.id', '=', 'ordenesdeservicio.tipo')
+            ->join('users', 'users.id', '=', 'ordenesdeservicio.users_id')
+            ->join('tiposervicio', 'tiposervicio.id', '=', 'ordenesdeservicio.tipo_de_servicio')
+            ->join('solicitanteinterno', 'solicitanteinterno.id', '=', 'ordenesdeservicio.solicitante_interno')
+            ->select('ordenesdeservicio.*', 'estadoservicio.*', 'vehiculo.*', 'solicitanteinterno.*', 'cliente.*', 'tiposervicio.*', 'tipodevehiculo.*', 'users.*', 'escolta.*')
+            ->get();
 
-       return \Excel::create('ordenes_de_servicio', function($excel) use ($index) {
+      //dd($index);
 
-            $excel->sheet('sheet name', function($sheet) use ($index)
+            //ob_end_clean();  
 
-            {
-
-                $sheet->fromArray($index);
-
+              \Excel::create('ordenesdeservicio', function($excel)use ($index) {
+            $excel->sheet('ordenesdeservicio', function($sheet) use ($index){
+              //$products=eventos_general::all();
+         //dd($products);
+              //$sheet->fromArray($index);
+         $sheet->loadView('excel.ordenesdeservicio', ['index' => $index]);
             });
-
-        })->download($type);
+        })->download($type);      
 
 
     }
@@ -144,6 +157,31 @@ class excelController extends Controller
             });
 
         })->download('xls');
+
+  }
+
+
+
+  public function controlhorario()
+
+  {
+      $index = DB::table('controlhorario')
+            ->join('escolta', 'escolta.id', '=', 'controlhorario.escolta_id')
+            ->join('estadocontrolhorario', 'estadocontrolhorario.id', '=', 'controlhorario.estadocontrol')
+            ->select('controlhorario.*', 'escolta.*', 'estadocontrolhorario.*')
+            ->get();
+
+     //dd($index);
+
+
+
+              \Excel::create('Control Horario', function($excel)use ($index) {
+            $excel->sheet('Control Horario', function($sheet) use ($index){
+              //$products=eventos_general::all();
+         //dd($products);
+         $sheet->loadView('excel.controlhorario', ['index' => $index]);
+            });
+        })->export('xlsx');
 
   }
 
@@ -259,78 +297,148 @@ $sheet->cells('A1:I1', function($cells)
 }
 
 
+    public function  jsonordenes(){
+
+       $data = DB::table('ordenesdeservicio')
+            ->join('estadoservicio', 'estadoservicio.id', '=', 'ordenesdeservicio.estadoservicio_id')
+            ->join('escolta', 'escolta.id', '=', 'ordenesdeservicio.Escolta_asignado')
+            ->join('vehiculo', 'vehiculo.id', '=', 'ordenesdeservicio.placa')
+            ->join('cliente', 'cliente.id', '=', 'ordenesdeservicio.cliente')
+            ->join('tipodevehiculo', 'tipodevehiculo.id', '=', 'ordenesdeservicio.tipo')
+            ->join('users', 'users.id', '=', 'ordenesdeservicio.users_id')
+            ->join('tiposervicio', 'tiposervicio.id', '=', 'ordenesdeservicio.tipo_de_servicio')
+            ->join('solicitanteinterno', 'solicitanteinterno.id', '=', 'ordenesdeservicio.solicitante_interno')
+            ->select('ordenesdeservicio.*', 'estadoservicio.*', 'vehiculo.*', 'solicitanteinterno.*', 'cliente.*', 'tiposervicio.*', 'tipodevehiculo.*', 'users.*', 'escolta.*')
+            ->get();
+      
+
+      return response()->json($data);
+    }
+
+
 public function rango(Request $request){
 
-\Excel::create('Rango', function($excel) use($request){
 
-     $excel->sheet('Rango', function($sheet) use($request) {
+      $index = DB::table('ordenesdeservicio')
+            ->join('estadoservicio', 'estadoservicio.id', '=', 'ordenesdeservicio.estadoservicio_id')
+            ->join('escolta', 'escolta.id', '=', 'ordenesdeservicio.Escolta_asignado')
+            ->join('vehiculo', 'vehiculo.id', '=', 'ordenesdeservicio.placa')
+            ->join('cliente', 'cliente.id', '=', 'ordenesdeservicio.cliente')
+            ->join('tipodevehiculo', 'tipodevehiculo.id', '=', 'ordenesdeservicio.tipo')
+            ->join('users', 'users.id', '=', 'ordenesdeservicio.users_id')
+            ->join('tiposervicio', 'tiposervicio.id', '=', 'ordenesdeservicio.tipo_de_servicio')
+            ->join('solicitanteinterno', 'solicitanteinterno.id', '=', 'ordenesdeservicio.solicitante_interno')
+            ->select('ordenesdeservicio.*', 'estadoservicio.*', 'vehiculo.*', 'solicitanteinterno.*', 'cliente.*', 'tiposervicio.*', 'tipodevehiculo.*', 'users.*', 'escolta.*')
+            ->whereBetween('fecha_inicio_servicio',[$request->fecha1,$request->fecha2])
+            ->get();
 
-         $sheet->row(1, [
-         'Orden de Trabajo (W.O)', 'Estado de servicio', 'Fecha inicio servicio ' , ' Hora inicio en OT','Hora final en OT', 'Hora programada','Hora de inicio servicio cliente','Hora final del servicio cliente','Total horas del servicio','Escolta asignado','Cedula','Escolta externo', 'Bilingue','ID2','Placa','Tipo','Vip','Solicitante Cliente','Solicitante interno','Ciudad origen','Ciudad destino','Fecha solicitud','Fecha de respuesta al cliente','Tipo de servicio','Detalle del servicio','Novedades','Px','Armado','Tipo de renta','Proveedor vehiculo','Prefactura','Fecha prefactura','Observaciones','Tiempo respuesta cliente','Tiempo prefactura','Creado en','Actualizado en','Nombre cliente','Nit','Solicitante','Telefono','Email cliente', 'Notas',' Activo','Coordinador','Creado por']);
-  $sheet->cells('A1:AX', function($cells)
-  {
-
-  });
+      //dd($index);
 
 
 
-  $ordendeservicios =ordenesdeservicio ::whereBetween('fecha_inicio_servicio',[$request->fecha1,$request->fecha2])->get();
+              \Excel::create('ordenesdeservicio', function($excel)use ($index) {
+            $excel->sheet('ordenesdeservicio', function($sheet) use ($index){
+              //$products=eventos_general::all();
+         //dd($products);
+         $sheet->loadView('excel.ordenesdeservicio', ['index' => $index]);
+            });
+        })->export('xlsx'); 
+
+   // $index = DB::table('ordenesdeservicio')
+   //          ->join('estadoservicio', 'estadoservicio.id', '=', 'ordenesdeservicio.estadoservicio_id')
+   //          ->join('escolta', 'escolta.id', '=', 'ordenesdeservicio.Escolta_asignado')
+   //          ->join('vehiculo', 'vehiculo.id', '=', 'ordenesdeservicio.placa')
+   //          ->join('cliente', 'cliente.id', '=', 'ordenesdeservicio.cliente')
+   //          ->join('tipodevehiculo', 'tipodevehiculo.id', '=', 'ordenesdeservicio.tipo')
+   //          ->join('users', 'users.id', '=', 'ordenesdeservicio.users_id')
+   //          ->join('tiposervicio', 'tiposervicio.id', '=', 'ordenesdeservicio.tipo_de_servicio')
+   //          ->join('solicitanteinterno', 'solicitanteinterno.id', '=', 'ordenesdeservicio.solicitante_interno')
+   //          ->select('ordenesdeservicio.*', 'estadoservicio.*', 'vehiculo.*', 'solicitanteinterno.*', 'cliente.*', 'tiposervicio.*', 'tipodevehiculo.*', 'users.*', 'escolta.*')
+   //          ->whereBetween('fecha_inicio_servicio',[$request->fecha1,$request->fecha2])
+   //          ->get();
+
+   //    //dd($index);
 
 
-  foreach ($ordendeservicios as $ordendeservicio) {
-         $row = [];
-         $row [1] = $ordendeservicio->No_de_orden_de_servicio;
-         $row [2] = $ordendeservicio->estadoservicios->estadoservicio;
-         $row [3] = $ordendeservicio->fecha_inicio_servicio;
-         $row [4] = $ordendeservicio->Hora_inicio_en_OT;
-         $row [5] = $ordendeservicio->Hora_Final_en_OT;
-         $row [6] = $ordendeservicio->Hora_Programada;
-         $row [7] = $ordendeservicio->Hora_de_inicio_Servicio_cliente;
-         $row [8] = $ordendeservicio->Hora_Final_del_Servicio_Cliente;
-         $row [9] = $ordendeservicio->Total_Horas_del_Servicio;
-         $row [10] = $ordendeservicio->escoltas->nombre;
-         $row [11] = $ordendeservicio->escoltas->cc;
-         $row [12] = $ordendeservicio->escolta_externo;
-         $row [13] = $ordendeservicio->bilingue;
-         $row [14] = $ordendeservicio->ID2;
-         $row [15] = $ordendeservicio->vehiculos->placa;
-         $row [16] = $ordendeservicio->tipo;
-         $row [17] = $ordendeservicio->vip;
-         $row [18] = $ordendeservicio->solicitante_cliente;
-         $row [19] = $ordendeservicio->solicitante_interno;
-         $row [20] = $ordendeservicio->ciudad_origen;
-         $row [21] = $ordendeservicio->ciudad_destino;
-         $row [22] = $ordendeservicio->fecha_solicitud;
-         $row [23] = $ordendeservicio->Fecha_de_respuesta_al_cliente;
-         $row [24] = $ordendeservicio->tipo_de_servicio;
-         $row [25] = $ordendeservicio->detalle_del_servicio;
-         $row [26] = $ordendeservicio->novedades;
-         $row [27] = $ordendeservicio->px;
-         $row [28] = $ordendeservicio->armado;
-         $row [29] = $ordendeservicio->tipo_renta;
-         $row [30] = $ordendeservicio->Proveedor_vehiculo;
-         $row [31] = $ordendeservicio->prefactura;
-         $row [32] = $ordendeservicio->fecha_prefactura;
-         $row [33] = $ordendeservicio->observaciones;
-         $row [34] = $ordendeservicio->tiempo_rta_cliente;
-         $row [35] = $ordendeservicio->tiempo_prefactura;
-         $row [36] = $ordendeservicio->created_at;
-         $row [37] = $ordendeservicio->updated_at;
-         $row [38] = $ordendeservicio->clientes->nombre;
-         $row [39] = $ordendeservicio->clientes->nit;
-         $row [40] = $ordendeservicio->clientes->solicitante;
-         $row [41] = $ordendeservicio->clientes->telefono;
-         $row [42] = $ordendeservicio->clientes->email;
-         $row [43] = $ordendeservicio->clientes->notas;
-         $row [44] = $ordendeservicio->clientes->activo;
-         $row [45] = $ordendeservicio->clientes->coordinador;
-         $row [46] = $ordendeservicio->usuarios->name;
-         $sheet->appendRow($row);
 
-       }
+   //            \Excel::create('ordenesdeservicio', function($excel)use ($index) {
+   //          $excel->sheet('ordenesdeservicio', function($sheet) use ($index){
+   //            //$products=eventos_general::all();
+   //       //dd($products);
+   //       $sheet->loadView('excel.ordenesdeservicio', ['index' => $index]);
+   //          });
+   //      })->export('xlsx');   
 
-        });
-  })->export('xls');//
+// \Excel::create('Rango', function($excel) use($request){
+
+//      $excel->sheet('Rango', function($sheet) use($request) {
+
+//          $sheet->row(1, [
+//          'Orden de Trabajo (W.O)', 'Estado de servicio', 'Fecha inicio servicio ' , ' Hora inicio en OT','Hora final en OT', 'Hora programada','Hora de inicio servicio cliente','Hora final del servicio cliente','Total horas del servicio','Escolta asignado','Cedula','Escolta externo', 'Bilingue','ID2','Placa','Tipo','Vip','Solicitante Cliente','Solicitante interno','Ciudad origen','Ciudad destino','Fecha solicitud','Fecha de respuesta al cliente','Tipo de servicio','Detalle del servicio','Novedades','Px','Armado','Tipo de renta','Proveedor vehiculo','Prefactura','Fecha prefactura','Observaciones','Tiempo respuesta cliente','Tiempo prefactura','Creado en','Actualizado en','Nombre cliente','Nit','Solicitante','Telefono','Email cliente', 'Notas',' Activo','Coordinador','Creado por']);
+//   $sheet->cells('A1:AX', function($cells)
+//   {
+
+//   });
+
+
+
+//   $ordendeservicios =ordenesdeservicio ::whereBetween('fecha_inicio_servicio',[$request->fecha1,$request->fecha2])->get();
+
+
+//   foreach ($ordendeservicios as $ordendeservicio) {
+//          $row = [];
+//          $row [1] = $ordendeservicio->No_de_orden_de_servicio;
+//          $row [2] = $ordendeservicio->estadoservicios->estadoservicio;
+//          $row [3] = $ordendeservicio->fecha_inicio_servicio;
+//          $row [4] = $ordendeservicio->Hora_inicio_en_OT;
+//          $row [5] = $ordendeservicio->Hora_Final_en_OT;
+//          $row [6] = $ordendeservicio->Hora_Programada;
+//          $row [7] = $ordendeservicio->Hora_de_inicio_Servicio_cliente;
+//          $row [8] = $ordendeservicio->Hora_Final_del_Servicio_Cliente;
+//          $row [9] = $ordendeservicio->Total_Horas_del_Servicio;
+//          $row [10] = $ordendeservicio->escoltas->nombre;
+//          $row [11] = $ordendeservicio->escoltas->cc;
+//          $row [12] = $ordendeservicio->escolta_externo;
+//          $row [13] = $ordendeservicio->bilingue;
+//          $row [14] = $ordendeservicio->ID2;
+//          $row [15] = $ordendeservicio->vehiculos->placa;
+//          $row [16] = $ordendeservicio->tipo;
+//          $row [17] = $ordendeservicio->vip;
+//          $row [18] = $ordendeservicio->solicitante_cliente;
+//          $row [19] = $ordendeservicio->solicitante_interno;
+//          $row [20] = $ordendeservicio->ciudad_origen;
+//          $row [21] = $ordendeservicio->ciudad_destino;
+//          $row [22] = $ordendeservicio->fecha_solicitud;
+//          $row [23] = $ordendeservicio->Fecha_de_respuesta_al_cliente;
+//          $row [24] = $ordendeservicio->tipo_de_servicio;
+//          $row [25] = $ordendeservicio->detalle_del_servicio;
+//          $row [26] = $ordendeservicio->novedades;
+//          $row [27] = $ordendeservicio->px;
+//          $row [28] = $ordendeservicio->armado;
+//          $row [29] = $ordendeservicio->tipo_renta;
+//          $row [30] = $ordendeservicio->Proveedor_vehiculo;
+//          $row [31] = $ordendeservicio->prefactura;
+//          $row [32] = $ordendeservicio->fecha_prefactura;
+//          $row [33] = $ordendeservicio->observaciones;
+//          $row [34] = $ordendeservicio->tiempo_rta_cliente;
+//          $row [35] = $ordendeservicio->tiempo_prefactura;
+//          $row [36] = $ordendeservicio->created_at;
+//          $row [37] = $ordendeservicio->updated_at;
+//          $row [38] = $ordendeservicio->clientes->nombre;
+//          $row [39] = $ordendeservicio->clientes->nit;
+//          $row [40] = $ordendeservicio->clientes->solicitante;
+//          $row [41] = $ordendeservicio->clientes->telefono;
+//          $row [42] = $ordendeservicio->clientes->email;
+//          $row [43] = $ordendeservicio->clientes->notas;
+//          $row [44] = $ordendeservicio->clientes->activo;
+//          $row [45] = $ordendeservicio->clientes->coordinador;
+//          $row [46] = $ordendeservicio->usuarios->name;
+//          $sheet->appendRow($row);
+
+//        }
+
+//         });
+//   })->export('xls');//
 
  }
 

@@ -1240,6 +1240,38 @@ modal.find('.modal-body #email').val(email);
 modal.find('.modal-body #id').val(id);
 modal.find('.modal-body #activo').val(activo);
 })
+
+
+   $('#editarcontrolhorario').on('show.bs.modal', function (event) {
+  
+var button = $(event.relatedTarget)
+//alert(button);
+var id = button.data('id')
+var fecha_registro = button.data('fecha_registro')
+var hora_inicio_en_ot = button.data('hora_inicio_en_ot')
+var hora_final_en_ot = button.data('hora_final_en_ot')
+var escolta_id = button.data('escolta_id')
+var observacion = button.data('observacion')
+var estadocontrol = button.data('estadocontrol')
+
+
+// Extract info from data-* attributes
+// If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+// Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+var modal = $(this)
+modal.find('.modal-body #id').val(id);
+modal.find('.modal-body #escolta_id').val(escolta_id);
+modal.find('.modal-body #Hora_inicio_en_OT').val(hora_inicio_en_ot);
+modal.find('.modal-body #Hora_Final_en_OT').val(hora_final_en_ot);
+modal.find('.modal-body #escolta_id').val(escolta_id);
+modal.find('.modal-body #Fecha_Registro2').val(fecha_registro);
+modal.find('.modal-body #Observacion').val(observacion);
+modal.find('.modal-body #estadocontrol').val(estadocontrol);
+
+})
+
+
+
 $(document).ready(function() {
        $('#reg_form').bootstrapValidator({
            message: 'Este valor no es válido',
@@ -2360,3 +2392,36 @@ $(function () {
         autoclose: true
         });
         });
+
+
+
+
+$(document).ready(function() {
+    $('#FormCreateControl').bootstrapValidator({
+        message: 'This value is not valid',
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            escolta_id: {
+                message: 'The username is not valid',
+                validators: {
+                    notEmpty: {
+                        message: 'El escolta es un campo requerido!'
+                    }
+                }
+            },
+            Fecha_Registro: {
+                validators: {
+                    notEmpty: {
+                        message: 'La fecha es un campo requerido!"'
+                    }
+                }
+            }
+        }
+    });
+});
+  
+

@@ -219,10 +219,21 @@ El servicio se debe ejecutar <b>{{ \Carbon\Carbon::parse($edit->fecha_inicio_ser
     <label for="id">tipo</label>
     <!-- <input type="text" class="form-control" name="tipo"  id="tipo" placeholder="tipo" value="{{$edit->tipo}}">
  -->
-     {!! Form::select('tipo', $tipovehiculo, $edit->tipo, ['class' => 'form-control']) !!}
+   {!! Form::select('tipo', $tipodevehiculo, $edit->tipo, ['class' => 'form-control']) !!}
+   <!--   <select name="tipo" id="tipo" class="form-control">
+       <option value="BLINDADO">BLINDADO</option>
+       <option value="MOTOCICLETA">MOTOCICLETA</option>
+       <option value="CONVENCIONAL">CONVENCIONAL</option>
+       <option value="N/A">N/A</option>
+       <option value="VAN">VAN</option>
+       <option value="SEDAN">SEDAN</option>
+       <option value="AMBULANCIA">AMBULANCIA</option>
+       <option value="BUS">BUS</option>
+       <option value="VAN BLINDADA">VAN BLINDADA</option>
+
+     </select> -->
   </div>
 </div>
-
 
 <div class="col-xs-4">
 <div class="form-group">
@@ -251,7 +262,7 @@ $solicitante_interno = array("N/A",
     <label for="id">solicitante_interno</label>
     <!-- <input type="text" class="form-control" name="solicitante_interno"  id="solicitante_interno" placeholder="solicitante_interno" value="{{$edit->solicitante_interno}}"> -->
 
-    {!! Form::select('solicitante_interno', $solicitante_interno, $edit->solicitante_interno, ['class' => 'form-control']) !!}
+    {!! Form::select('solicitante_interno', $solicitanteinterno, $edit->solicitante_interno, ['class' => 'form-control']) !!}
   </div>
 </div>
 
@@ -298,23 +309,7 @@ echo $date->format('Y-m-d\TH:i'); ?>">
     <label for="id">tipo_de_servicio</label>
 
 
-    @php
-        $tiposervicio= array("AGENDA 8 HORAS","AGENDA 10 HORAS","AGENDA 12 HORAS",
-"AVANZADA",
-"BACK UP",
-"CARGA CRÍTICA",
-"DESPLAZAMIENTO",
-"INTERNO",
-"MEET & GREET",
-"REACCION 911",
-"RELEVO",
-"TRANSFER",
-"SCRAP"
-);
-
-
-
-    @endphp
+  
 
     {!! Form::select('tipo_de_servicio', $tiposervicio, $edit->tipo_de_servicio, ['class' => 'form-control']) !!}
 
@@ -338,8 +333,9 @@ echo $date->format('Y-m-d\TH:i'); ?>">
 </div>
 
 
-
+@if(Auth::user()->type != 3)
 <center><button type="submit" class="btn btn-info pull-right">Actualizar</button>
+@endif  
 
   <small><b>Usuario que modífico la solicitud</b>:<?php $usuario= App\User::find($edit->users_id); echo $usuario->name; ?><br>  <b>Fecha de Creación</b>: {{$edit->created_at}}
   <br><b>Fecha de la Ultima Actualización:</b> {{$edit->updated_at}}
@@ -419,8 +415,11 @@ echo $date->format('Y-m-d\TH:i'); ?>">
 value="{{Auth::user()->id}}">
 
 
+
+@if(Auth::user()->type != 3)
   <center><button type="submit" class="btn btn-info pull-right">Actualizar</button>
   </center><p>
+@endif    
 
 {!! Form::close() !!}
 
