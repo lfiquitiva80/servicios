@@ -36,7 +36,7 @@ class dashboardController extends Controller
      //dd($ordenesdeservicio);
      $servicios_completados = ordenesdeservicio::where('estadoservicio_id',6);
      $usuarios= User::all();
-     $escoltas= escolta::all();
+     $escoltas= escolta::where('activo','si');
      $ordenesdeservicios= ordenesdeservicio::all();
      $estadoservicio=  DB::table('ordenesdeservicio')->select('estadoservicio_id')->groupBy('estadoservicio_id')->get()->toArray();
      //dd($estadoservicio);
@@ -52,8 +52,9 @@ class dashboardController extends Controller
     $Cancelado =ordenesdeservicio::where('estadoservicio_id','7')->count();
     $Show=ordenesdeservicio::where('estadoservicio_id','8')->count();
     $Novedad =ordenesdeservicio::where('estadoservicio_id','9')->count();
+    $Terminado =ordenesdeservicio::where('estadoservicio_id','10')->count();
 
-$suma= $Recibido + $Propuesta + $Planeado +$Informado + $Ejecucion + $Ejecutado + $Cancelado +$Show +$Novedad ;
+$suma= $Recibido + $Propuesta + $Planeado +$Informado + $Ejecucion + $Ejecutado + $Cancelado +$Show +$Novedad + $Terminado ;
 $denominador1 = $Recibido / $suma;
 $denominador2 = $Propuesta / $suma;
 $denominador3 = $Planeado / $suma;
@@ -63,6 +64,7 @@ $denominador6 = $Ejecutado / $suma;
 $denominador7 = $Cancelado / $suma;
 $denominador8 = $Show / $suma;
 $denominador9= $Novedad / $suma;
+$denominador10= $Terminado / $suma;
 
 $datos1 = $denominador1* 100;
 $datos2 =$denominador2* 100;
@@ -73,6 +75,7 @@ $datos6 = $denominador6* 100;
 $datos7 =$denominador7* 100;
 $datos8 =$denominador8* 100;
 $datos9 =$denominador9* 100;
+$datos10 =$denominador10* 100;
 // 2019
 $Enero = DB::table('ordenesdeservicio')->whereYear('fecha_inicio_servicio', '2019')->whereMonth('fecha_inicio_servicio', '01')->where('estadoservicio_id','6')->count();
 $Enero2 = DB::table('ordenesdeservicio')->whereYear('fecha_inicio_servicio', '2019')->whereMonth('fecha_inicio_servicio', '01')->where('estadoservicio_id','!=','6')->count();
@@ -113,12 +116,12 @@ $Dic2 = DB::table('ordenesdeservicio')->whereYear('fecha_inicio_servicio', '2019
         ->name('pieChartTest')
         ->type('pie')
         ->size(['width' => 200, 'height' => 100])
-        ->labels(['Recibido','Propuesta','Planeado','Informado','Ejecucion','Completados','Cancelado','Show','Novedad'])
+        ->labels(['Recibido','Propuesta','Planeado','Informado','Ejecucion','Completados','Cancelado','Show','Novedad', 'Terminado'])
         ->datasets([
             [
-                'backgroundColor' => ['#FF6384', '#36A2EB','#5858FA','#58FAF4','#81F781','#F4FA58','#848484','#FE9A2E'],
-                'hoverBackgroundColor' => ['#FF6384', '#36A2EB','#5858FA','#58FAF4','#81F781','#F4FA58','#848484','#FE9A2E'],
-                'data' => [$Recibido, $Propuesta, $Planeado,$Informado,$Ejecucion, $Ejecutado,$Cancelado,$Show,$Novedad]
+                'backgroundColor' => ['#FF6384', '#36A2EB','#5858FA','#58FAF4','#81F781','#F4FA58','#848484','#FE9A2E','#BB9A2E','#309A2E'],
+                'hoverBackgroundColor' => ['#FF6384', '#36A2EB','#5858FA','#58FAF4','#81F781','#F4FA58','#848484','#FE9A2E','#BB9A2E','#309A2E'],
+                'data' => [$Recibido, $Propuesta, $Planeado,$Informado,$Ejecucion, $Ejecutado,$Cancelado,$Show,$Novedad, $Terminado]
             ]
         ])
         ->options([]);
@@ -240,7 +243,7 @@ $Dic2 = DB::table('ordenesdeservicio')->whereYear('fecha_inicio_servicio', '2019
 
 
 
-    return view('dashboard', compact('chartjs','chartjs2','chartjs3','usuarios','chartjs4','escoltas','ordenesdeservicios','porcentaje','datos1','datos2','datos3','datos4','datos5','datos6','datos7','datos8','datos9','Recibido','Propuesta','Planeado','Informado','Ejecucion','Ejecutado','Cancelado','Show','Novedad'));
+    return view('dashboard', compact('chartjs','chartjs2','chartjs3','usuarios','chartjs4','escoltas','ordenesdeservicios','porcentaje','datos1','datos2','datos3','datos4','datos5','datos6','datos7','datos8','datos9','datos10','Recibido','Propuesta','Planeado','Informado','Ejecucion','Ejecutado','Cancelado','Show','Novedad','Terminado'));
 
 
 

@@ -54,7 +54,7 @@ class vehiculoController extends Controller
                           }
             $Vehiculo->save();
             Alert::success('', 'el vehiculo ha sido sido registrado con exito! !')->persistent('Close');
-           return redirect()->route('Vehiculo.index');
+           return redirect()->route('Vehiculos.index');
     }
 
     /**
@@ -99,7 +99,7 @@ class vehiculoController extends Controller
                        }
       $Vehiculo->save();
              Alert::success('', 'el vehiculo ha sido sido editado con exito! !')->persistent('Close');
-            return redirect()->route('Vehiculo.index');
+            return redirect()->route('Vehiculos.index');
     }
 
     /**
@@ -113,7 +113,7 @@ class vehiculoController extends Controller
       $Vehiculo = vehiculo::find($id);
        $Vehiculo->delete();
          Alert::success('', 'el vehiculo ha sido sido borrado de forma exita!')->persistent('Close');
-         return redirect()->route('Vehiculo.index');
+         return redirect()->route('Vehiculos.index');
     }
 
     public function pdf($id){

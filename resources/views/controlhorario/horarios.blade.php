@@ -16,30 +16,20 @@
   <div class="panel-body">
 
 <div class="container">
-{!! Form::open(['route' => 'controlhorario.index', 'method'=>'GET', 'Class'=>'navbar-form navbar-right']) !!}
-<!--<form class="navbar-form navbar-right" role="search">-->
-  <div class="form-group">
-    {!! Form::select('nombre',$escolta, null , ['class' => 'form-control', 'name' =>'nombre' , 'placeholder' => 'Selecione un escolta...']) !!}
-  </div>
-  <button type="submit" class="btn btn-default">Submit</button>
-{!! Form::close() !!}
+
 <div class="panel panel-default">
 <h4><b><center>REGISTROS CONTROL DE HORARIOS</h4></b></center>
-<a class="btn btn-info" data-toggle="modal" href='#crear_controlhorario'><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Registro Horario Escoltas Disponibles</a>
+<!-- <a class="btn btn-info" data-toggle="modal" href='#crear_controlhorario'><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Registro Horario Escoltas Disponibles</a> -->
 
-  @include('controlhorario.create')
-
-  @include('controlhorario.edit')
-
+  
 
 <center> <div class="row">
 
       <div class="col-xs-12 col-sm-12 col-md-12">
 
        
-
-        <a href="{{url('excelcontrolhorario')}}" class="btn btn-success"> <i class="fa fa-file-excel-o" aria-hidden="true"></i> Download Excel xlsx</a>
-        <a href="{{ route('ocupacion') }}" class="btn btn-danger pull-right"><i class="fa fa-tachometer" aria-hidden="true"></i><span> Dashboard Ocupación</span></a>
+<!-- 
+        <a href="{{url('excelcontrolhorario')}}" class="btn btn-success"> <i class="fa fa-file-excel-o" aria-hidden="true"></i> Download Excel xlsx</a>  -->
 
 
 
@@ -66,7 +56,7 @@
       <td style="color: red">  Hora Final Cliente</td>
       <td style="color: red">  Hora Total Cliente</td>
       <td>  Observación</td>
-      <td>  Acción </td>
+     <!--  <td>  Acción </td> -->
 
 
 
@@ -92,8 +82,8 @@
           
 
 
-          <td><a    data-toggle="modal" data-target="#editarcontrolhorario"   data-escolta_id="{{$row->escolta_id}}"  data-Fecha_Registro="{{$row->Fecha_Registro}}"  data-Hora_inicio_en_OT ="{{$row->Hora_inicio_en_OT}}" data-Hora_Final_en_OT="{{$row->Hora_Final_en_OT}}" data-Horas_Total_OT="{{$row->Horas_Total_OT}}" data-Observacion ="{{$row->Observacion}}" data-id="{{$row->id}}"  data-estadocontrol="{{$row->estadocontrol}}" data-Hora_de_inicio_Servicio_cliente="{{$row->Hora_de_inicio_Servicio_cliente}}" data-Hora_Final_del_Servicio_Cliente="{{$row->Hora_Final_del_Servicio_Cliente}}"
-          data-wo_id="{{$row->wo_id}}"  data-Total_Horas_del_Servicio="{{$row->Total_Horas_del_Servicio}}" class="btn btn-success"><i class="fa fa-pencil" aria-hidden="true"> Edición</i></a></td> <td>@include('controlhorario.destroy')</td>
+         <!--  <td><a    data-toggle="modal" data-target="#editarcontrolhorario"   data-escolta_id="{{$row->escolta_id}}"  data-Fecha_Registro="{{$row->Fecha_Registro}}"  data-Hora_inicio_en_OT ="{{$row->Hora_inicio_en_OT}}" data-Hora_Final_en_OT="{{$row->Hora_Final_en_OT}}" data-Horas_Total_OT="{{$row->Horas_Total_OT}}" data-Observacion ="{{$row->Observacion}}" data-id="{{$row->id}}"  data-estadocontrol="{{$row->estadocontrol}}" data-Hora_de_inicio_Servicio_cliente="{{$row->Hora_de_inicio_Servicio_cliente}}" data-Hora_Final_del_Servicio_Cliente="{{$row->Hora_Final_del_Servicio_Cliente}}"
+          data-wo_id="{{$row->wo_id}}"  data-Total_Horas_del_Servicio="{{$row->Total_Horas_del_Servicio}}" class="btn btn-success"><i class="fa fa-pencil" aria-hidden="true"> Edición</i></a></td> <td>@include('controlhorario.destroy')</td> -->
 
     </tr>
   </tbody>

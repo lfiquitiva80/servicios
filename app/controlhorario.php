@@ -11,6 +11,7 @@ class controlhorario extends Model
 
   public function scopeSearch($query, $nombre)
   {
+    
   return $query ->where('escolta_id',$nombre);
   }
 

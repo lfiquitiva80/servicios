@@ -16,7 +16,7 @@
   <div class="panel-body">
 
 <div class="container">
-{!! Form::open(['route' => 'Vehiculo.index', 'method'=>'GET', 'Class'=>'navbar-form navbar-right']) !!}
+{!! Form::open(['route' => 'Vehiculos.index', 'method'=>'GET', 'Class'=>'navbar-form navbar-right']) !!}
 <!--<form class="navbar-form navbar-right" role="search">-->
   <div class="form-group">
     <input type="text" class="form-control" placeholder="Search" name="placa" id="placa">
@@ -26,7 +26,7 @@
 <div class="panel panel-default">
 
 <h4><b><center>REGISTROS DE VEHICULOS</h4></b></center>
-<a class="btn btn-info"  href="{{ route('Vehiculo.create') }}"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Crear Vehiculo</a>
+<a class="btn btn-info"  href="{{ route('Vehiculos.create') }}"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Crear Vehiculo</a>
 
 
 <!-- <center> <div class="row">
@@ -80,7 +80,7 @@
 
 
 
-          <td><a  href="{{ route('Vehiculo.edit',$row->id) }}"   class="btn btn-success"><i class="fa fa-pencil" aria-hidden="true"> Edición</i></a></td> <td>
+          <td><a  href="{{ route('Vehiculos.edit',$row->id) }}"   class="btn btn-success"><i class="fa fa-pencil" aria-hidden="true"> Edición</i></a></td> <td>
   <td><a  href="{{route('vehiculopdf',$row->id )}}" class="btn btn-default" ><i class="fa  fa-file-pdf-o" aria-hidden="true">  Presentación de vehículos</a></td>
 
           @if ( Auth::user()->email == 'leonidas.fiquitiva@omnitempus.com')

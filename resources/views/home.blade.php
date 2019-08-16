@@ -40,12 +40,12 @@
 <center> <div class="row">
 
       <div class="col-xs-12 col-sm-12 col-md-12">
-
+<!-- 
         <a href="{{ route('export.file',['type'=>'xls']) }}" title="Bajar excel en versión 2010 "><i class="fa fa-file-excel-o" aria-hidden="true"></i> Download Excel xls</a> |
 
         <a href="{{ route('export.file',['type'=>'xlsx']) }}" title="Bajar excel en versión superior al 2016 "> <i class="fa fa-file-excel-o" aria-hidden="true"></i> Download Excel xlsx</a> |
 
-        <a href="{{ route('export.file',['type'=>'csv']) }}" title="archivo separado por comas "><i class="fa fa-table" aria-hidden="true"></i> Download CSV</a>
+        <a href="{{ route('export.file',['type'=>'csv']) }}" title="archivo separado por comas "><i class="fa fa-table" aria-hidden="true"></i> Download CSV</a> -->
 
 
 

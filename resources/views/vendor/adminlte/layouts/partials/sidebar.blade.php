@@ -50,7 +50,7 @@
              <li><a href="{{route('Escolta.index')}}"><i class='fa fa-male'></i> <span>Escolta</span></a></li>
              
              <li><a href="{{route('controlhorario.index')}}"><i class="fa fa-clock-o"></i> <span>Control horario</span></a></li>
-              <li><a href="{{route('Vehiculo.index')}}"><i class='fa fa-automobile'></i> <span>Vehiculo</span></a></li>
+              <li><a href="{{route('Vehiculos.index')}}"><i class='fa fa-automobile'></i> <span>Vehiculo</span></a></li>
               <li><a href="{{route('Rentadora.index')}}"><i class='fa  fa-suitcase'></i> <span>Rentadora</span></a></li>
                <li><a href="{{route('Agenda.index')}}"><i class='fa  fa-calendar'></i> <span>Agenda</span></a></li>
               <li><a href="{{route('reportes.index')}}"><i class="fa fa-table" ></i> <span>Reportes</span></a></li>
@@ -67,7 +67,7 @@
              <li><a href="{{route('Escolta.index')}}"><i class='fa fa-male'></i> <span>Escolta</span></a></li>
              
              <li><a href="{{route('controlhorario.index')}}"><i class="fa fa-clock-o"></i> <span>Control horario</span></a></li>
-              <li><a href="{{route('Vehiculo.index')}}"><i class='fa fa-automobile'></i> <span>Vehiculo</span></a></li>
+              <li><a href="{{route('Vehiculos.index')}}"><i class='fa fa-automobile'></i> <span>Vehiculo</span></a></li>
               <li><a href="{{route('Rentadora.index')}}"><i class='fa  fa-suitcase'></i> <span>Rentadora</span></a></li>
                <li><a href="{{route('Agenda.index')}}"><i class='fa  fa-calendar'></i> <span>Agenda</span></a></li>
               <li><a href="{{route('reportes.index')}}"><i class="fa fa-table" ></i> <span>Reportes</span></a></li>
@@ -98,7 +98,7 @@
              <li><a href="{{route('Escolta.index')}}"><i class='fa fa-male'></i> <span>Escolta</span></a></li>
              
              <li><a href="{{route('controlhorario.index')}}"><i class="fa fa-clock-o"></i> <span>Control horario</span></a></li>
-              <li><a href="{{route('Vehiculo.index')}}"><i class='fa fa-automobile'></i> <span>Vehiculo</span></a></li>
+             <li><a href="{{route('Vehiculos.index')}}"><i class='fa fa-automobile'></i> <span>Vehiculo</span></a></li>
               <li><a href="{{route('Rentadora.index')}}"><i class='fa  fa-suitcase'></i> <span>Rentadora</span></a></li>
                <li><a href="{{route('Agenda.index')}}"><i class='fa  fa-calendar'></i> <span>Agenda</span></a></li>
               <li><a href="{{route('reportes.index')}}"><i class="fa fa-table" ></i> <span>Reportes</span></a></li>

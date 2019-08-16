@@ -12,7 +12,7 @@
         @include('sweet::alert')
 
 
-{!! Form::open(['route' => ['Vehiculo.update', $Vehiculo->id],'method'=>'PATCH','enctype'=>'multipart/form-data','file'=>true,'id'=>'reg_form6']) !!}
+{!! Form::open(['route' => ['Vehiculos.update', $Vehiculo->id],'method'=>'PATCH','enctype'=>'multipart/form-data','file'=>true,'id'=>'reg_form6']) !!}
 
   <legend>EDITAR   VEHICULO</legend>
 
@@ -63,7 +63,7 @@
 <div class="form-group">
   <div class="col-xs-5">
     <img src="{{asset($Vehiculo->foto)}}" style="width:140px; height:140px; position:absolute; top:10px; left:10px; border-radius:50%">
-
+    
 <br><br><br><br><br><br><br><br>
 {!!   Form::file('foto')!!}
 </div>

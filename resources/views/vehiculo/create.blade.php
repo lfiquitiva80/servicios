@@ -12,7 +12,7 @@
         @include('sweet::alert')
 
 
-        {!! Form::open(['route' => 'Vehiculo.store', 'method'=>'POST','files'  => true ,'enctype'=>'multipart/form-data','id'=>'reg_form6']) !!}
+        {!! Form::open(['route' => 'Vehiculos.store', 'method'=>'POST','files'  => true ,'enctype'=>'multipart/form-data','id'=>'reg_form6']) !!}
 
   <legend>CREAR   VEHICULO</legend>
 

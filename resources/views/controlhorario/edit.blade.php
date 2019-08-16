@@ -32,25 +32,80 @@
     <label for="id">Fecha Registro</label>
    <input type="text" class="form-control" name="Fecha_Registro"  id="Fecha_Registro2" placeholder="Fecha_Registro" readonly>
   </div>
+
+<div class="form-group">
+    <label for="id">No_de_orden_de_servicio</label>
+    {!! Form::select('wo_id', $wo, null, ['class'=>'form-control', 'id' => 'wo']) !!}
+  </div>   
   
 <div class="row">
+
+    <div class="panel panel-primary">
+  <div class="panel-heading">Horas en Omnitempus</div>
+  <div class="panel-body">
     
 
-  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+    
+  <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
     <div class="form-group">
     <label for="id">Hora_inicio_en_OT</label>
-    <input type="time" class="form-control" name="Hora_inicio_en_OT"  id="Hora_inicio_en_OT" placeholder="Hora_inicio_en_OT" required>
+    <input type="time" class="form-control horas3" name="Hora_inicio_en_OT"  id="Hora_inicio_en_OTa" placeholder="Hora_inicio_en_OT" >
   </div>
 </div>
 
- <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+ <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
     <div class="form-group">
     <label for="id">Hora_Final_en_OT</label>
-    <input type="time" class="form-control" name="Hora_Final_en_OT"  id="Hora_Final_en_OT" placeholder="Hora_inicio_en_OT" required>
-  </div>
+    <input type="time" class="form-control horas3" name="Hora_Final_en_OT"  id="Hora_Final_en_OTa" placeholder="Hora_inicio_en_OT">
+      </div>
    </div>
-</div>
 
+ <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+    <div class="form-group">
+    <label for="id">Horas Total OT</label>
+    <input type="time" class="form-control" name="Horas_Total_OT"  id="Horas_Total_OTa" placeholder="" readonly>
+      </div>
+   </div> 
+     </div>  
+
+       </div>
+
+
+
+  <div class="panel panel-primary">
+  <div class="panel-heading">Horas Cliente</div>
+  <div class="panel-body">
+ 
+ 
+
+  <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+    <div class="form-group">
+    <label for="id">H. Inicio Cliente</label>
+    <input type="time" class="form-control horas2" name="Hora_de_inicio_Servicio_cliente"  id="Hora_de_inicio_Servicio_clientea" placeholder="Hora_inicio_en_OT">
+      </div>
+   </div>
+
+     <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+    <div class="form-group">
+    <label for="id">H. Final. Cliente</label>
+    <input type="time" class="form-control horas2 " name="Hora_Final_del_Servicio_Cliente"  id="Hora_Final_del_Servicio_Clientea" placeholder="Hora_inicio_en_OT">
+      </div>
+   </div>
+
+     <div class="col-xs-4col-sm-4 col-md-4 col-lg-4">
+    <div class="form-group">
+    <label for="id">H.Total Cliente</label>
+    <input type="time" class="form-control" name="Total_Horas_del_Servicio"  id="Total_Horas_del_Servicioa" placeholder="Total_Horas_del_Servicio" readonly>
+      </div>
+   </div>
+
+    </div>
+</div>
+   
+
+
+   
+</div>
 {!! Form::textarea('Observacion', null, ['class' => 'form-control', 'name' =>'Observacion' ,'id'=>'Observacion', 'placeholder' => 'Digite una observación..', 'required']) !!}
 
     <center><button type="submit" class="btn btn-primary" >Enviar</button>
@@ -66,3 +121,107 @@
 
 </div>
 </div>
+
+
+
+<script type="text/javascript">
+  
+  $(function() {
+
+
+   //calculo total de horas
+
+    $('.horas2').change(function(event) {
+      /* Act on the event */
+
+      
+
+      var horainicial = $('#Hora_de_inicio_Servicio_clientea').val();
+      console.log(horainicial);
+      var horafinal = $('#Hora_Final_del_Servicio_Clientea').val();
+      console.log(horafinal);
+
+      // creamos una fecha genérica con tu tiempo
+var d = new Date("0001-01-01T"+horainicial);
+var e = new Date("0001-01-01T"+horafinal);
+
+// calculamos los minutos a partir de las horas y minutos de la fecha creada
+var minutosinicial = d.getHours() * 60 + d.getMinutes();
+var minutosfinal= e.getHours() * 60 + e.getMinutes();
+
+if (minutosfinal<minutosinicial) {
+    var resultado = (1440-minutosinicial)+minutosfinal;
+    console.log(resultado);
+} else {
+  var resultado = minutosfinal-minutosinicial;
+}
+
+
+var minutes = Math.floor( resultado / 60 );
+var seconds = resultado % 60;
+
+//Anteponiendo un 0 a los minutos si son menos de 10
+minutes = minutes < 10 ? '0' + minutes : minutes;
+
+//Anteponiendo un 0 a los segundos si son menos de 10
+seconds = seconds < 10 ? '0' + seconds : seconds;
+
+var result = minutes + ":" + seconds;  // 161:30
+
+
+  $('#Total_Horas_del_Servicioa').val(result);
+
+
+    });
+
+
+$('.horas3').change(function(event) {
+      /* Act on the event */
+
+
+
+      var horainicial = $('#Hora_inicio_en_OTa').val();
+      console.log(horainicial);
+      var horafinal = $('#Hora_Final_en_OTa').val();
+      console.log(horafinal);
+
+      // creamos una fecha genérica con tu tiempo
+var d = new Date("0001-01-01T"+horainicial);
+var e = new Date("0001-01-01T"+horafinal);
+
+// calculamos los minutos a partir de las horas y minutos de la fecha creada
+var minutosinicial = d.getHours() * 60 + d.getMinutes();
+var minutosfinal= e.getHours() * 60 + e.getMinutes();
+
+if (minutosfinal<minutosinicial) {
+    var resultado = (1440-minutosinicial)+minutosfinal;
+    console.log(resultado);
+} else {
+  var resultado = minutosfinal-minutosinicial;
+}
+
+
+var minutes = Math.floor( resultado / 60 );
+var seconds = resultado % 60;
+
+//Anteponiendo un 0 a los minutos si son menos de 10
+minutes = minutes < 10 ? '0' + minutes : minutes;
+
+//Anteponiendo un 0 a los segundos si son menos de 10
+seconds = seconds < 10 ? '0' + seconds : seconds;
+
+var result = minutes + ":" + seconds;  // 161:30
+
+
+  $('#Horas_Total_OTa').val(result);
+
+
+
+
+
+    });    
+
+
+    });
+
+</script>

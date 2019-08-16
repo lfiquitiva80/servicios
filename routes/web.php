@@ -76,13 +76,14 @@ Route::get('escoltasGenerales','excelController@escoltasgeneral')->name('escolta
 Route::get('vehiculosGenerales','excelController@vehiculosgeneral')->name('vehiculos');
 Route::get('rentadorasGenerales','excelController@rentadorasgeneral')->name('rentadoras');
 Route::get('rango','excelController@rango')->name('rango');
+Route::get('consultacliente','excelController@consultacliente')->name('consultacliente');
 
 Route::get('continuar/{id}','ordenesdeservicioController@continuar')->name('continuar');
 Route::resource('Clientes','clienteController');
 Route::resource('dashboard','dashboardController');
 Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index')->name('logs');
 Route::resource('Escolta','escoltaController');
-Route::resource('Vehiculo','vehiculoController');
+Route::resource('Vehiculos','vehiculoController');
 Route::resource('Rentadora','rentadoraController');
 Route::resource('Agenda','agendaController');
 Route::get('events','agendaController@get_events');
@@ -98,7 +99,11 @@ Route::get('excelwogenerales','excelController@wodos')->name('excelwogenerales')
 Route::get('pdf/{id}','ordenesdeservicioController@pdf')->name('pdf');
 Route::get('escoltapdf/{id}','escoltaController@pdf')->name('escoltapdf');
 Route::get('vehiculopdf/{id}','vehiculoController@pdf')->name('vehiculopdf');
+Route::get('ocupacion','controlhorarioController@ocupacion')->name('ocupacion');
+Route::get('horarios/{id}','controlhorarioController@horarios')->name('horarios');
 Route::resource('usuario','usuarioController');
+
+
 
 
 

@@ -36,7 +36,7 @@ width:860px;
     margin-left: 300px
 }
 .#vehiculos_informacion{
-		margin-left: 200px;
+		margin-left: 300px;
 }
 
 /* .fondo{
@@ -66,16 +66,16 @@ background-size: cover;">
       <div class="centro">
         <br><br><br>
          <br><br><br>
-          <br><br><br>
+        
 
 
 <!--  Foto Vehiculo -->
 
           <div id="Foto_vehiculo">
 @if ($Vehiculo->foto == 'car.png')
-<img  src="{{ asset('img/car.png')}}"  style="width:230px;height: 225px ;border:3px solid #d48542">
+<img  src="{{ asset('img/car.png')}}"  style="width:300px;height: 300px ;border:3px solid #d48542">
 @else
-<img src="{{asset($Vehiculo->foto)}}"  style="width:230px; height: 225px ;border:3px solid #d48542">
+<img src="{{asset($Vehiculo->foto)}}"  style="width:300px; height: 300px ;border:3px solid #d48542">
 @endif
           </div>
           <br><br>

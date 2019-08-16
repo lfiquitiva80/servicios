@@ -1245,14 +1245,21 @@ modal.find('.modal-body #activo').val(activo);
    $('#editarcontrolhorario').on('show.bs.modal', function (event) {
   
 var button = $(event.relatedTarget)
-//alert(button);
+//alert(button.data('Hora_de_inicio_Servicio_cliente'));
 var id = button.data('id')
 var fecha_registro = button.data('fecha_registro')
 var hora_inicio_en_ot = button.data('hora_inicio_en_ot')
 var hora_final_en_ot = button.data('hora_final_en_ot')
+var hora_total_en_ot = button.data('horas_total_ot')
 var escolta_id = button.data('escolta_id')
 var observacion = button.data('observacion')
 var estadocontrol = button.data('estadocontrol')
+var hora_de_inicio_servicio_cliente = button.data('hora_de_inicio_servicio_cliente')
+var hora_final_del_servicio_cliente = button.data('hora_final_del_servicio_cliente')
+var total_horas_del_servicio = button.data('total_horas_del_servicio')
+var wo_id = button.data('wo_id')
+//alert(hora_inicio_en_ot);
+
 
 
 // Extract info from data-* attributes
@@ -1261,12 +1268,17 @@ var estadocontrol = button.data('estadocontrol')
 var modal = $(this)
 modal.find('.modal-body #id').val(id);
 modal.find('.modal-body #escolta_id').val(escolta_id);
-modal.find('.modal-body #Hora_inicio_en_OT').val(hora_inicio_en_ot);
-modal.find('.modal-body #Hora_Final_en_OT').val(hora_final_en_ot);
+modal.find('.modal-body #Hora_inicio_en_OTa').val(hora_inicio_en_ot);
+modal.find('.modal-body #Hora_Final_en_OTa').val(hora_final_en_ot);
+modal.find('.modal-body #Horas_Total_OTa').val(hora_total_en_ot);
 modal.find('.modal-body #escolta_id').val(escolta_id);
 modal.find('.modal-body #Fecha_Registro2').val(fecha_registro);
 modal.find('.modal-body #Observacion').val(observacion);
 modal.find('.modal-body #estadocontrol').val(estadocontrol);
+modal.find('.modal-body #Hora_de_inicio_Servicio_clientea').val(hora_de_inicio_servicio_cliente);
+modal.find('.modal-body #Hora_Final_del_Servicio_Clientea').val(hora_final_del_servicio_cliente);
+modal.find('.modal-body #Total_Horas_del_Servicioa').val(total_horas_del_servicio);
+modal.find('.modal-body #wo').val(wo_id);
 
 })
 

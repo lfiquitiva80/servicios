@@ -18,7 +18,7 @@ class escoltaController extends Controller
      */
     public function index(Request $request)
     {
-      $Escolta= escolta::search($request->nombre)->orderBy('nombre', 'asc')->paginate(10);
+      $Escolta= escolta::search($request->nombre)->orderBy('activo', 'asc')->paginate(10);
    return view('Escolta.index',compact('Escolta'));
     }
 

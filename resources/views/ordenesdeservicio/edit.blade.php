@@ -76,6 +76,10 @@ El servicio se debe ejecutar <b>{{ \Carbon\Carbon::parse($edit->fecha_inicio_ser
 <br>
     	<a  href="{{route('pdf', $edit->id )}}" class="btn btn-info" target="_blank">PDF Presentación de Escoltas y Vehículos</a>
 
+      <br><br>
+
+      <a  href="{{route('horarios', $edit->id )}}" class="btn btn-default" target="_blank"><i class="fa fa-clock-o" aria-hidden="true"></i> Horarios de Escoltas</a>
+
 
 	</div>
 </div>

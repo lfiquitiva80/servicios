@@ -122,7 +122,7 @@ class ordenesdeservicioController extends Controller
     {
          $edit= ordenesdeservicio::findOrFail($id);
          //dd($edit);
-         $estadoservicio = estadoservicio::pluck('estadoservicio','id');
+         $estadoservicio = estadoservicio::orderBy('orden','ASC')->pluck('estadoservicio','id');
          $escolta = escolta::orderBy('nombre','ASC')->pluck('nombre','id');
          $cliente = cliente::orderBy('Nombre','ASC')->pluck('Nombre','id');
          $vehiculo = vehiculo::orderBy('placa','ASC')->pluck('placa','id');

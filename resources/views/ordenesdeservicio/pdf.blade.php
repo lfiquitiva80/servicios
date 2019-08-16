@@ -24,10 +24,10 @@
 
 
 #Foto_escolta{
-  margin-left: 100px;
+  margin-left: 90px;
 }
 #Foto_vehiculo{
-    margin-left: 400px;
+    margin-left: 480px;
     margin-top: -230px
 }
 .#vehiculos_informacion{
@@ -61,11 +61,11 @@ background-size: cover;">
   <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
     <div id="Foto_escolta">
           @if($edit->escoltas->foto == 'default.jpg')
-          <br><br><br><br><br><br>
-                <img src="{{ asset('img/default.jpg')}}"style="width:230px;height: 225px;border:5px solid #e26b0d">
+          <br><br><br><br>
+                <img src="{{ asset('img/default.jpg')}}"style="width:300px;height: 225px;border:5px solid #e26b0d">
                 @else
-<br><br><br><br><br><br>
-          <img src="{{asset($edit->escoltas->foto)}}" style="width:230px; height: 225px;border:5px solid #e26b0d">
+<br><br><br><br>
+          <img src="{{asset($edit->escoltas->foto)}}" style="width:300px; height: 225px;border:5px solid #e26b0d">
           @endif
           </div>
   </div>
@@ -86,6 +86,7 @@ background-size: cover;">
   <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
     
   </div>
+  <br><br>
   <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
    <div id="Datos_Escolta">
             <font color="#00F"  face="Verdana" size=12>&nbsp;NAME</font>

@@ -36,7 +36,7 @@ width:860px;
 }
 
 #Datos_Escolta{
-	margin-left: 200px;
+	margin-left: 300px;
 
 }
 /* .fondo{
@@ -67,11 +67,11 @@ background-size: cover;">
         <!-- Foto del Escolta_asignado-->
         <div id="Foto_escolta">
           @if($Escolta->foto == 'default.jpg')
-          <br><br><br><br><br><br>
-                <img src="{{ asset('img/default.jpg')}}"style="width:230px;height: 225px;border:5px solid #e26b0d">
+          <br><br><br><br>
+                <img src="{{ asset('img/default.jpg')}}"style="width:300px;height: 300px;border:5px solid #e26b0d">
                 @else
-<br><br><br><br><br><br>
-          <img src="{{asset($Escolta->foto)}}" style="width:230px; height: 225px;border:5px solid #e26b0d">
+<br><br><br><br>
+          <img src="{{asset($Escolta->foto)}}" style="width:300px; height: 300px;border:5px solid #e26b0d">
           @endif
           </div>
 

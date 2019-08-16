@@ -6,6 +6,8 @@
       <th>Orden de Servicio</th>
       <th>Estado del Servicio</th>
       <th>fecha_inicio_servicio</th>
+      <th>Fecha Inicio Servicio</th>
+      <th>Hora Inicio Servicio</th>
       <th>Hora_inicio_en_OT</th>
       <th>Hora_Final_en_OT</th>
       <th>Hora_Programada</th>
@@ -61,6 +63,7 @@
 
 
 
+
     </tr>
   </thead>
   <tbody>
@@ -73,6 +76,10 @@
       <td>{{$row->No_de_orden_de_servicio}}</td>
       <td>{{$row->estadoservicio}}</td>
       <td>{{$row->fecha_inicio_servicio}}</td>
+            <td><?php  $date = Carbon\Carbon::parse($row->fecha_inicio_servicio);
+  echo $date->toDateString();?></td>
+      <td><?php  $date = Carbon\Carbon::parse($row->fecha_inicio_servicio);
+      echo $date->toTimeString();?></td>
       <td>{{$row->Hora_inicio_en_OT}}</td>
       <td>{{$row->Hora_Final_en_OT}}</td>
       <td>{{$row->Hora_Programada}}</td>
@@ -117,6 +124,7 @@
       <td>{{$row->name}}</td>
       <td>{{$row->created_at}}</td>
       <td>{{$row->updated_at}}</td>
+
 
 
 

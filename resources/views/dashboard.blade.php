@@ -248,7 +248,7 @@
                  </div>
                  <!-- /.info-box-content -->
                </div>
-               <div class="info-box bg-gray ">
+               <div class="info-box bg-yellow ">
                  <span class="info-box-icon"><i class="ion ion-ios-information-circle"></i></span>
 
                  <div class="info-box-content">
@@ -257,6 +257,23 @@
 
                    <div class="progress">
                      <div class="progress-bar" style=" width:{{$datos9}}%"></div>
+                   </div>
+                   <span class="progress-description">
+                         {{$datos9}}%
+                       </span>
+                 </div>
+                 <!-- /.info-box-content -->
+        </div>
+
+                       <div class="info-box bg-gray ">
+                 <span class="info-box-icon"><i class="ion ion-ios-information-circle"></i></span>
+
+                 <div class="info-box-content">
+                   <span class="info-box-text"> Terminado</span>
+                   <span class="info-box-number">{{$Terminado}}</span>
+
+                   <div class="progress">
+                     <div class="progress-bar" style=" width:{{$datos10}}%"></div>
                    </div>
                    <span class="progress-description">
                          {{$datos9}}%
