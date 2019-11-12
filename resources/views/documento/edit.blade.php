@@ -19,7 +19,8 @@
 <meta property="og:image" content="http://demo.adminlte.acacha.org/img/AcachaAdminLTE600x314.png" />
 <meta property="og:sitename" content="demo.adminlte.acacha.org" />
 <meta property="og:url" content="http://demo.adminlte.acacha.org" />
-
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:site" content="@acachawiki" />
 <meta name="twitter:creator" content="@acacha1" />
@@ -110,7 +111,7 @@ input[type="checkbox"]{
 -o-transform: rotate(90deg);       /* Opera */
 
 transform: rotate(90deg);
-margin-top: 90px;
+margin-top: 70px;
 margin-bottom: 0px;
 
 
@@ -121,7 +122,7 @@ margin-bottom: 0px;
 }
 
 #imagen{
-	 margin-top: 120px;
+	 margin-top: 140px;
 }
 
 .checkboxtext
@@ -136,8 +137,14 @@ margin-bottom: 0px;
 </head>
 
 <body>
-	@include('sweet::alert')
+	
+		@include('sweet::alert')
+<div class="contenido">		
 <div class="centrar">
+{!! Form::open(['route' => ['documento.update', $edit->id],'method'=>'PATCH','id'=>'Form']) !!}
+
+
+
 
 <table align="left" cellspacing="0" border="0">
 	<colgroup width="17"></colgroup>
@@ -227,7 +234,7 @@ margin-bottom: 0px;
 	</tr>
 	<tr>
 		<td style="border-left: 2px solid #000000" height="47" align="left" valign=middle bgcolor="#FFFFFF"><font color="#333333"><br></font></td>
-		<td style="border-top: 2px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000" align="center" valign=middle bgcolor="#FFFFFF"><b><font size=4 color="#333333">{{$edit->No_de_orden_de_servicio}}</font></b></td>
+		<td style="border-top: 2px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000" align="center" valign=middle bgcolor="#FFFFFF"><b><font size=12 color="#333333">{{$edit->ordenesdeservicios->No_de_orden_de_servicio}}</font></b></td>
 		<td align="left" valign=middle bgcolor="#FFFFFF"><font color="#333333"><br></font></td>
 	</tr>
 	<tr>
@@ -262,17 +269,17 @@ margin-bottom: 0px;
 	</tr>
 	<tr>
 		<td style="border-left: 2px solid #000000; border-right: 2px solid #000000" height="56" align="left" valign=middle bgcolor="#FFFFFF"><b><font size=4 color="#333333"><br></font></b></td>
-		<td style="border-top: 2px solid #000000; border-bottom: 4px solid #000000; border-right: 2px solid #000000" align="center" valign=middle bgcolor="#FFFFFF"><b><font size=4 color="#333333">{{$edit->ciudad_destino}}</font></b></td>
+		<td style="border-top: 2px solid #000000; border-bottom: 4px solid #000000; border-right: 2px solid #000000" align="center" valign=middle bgcolor="#FFFFFF"><b><font size=6 color="#333333">{{$edit->ordenesdeservicios->ciudad_destino}}</font></b></td>
 		<td align="center" valign=middle bgcolor="#FFFFFF"><b><font size=4 color="#333333"><br></font></b></td>
-		<td style="border-top: 0px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000" colspan=2 align="center" valign=middle bgcolor="#FFFFFF"><b><font size=4 color="#333333">{{$edit->clientes->nombre}}</font></b></td>
+		<td style="border-top: 0px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000" colspan=2 align="center" valign=middle bgcolor="#FFFFFF"><b><font size=6 color="#333333">{{$edit->ordenesdeservicios->clientes->nombre}}</font></b></td>
 		<td align="center" valign=middle bgcolor="#FFFFFF"><b><font size=4 color="#333333"><br></font></b></td>
-		<td style="border-top: 2px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000" colspan=3 align="center" valign=middle bgcolor="#FFFFFF"><b><font size=4 color="#333333">{{$edit->solicitante_interno2}}</font></b></td>
+		<td style="border-top: 2px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000" colspan=3 align="center" valign=middle bgcolor="#FFFFFF"><b><font size=6 color="#333333">{{$edit->ordenesdeservicios->solicitante_interno2}}</font></b></td>
 		<td align="center" valign=middle bgcolor="#FFFFFF"><font size=4 color="#333333"><br></font></td>
-		<td style="border-top: 2px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000" colspan=3 align="center" valign=middle bgcolor="#FFFFFF" sdnum="1033;1033;M/D/YYYY"><b><font size=4 color="#333333">
-		<?php $date = date_create($edit->fecha_inicio_servicio);
+		<td style="border-top: 2px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000" colspan=3 align="center" valign=middle bgcolor="#FFFFFF" sdnum="1033;1033;M/D/YYYY"><b><font size=6 color="#333333">
+		<?php $date = date_create($edit->ordenesdeservicios->fecha_inicio_servicio);
 echo date_format($date, 'Y-m-d'); ?></font></b></td>
 		<td align="center" valign=middle bgcolor="#FFFFFF" sdnum="1033;1033;H:MM"><font size=4 color="#333333"><br></font></td>
-		<td style="border-top: 2px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000" align="center" valign=middle  sdnum="1033;1033;H:MM"><b><font size=5 color="#333333"><input type="time" style="width:100%;height:50px;color:#333333; font-weight: bold #000000; font-size: 19PX;" value="<?php $date = date_create($edit->fecha_inicio_servicio);
+		<td style="border-top: 2px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000" align="center" valign=middle  sdnum="1033;1033;H:MM"><b><font size=6 color="#333333"><input type="time" name="hora_inicio_servicio" style="width:100%;height:50px;color:#333333; font-weight: bold #000000; font-size: 50PX; " value="<?php $date = date_create($edit->hora_inicio_servicio);
 echo date_format($date, 'H:i:s'); ?>"></font></b></td>
 		<td style="border-left: 2px solid #000000; border-right: 2px solid #000000" align="left" valign=middle sdnum="1033;1033;H:MM"><b><font size=5 color="#333333"><br></font></b></td>
 		<td align="left" valign=middle bgcolor="#FFFFFF" sdnum="1033;1033;H:MM"><font color="#333333"></font></td>
@@ -284,7 +291,7 @@ echo date_format($date, 'H:i:s'); ?>"></font></b></td>
 		<td align="center" valign=middle bgcolor="#FFFFFF"><font size=4 color="#333333"><br></font></td>
 		<td align="center" valign=middle bgcolor="#FFFFFF"><font size=4 color="#333333"><br></font></td>
 		<td align="center" valign=middle bgcolor="#FFFFFF"><font size=4 color="#333333"><br></font></td>
-		<td align="center" valign=middle bgcolor="#FFFFFF"><font size=4 color="#333333"><br></font></td>
+		<td align="center" valign=middle bgcolor="#FFFFFF">|<font size=4 color="#333333"><br></font></td>
 		<td align="center" valign=middle bgcolor="#FFFFFF"><font size=4 color="#333333"><br></font></td>
 		<td align="center" valign=middle bgcolor="#FFFFFF"><font size=4 color="#333333"><br></font></td>
 		<td align="center" valign=middle bgcolor="#FFFFFF"><font size=4 color="#333333"><br></font></td>
@@ -300,11 +307,11 @@ echo date_format($date, 'H:i:s'); ?>"></font></b></td>
 	</tr>
 	<tr>
 		<td style="border-left: 2px solid #000000; border-right: 2px solid #000000" height="67" align="left" valign=middle bgcolor="#FFFFFF"><b><font size=4 color="#333333"><br></font></b></td>
-		<td style="border-top: 2px solid #000000; border-bottom: 2px solid #000000; border-right: 2px solid #000000" colspan=4 align="center" valign=middle bgcolor="#FFFFFF"><b><font size=4 color="#333333">{{ Auth::user()->name }}</font></b></td>
+		<td style="border-top: 2px solid #000000; border-bottom: 2px solid #000000; border-right: 2px solid #000000" colspan=4 align="center" valign=middle bgcolor="#FFFFFF"><b><font size=6 color="#333333">{{ $edit->usuarios->name }}</font></b></td>
 		<td align="center" valign=middle bgcolor="#FFFFFF" sdnum="1033;1033;M/D/YYYY"><font size=4 color="#333333"><br></font></td>
-		<td style="border-top: 2px solid #000000; border-bottom: 4px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000" colspan=3 align="center" valign=middle bgcolor="#FFFFFF" sdnum="1033;1033;M/D/YYYY"><b><font size=4 color="#333333">{{$edit->fecha_solicitud}}</font></b></td>
+		<td style="border-top: 2px solid #000000; border-bottom: 4px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000" colspan=3 align="center" valign=middle bgcolor="#FFFFFF" sdnum="1033;1033;M/D/YYYY"><b><font size=6 color="#333333">{{$edit->ordenesdeservicios->fecha_solicitud}}</font></b></td>
 		<td align="center" valign=middle bgcolor="#FFFFFF" sdnum="1033;1033;D-MMM"><font size=4 color="#333333"><br></font></td>
-		<td style="border-top: 0px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000; border-right: 0px solid #000000" colspan=5 align="center" valign=middle bgcolor="#FFFFFF" sdnum="1033;1033;M/D/YYYY"><b><font size=4 color="#333333"><input type="text"  style="width:100%;height:70px;color:#333333; font-weight: bold #000000; text-align: center; font-size: 19PX"></font></b></td>
+	<td style="border-top: 0px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000; border-right: 0px solid #000000" colspan=5 align="center" valign=middle bgcolor="#FFFFFF" sdnum="1033;1033;M/D/YYYY"><b><font size=6 color="#333333"><input type="text"  id="blurs" value="{{$edit->vip}}" name="vip" style="width:100%;height:70px;color:#333333; font-weight: bold #000000; text-align: center; font-size: 30PX"></font></b></td>
 		<td style="border-left: 2px solid #000000; border-right: 2px solid #000000" align="left" valign=middle bgcolor="#FFFFFF"><b><font size=4 color="#333333"><br></font></b></td>
 		<td align="left" valign=middle bgcolor="#FFFFFF"><font color="#333333"><br></font></td>
 	</tr>
@@ -323,7 +330,7 @@ echo date_format($date, 'H:i:s'); ?>"></font></b></td>
 	</tr>
 	<tr>
 		<td style="border-left: 2px solid #000000" height="36" align="left" valign=middle bgcolor="#FFFFFF"><font color="#333333"><br></font></td>
-		<td style="border-top: 2px solid #000000; border-bottom: 0px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000" colspan=14 rowspan=2 align="center" valign=middle bgcolor="#FFFFFF"><font size=5 color="#333333"><input type="text" style="width:100%;height:70px;color:#333333; font-weight: bold #000000; font-size: 19PX; text-align: center;"></font></td>
+	<td style="border-top: 2px solid #000000; border-bottom: 0px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000" colspan=14 rowspan=2 align="center" valign=middle bgcolor="#FFFFFF"><font size=5 color="#333333"><input  id="blurs" name="tipo_de_servicio" value="{{$edit->tipo_de_servicio}}" type="text" style="width:100%;height:70px;color:#333333; font-weight: bold #000000; font-size: 30PX; text-align: center;"></font></td>
 		<td style="border-right: 2px solid #000000" align="left" valign=middle bgcolor="#FFFFFF"><b><font size=5 color="#333333"><br></font></b></td>
 		<td align="left" valign=middle bgcolor="#FFFFFF"><font color="#333333"><br></font></td>
 	</tr>
@@ -347,8 +354,8 @@ echo date_format($date, 'H:i:s'); ?>"></font></b></td>
 	</tr>
 	<tr>
 		<td style="border-left: 2px solid #000000" height="46" align="left" valign=middle bgcolor="#FFFFFF"><font color="#333333"><br></font></td>
-		<td style="border-top: 0px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000" colspan=4 align="center" valign=middle bgcolor="#FFFFFF" sdnum="1033;1033;H:MM"><b><font size=4 color="#333333"><input type="text" style="width:100%;height:70px;color:#333333; font-weight: bold #000000; font-size: 19PX; text-align: center;"></font></b></td>
-		<td style="border-top: 0px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000" colspan=5 align="center" valign=middle bgcolor="#FFFFFF" sdnum="1033;1033;H:MM"><b><font size=5 color="#333333"><input type="text" style="width:100%;height:70px;color:#333333; font-weight: bold #000000; font-size: 19PX; text-align: center;"></font></b></td>
+	<td style="border-top: 0px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000" colspan=4 align="center" valign=middle bgcolor="#FFFFFF" sdnum="1033;1033;H:MM"><b><font size=4 color="#333333"><input  id="blurs" name ="inicio" value="{{$edit->inicio}}"  type="text" style="width:100%;height:70px;color:#333333; font-weight: bold #000000; font-size: 30PX; text-align: center;"></font></b></td>
+		<td style="border-top: 0px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000" colspan=5 align="center" valign=middle bgcolor="#FFFFFF" sdnum="1033;1033;H:MM"><b><font size=5 color="#333333"><input   id="blurs" name ="destino" value="{{$edit->destino}}" type="text" style="width:100%;height:70px;color:#333333; font-weight: bold #000000; font-size: 30PX; text-align: center;"></font></b></td>
 		<td style="border-right: 2px solid #000000" align="left" valign=middle bgcolor="#FFFFFF" sdnum="1033;1033;H:MM"><b><font size=4 color="#333333"><br></font></b></td>
 		<td align="left" valign=middle bgcolor="#FFFFFF"><font color="#333333"><br></font></td>
 	</tr>
@@ -374,15 +381,15 @@ echo date_format($date, 'H:i:s'); ?>"></font></b></td>
 	</tr>
 	<tr>
 		<td style="border-left: 2px solid #000000" height="36" align="left" valign=middle bgcolor="#FFFFFF"><font color="#333333"><br></font></td>
-		<td style="border-top: 2px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000" align="center" valign=middle><b><font size=4 color="#333333"><input type="text" style="width:100%;height:70px;color:#333333; font-weight: bold #000000; font-size: 19PX; text-align: center;"></font></b></td>
+	<td style="border-top: 2px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000" align="center" valign=middle><b><font size=4 color="#333333"><input  id="blurs"name="vuelo" value="{{$edit->vuelo}}" type="text" style="width:100%;height:70px;color:#333333; font-weight: bold #000000; font-size: 30PX; text-align: center;"></font></b></td>
 		<td style="border-left: 2px solid #000000; border-right: 2px solid #000000" align="left" valign=middle><b><font size=5 color="#333333"><br></font></b></td>
-		<td style="border-top: 0px solid #000000; border-bottom: 2px solid #000000; border-left: 0px solid #000000; border-right: 2px solid #000000" colspan=2 align="center" valign=middle><b><font size=5 color="#333333"><input type="text" style="width:100%;height:70px;color:#333333; font-weight: bold #000000; font-size: 19PX; text-align: center;"></font></b></td>
+	<td style="border-top: 0px solid #000000; border-bottom: 2px solid #000000; border-left: 0px solid #000000; border-right: 2px solid #000000" colspan=2 align="center" valign=middle><b><font size=5 color="#333333"><input id="blurs" name="areolinea"  value="{{$edit->areolinea}}" type="text" style="width:100%;height:70px;color:#333333; font-weight: bold #000000; font-size: 30PX; text-align: center;"></font></b></td>
 		<td align="center" valign=middle><font size=4 color="#333333"><br></font></td>
-		<td style="border-top: 2px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000" colspan=3 align="center" valign=middle sdnum="1033;1033;H:MM"><b><font size=5 color="#333333"><input type="text" style="width:100%;height:70px;color:#333333; font-weight: bold #000000; font-size: 19PX; text-align: center;"></font></b></td>
+	<td style="border-top: 2px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000" colspan=3 align="center" valign=middle sdnum="1033;1033;H:MM"><b><font size=5 color="#333333"><input name="procedencia" id="blurs" value="{{$edit->procedencia}}" type="text" style="width:100%;height:70px;color:#333333; font-weight: bold #000000; font-size: 30PX; text-align: center;"></font></b></td>
 		<td align="center" valign=middle><font size=4 color="#333333"><br></font></td>
-		<td style="border-top: 0px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000" colspan=3 align="center" valign=middle sdnum="1033;1033;H:MM"><b><font size=5 color="#333333"><input type="text" style="width:100%;height:70px;color:#333333; font-weight: bold #000000; font-size: 19PX; text-align: center;"></font></b></td>
+	<td style="border-top: 0px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000" colspan=3 align="center" valign=middle sdnum="1033;1033;H:MM"><b><font size=5 color="#333333"><input  id="blurs" name ="destino" value="{{$edit->destino}}" type="text" style="width:100%;height:70px;color:#333333; font-weight: bold #000000; font-size: 30PX; text-align: center;"></font></b></td>
 		<td align="left" valign=middle sdnum="1033;1033;H:MM"><b><font size=5 color="#333333"><br></font></b></td>
-		<td style="border-top: 0px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000" align="center" valign=middle bgcolor="#FFFFFF" sdnum="1033;1033;H:MM"><b><input type="text" style="width:100%;height:70px;color:#333333; font-weight: bold #000000; font-size: 19PX; text-align: center;"><font size=5 color="#333333"></font></b></td>
+	<td style="border-top: 0px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000" align="center" valign=middle bgcolor="#FFFFFF" sdnum="1033;1033;H:MM"><b><input  id="blurs" name="hora" value="{{$edit->hora}}" type="time" style="width:100%;height:70px;color:#333333; font-weight: bold #000000; font-size: 30PX; text-align: center;"><font size=5 color="#333333"></font></b></td>
 		<td style="border-right: 2px solid #000000" align="left" valign=middle sdnum="1033;1033;H:MM"><b><font size=5 color="#333333"><br></font></b></td>
 		<td align="left" valign=middle bgcolor="#FFFFFF"><font color="#333333"><br></font></td>
 	</tr>
@@ -410,9 +417,9 @@ echo date_format($date, 'H:i:s'); ?>"></font></b></td>
 	</tr>
 	<tr>
 		<td style="border-left: 2px solid #000000" height="48" align="left" valign=middle bgcolor="#FFFFFF"><font color="#333333"><br></font></td>
-		<td style="border-top: 2px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000" colspan=7 align="center" valign=middle bgcolor="#FFFFFF"><b><font size=5 color="#333333">{{$edit->escoltas->nombre}}</font></b></td>
+		<td style="border-top: 2px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000" colspan=7 align="center" valign=middle bgcolor="#FFFFFF"><b><font size=6 color="#333333">{{$edit->ordenesdeservicios->escoltas->nombre}}</font></b></td>
 		<td align="center" valign=middle bgcolor="#FFFFFF"><font size=4 color="#333333"><br></font></td>
-		<td style="border-top: 2px solid #000000; border-bottom: 0px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000" colspan=6 align="center" valign=middle bgcolor="#C0C0C0" sdnum="1033;1033;H:MM"><b><i><font size=5><input type="text" style="width:100%;height:70px;color:#333333; font-weight: bold #000000; font-size: 19PX; text-align: center;"></font></i></b></td>
+	<td style="border-top: 2px solid #000000; border-bottom: 0px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000" colspan=6 align="center" valign=middle bgcolor="#C0C0C0" sdnum="1033;1033;H:MM"><b><i><font size=5><input id="blurs" name="persona_acompanante" value="{{$edit->persona_acompanante}}" type="text" style="width:100%;height:70px;color:#333333; font-weight: bold #000000; font-size: 30PX; text-align: center;"></font></i></b></td>
 		<td style="border-right: 2px solid #000000" align="left" valign=middle sdnum="1033;1033;H:MM"><b><i><font size=5 color="#333333"><br></font></i></b></td>
 		<td align="left" valign=middle bgcolor="#FFFFFF"><font color="#333333"><br></font></td>
 	</tr>
@@ -443,7 +450,12 @@ echo date_format($date, 'H:i:s'); ?>"></font></b></td>
 		<td align="center" valign=middle bgcolor="#FFFFFF"><font size=4 color="#333333"><br></font></td>
 		<td align="left" valign=middle bgcolor="#FFFFFF"><b><font size=4 color="#333333"><br>&nbsp; &nbsp; &nbsp;
 				<span class="checkboxtext">
-			<input type="checkbox" value="">
+				@if ($edit->camioneta == 1)
+				<input  id="blurs" type="checkbox" name="camioneta" checked>
+			   @else
+				<input  id="blurs" type="checkbox" name="camioneta" >
+					
+				@endif	
 
 			</span>
 
@@ -454,13 +466,13 @@ echo date_format($date, 'H:i:s'); ?>"></font></b></td>
 		</font></b></td>
 		<td align="left" valign=middle bgcolor="#FFFFFF"><b><font size=4 color="#333333"><br></font></b></td>
 		<td align="left" valign=middle bgcolor="#FFFFFF"><font color="#333333"><br></font></td>
-		<td style="border-top: 0px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000" colspan=4 rowspan=2 align="center" valign=middle bgcolor="#FFFFFF"><b><font size=4><input type="text" style="width:100%;height:100PX;color:#333333; font-weight: bold #000000; font-size: 19PX; text-align: center"></font></b></td>
+		<td style="border-top: 0px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000" colspan=4 rowspan=2 align="center" valign=middle bgcolor="#FFFFFF"><b><font size=4><input id="blurs"  name="" type="text" style="width:100%;height:100PX;color:#333333; font-weight: bold #000000; font-size: 29PX; text-align: center" value="{{$edit->ordenesdeservicios->vehiculos->placa}}"></font></b></td>
 		<td align="right" valign=middle bgcolor="#FFFFFF"><font size=5 color="#333333"><br></font></td>
 		<td style="border-top: 0px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000" colspan=2 rowspan=2 align="center" valign=middle bgcolor="#FFFFFF"><b><font size=4 color="#333333">
-<input type="text" style="width:100%;height:100PX;color:#333333; font-weight: bold #000000; font-size: 19PX;"></font></b></td>
+		<input id="blurs" name="km_inicio" value="{{$edit->km_inicio}}" type="text" style="width:100%;height:100PX;color:#333333; font-weight: bold #000000; font-size: 30PX;"></font></b></td>
 		<td align="center" valign=middle bgcolor="#FFFFFF"><font size=4 color="#333333"><br></font></td>
 		<td style="border-top: 2px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000" rowspan=2 align="center" valign=middle bgcolor="#FFFFFF"><b><font size=5 color="#333333">
-<input type="text" style="width:100%;height:100PX;color:#333333; font-weight: bold #000000; font-size: 19PX;"></font></b></td>
+		<input  id="blurs" name="km_final" value="{{$edit->km_final}}" type="text" style="width:100%;height:100PX;color:#333333; font-weight: bold #000000; font-size: 30PX;"></font></b></td>
 		<td style="border-right: 2px solid #000000" align="center" valign=middle bgcolor="#FFFFFF"><b><font size=4 color="#333333"><br></font></b></td>
 		<td align="left" valign=middle bgcolor="#FFFFFF"><font color="#333333"><br></font></td>
 	</tr>
@@ -469,7 +481,12 @@ echo date_format($date, 'H:i:s'); ?>"></font></b></td>
 		<td align="right" valign=middle bgcolor="#FFFFFF"><font size=5 color="#333333">Sedán</font></td>
 		<td align="center" valign=middle bgcolor="#FFFFFF"><font size=4 color="#333333"> </font></td>
 		<td align="left" valign=middle bgcolor="#FFFFFF"><b><font size=3 color="#333333"><br>&nbsp; &nbsp; &nbsp;
-			<input type="checkbox" value="">
+			@if ($edit->sedan == 1)
+			<input  id="blurs" type="checkbox" name="sedan" checked>
+		    @else
+			<input  id="blurs" type="checkbox" name="sedan" >
+
+			@endif
 
 </label>
 		</font></b></td>
@@ -485,7 +502,12 @@ echo date_format($date, 'H:i:s'); ?>"></font></b></td>
 		<td align="right" valign=middle bgcolor="#FFFFFF"><font size=5 color="#333333">Motocicleta</font></td>
 		<td align="center" valign=middle bgcolor="#FFFFFF"><font size=4 color="#333333"><br></font></td>
 		<td align="left" valign=middle bgcolor="#FFFFFF"><b><font size=4 color="#333333"><br>&nbsp; &nbsp; &nbsp;
-		<input type="checkbox" value="">
+		@if ($edit->motocicleta == 1)
+		<input  id="blurs" type="checkbox"   name="motocicleta" checked>
+		@else
+		<input   id="blurs" type="checkbox"   name="motocicleta">
+
+		@endif
 
 </label>
 		</font></b></td>
@@ -495,7 +517,11 @@ echo date_format($date, 'H:i:s'); ?>"></font></b></td>
 		<td align="left" valign=middle bgcolor="#FFFFFF"><font color="#333333"><br></font></td>
 		<td align="center" valign=middle bgcolor="#FFFFFF"><font size=5 color="#333333">Blindado</font></td>
 		<td align="left" valign=middle bgcolor="#FFFFFF"><b><font size=4 color="#333333"><br>&nbsp; &nbsp; &nbsp;
-		<input type="checkbox" value="">
+			@if ($edit->blindado)
+			<input type="checkbox" id="blurs"  name="blindado" checked >
+			@else
+			<input type="checkbox"  id="blurs"  name="blindado" >
+			@endif
 
 </label>
 		</font></b></td>
@@ -508,19 +534,25 @@ echo date_format($date, 'H:i:s'); ?>"></font></b></td>
 		<td style="border-left: 2px solid #000000" height="37" align="left" valign=middle bgcolor="#FFFFFF"><font color="#333333"><br></font></td>
 		<td align="right" valign=middle bgcolor="#FFFFFF"><font size=5 color="#333333">Otro:</font></td>
 		<td colspan=3 align="left" valign=middle bgcolor="#FFFFFF"><font color="#333333"><br><img src="f3_html_df8e45f63cb42756.png" width=222 height=1 hspace=33 vspace=18>
-		</font><input type="text" style="width:100%;height:30PX;color:#333333; font-weight: bold #000000; font-size: 19PX;"></td>
+		</font><input type="text"  id="blurs" name="otro" value="{{$edit->otro}}" style="width:100%;height:30PX;color:#333333; font-weight: bold #000000; font-size: 30PX;"></td>
 		<td align="left" valign=middle bgcolor="#FFFFFF"><font color="#333333"><br></font></td>
 		<td align="left" valign=middle bgcolor="#FFFFFF"><font color="#333333"><br></font></td>
 		<td align="left" valign=middle bgcolor="#FFFFFF"><font color="#333333"><br></font></td>
 		<td align="center" valign=middle bgcolor="#FFFFFF"><font size=5 color="#333333">Convencional</font></td>
 		<td align="left" valign=middle bgcolor="#FFFFFF"><b><font size=4 color="#333333"><br>&nbsp; &nbsp; &nbsp;
-			<input type="checkbox" value="">
+			
+			@if ($edit->convencional == 1)
+			<input type="checkbox" id="blurs"  name="convencional" checked >
+			@else
+			<input type="checkbox" id="blurs"  name="convencional" >
+
+			@endif
 
 </label>
 		</font></b></td>
 		<td align="left" valign=middle bgcolor="#FFFFFF"><font color="#333333"><br></font></td>
 		<td style="border-top: 0px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000" colspan=4 align="center" valign=middle bgcolor="#FFFFFF"><font color="#333333">
-<input type="text" style="width:100%;height:70px;color:#333333; font-weight: bold #000000; font-size: 19PX; text-align: center;"></font></td>
+		<input  name="kilometro_recorrido" id="blurs" value="{{$edit->kilometro_recorrido}}" type="text" style="width:100%;height:70px;color:#333333; font-weight: bold #000000; font-size: 30PX; text-align: center;"></font></td>
 		<td style="border-right: 2px solid #000000" align="left" valign=middle bgcolor="#FFFFFF"><font size=4 color="#333333"><br></font></td>
 		<td align="left" valign=middle bgcolor="#FFFFFF"><font color="#333333"><br></font></td>
 	</tr>
@@ -543,7 +575,7 @@ echo date_format($date, 'H:i:s'); ?>"></font></b></td>
 	<tr>
 		<td style="border-left: 2px solid #000000" height="35" align="left" valign=middle bgcolor="#FFFFFF"><font color="#333333"><br></font></td>
 		<td style="border-top: 0px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000" colspan=14 rowspan=3 align="center" valign=middle bgcolor="#FFFFFF"><b><font size=4>
-<input type="text" style="width:100%;height:100px;color:#333333; font-weight: bold #000000; font-size: 19PX; text-align: center;"></font></b></td>
+		<input name="instruccion_especial" id="blurs" value="{{$edit->instruccion_especial}}" type="text" style="width:100%;height:100px;color:#333333; font-weight: bold #000000; font-size: 30PX; text-align: center;"></font></b></td>
 		<td style="border-right: 2px solid #000000" align="left" valign=middle><b><font size=4 color="#333333"><br></font></b></td>
 		<td align="left" valign=middle bgcolor="#FFFFFF"><font color="#333333"><br></font></td>
 	</tr>
@@ -581,13 +613,13 @@ echo date_format($date, 'H:i:s'); ?>"></font></b></td>
 	<tr>
 		<td style="border-left: 2px solid #000000" height="36" align="left" valign=middle bgcolor="#FFFFFF"><font color="#333333"><br></font></td>
 		<td style="border-top: 2px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000" colspan=4 align="center" valign=middle bgcolor="#FFFFFF"><b><font size=5 color="#333333">
-<input type="text" style="width:100%;height:70px;color:#333333; font-weight: bold #000000; font-size: 19PX; text-align: center;" value="{{$edit->ID2}}"></font></b></td>
+<input name="avantel" id="blurs"  type="text" style="width:100%;height:70px;color:#333333; font-weight: bold #000000; font-size: 30PX; text-align: center;" value="{{$edit->avantel}}"></font></b></td>
 		<td align="center" valign=middle bgcolor="#FFFFFF"><font color="#333333"><br></font></td>
 		<td  style="border-top: 0px solid #000000; border-bottom: 2.5px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000" colspan=5 align="center" valign=middle bgcolor="#FFFFFF"><b><font size=4 color="#333333">
-<input type="text" style="width:100%;height:70px;color:#333333; font-weight: bold #000000; font-size: 19PX; text-align: center;"></font></b></td>
+		<input name="otros" id="blurs" value="{{$edit->otros}}" type="text" style="width:100%;height:70px;color:#333333; font-weight: bold #000000; font-size: 30PX; text-align: center;"></font></b></td>
 		<td align="left" valign=middle bgcolor="#FFFFFF"><b><font size=4 color="#333333"><br></font></b></td>
 		<td style="border-top: 0px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000" colspan=3 align="center" valign=middle bgcolor="#FFFFFF"><b><font size=4 color="#333333">
-<input type="text" style="width:100%;height:70px;color:#333333; font-weight: bold #000000; font-size: 19PX; text-align: center;"></font></b></td>
+		<input id="blurs" name="celular" value="{{$edit->celular}}"  type="text" style="width:100%;height:70px;color:#333333; font-weight: bold #000000; font-size: 30PX; text-align: center;"></font></b></td>
 		<td style="border-right: 2px solid #000000" align="center" valign=middle bgcolor="#FFFFFF"><font color="#333333"><br></font></td>
 		<td align="left" valign=middle bgcolor="#FFFFFF"><font color="#333333"><br></font></td>
 	</tr>
@@ -620,15 +652,15 @@ echo date_format($date, 'H:i:s'); ?>"></font></b></td>
 	<tr>
 		<td style="border-left: 2px solid #000000" height="36" align="left" valign=middle bgcolor="#FFFFFF"><font color="#333333"><br></font></td>
 		<td style="border-top: 2px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000" align="center" valign=middle bgcolor="#FFFFFF" sdnum="1033;1033;H:MM"><b><font size=5 color="#333333">
-<input type="text" style="width:100%;height:30px;color:#333333; font-weight: bold #000000; font-size: 19PX;"></font></b></td>
+		<input id="blurs" name="hora_inicio_empresa" value="{{$edit->hora_inicio_empresa}}" type="time"  style="width:100%;height:30px;color:#333333; font-weight: bold #000000; font-size: 30PX;"></font></b></td>
 		<td align="left" valign=middle bgcolor="#FFFFFF" sdnum="1033;1033;H:MM"><b><font size=5 color="#333333"><br></font></b></td>
 		<td style="border-top: 0px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000" colspan=3 align="center" valign=middle bgcolor="#FFFFFF" sdnum="1033;1033;H:MM"><b><font size=5 color="#333333">
-<input type="text" style="width:100%;height:30PX;color:#333333; font-weight: bold #000000; font-size: 19PX;"></font></b></td>
+		<input id="blurs" name="hora_final_empresa"  value="{{$edit->hora_final_empresa}}" type="time" style="width:100%;height:30PX;color:#333333; font-weight: bold #000000; font-size: 30PX;"></font></b></td>
 		<td style="border-top: 2px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000" colspan=3 align="center" valign=middle  sdnum="1033;1033;H:MM"><b><font size=5 color="#333333">
-<input type="text" style="width:100%;height:30px;color:#333333; font-weight: bold #000000; font-size: 19PX;"></font></b></td>
+		<input id="blurs" name = "hora_inicio_cliente" value="{{$edit->hora_inicio_cliente}}" type="time" style="width:100%;height:30px;color:#333333; font-weight: bold #000000; font-size: 30PX;"></font></b></td>
 		<td align="center" valign=middle bgcolor="#FFFFFF"><font color="#333333"><br></font></td>
 		<td style="border-top: 2px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000" align="center" valign=middle  sdnum="1033;1033;H:MM"><b><font size=5 color="#333333">
-<input type="text" style="width:100%;height:30px;color:#333333; font-weight: bold #000000; font-size: 19PX;"></font></b></td>
+		<input id="blurs" name="hora_final_cliente" value="{{$edit->hora_final_cliente}}" type="time" style="width:100%;height:30px;color:#333333; font-weight: bold #000000; font-size: 30PX;"></font></b></td>
 		<td style="border-right: 2px solid #000000" align="center" valign=middle bgcolor="#FFFFFF" sdnum="1033;1033;H:MM"><b><font size=5 color="#333333"><br></font></b></td>
 		<td align="left" valign=middle bgcolor="#FFFFFF"><font color="#333333"><br></font></td>
 	</tr>
@@ -662,13 +694,13 @@ echo date_format($date, 'H:i:s'); ?>"></font></b></td>
 	<tr>
 		<td style="border-left: 2px solid #000000" height="39" align="left" valign=middle bgcolor="#FFFFFF"><font color="#333333"><br></font></td>
 		<td style="border-top: 2px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000" colspan=6 align="center" valign=middle bgcolor="#FFFFFF"><font size=4 color="#333333">
-<input type="text" style="width:100%;height:30px;color:#333333; font-weight: bold #000000; font-size: 19PX;"></font></td>
+		<input id="blurs" name="servicio_cancelado_por" value="{{$edit->servicio_cancelado_por}}"  type="text" style="width:100%;height:30px;color:#333333; font-weight: bold #000000; font-size: 30PX;"></font></td>
 		<td align="center" valign=middle bgcolor="#FFFFFF"><font size=4 color="#333333"><br></font></td>
 		<td style="border-top: 2px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000" colspan=3 align="center" valign=middle bgcolor="#FFFFFF" sdnum="1033;1033;M/D/YYYY H:MM"><font size=4 color="#333333">
-<input type="text" style="width:100%;height:30px;color:#333333; font-weight: bold #000000; font-size: 19PX;"></font></td>
+		<input name="fecha_hora" id="blurs" value="{{$datetime}}"  type="datetime-local" style="width:100%;height:30px;color:#333333; font-weight: bold #000000; font-size: 30PX;"></font></td>
 		<td align="center" valign=middle bgcolor="#FFFFFF"><font size=4 color="#333333"><br></font></td>
 		<td style="border-top: 0px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000" colspan=3 align="center" valign=middle bgcolor="#FFFFFF"><font size=4 color="#333333">
-<input type="text" style="width:100%;height:30px;color:#333333; font-weight: bold #000000; font-size: 19PX;"></font></td>
+		<input id="blurs" name="cancelacion" value="{{$edit->cancelacion}}" type="text" style="width:100%;height:30px;color:#333333; font-weight: bold #000000; font-size: 30PX;"></font></td>
 		<td style="border-right: 2px solid #000000" align="center" valign=middle bgcolor="#FFFFFF"><font size=4 color="#333333"><br></font></td>
 		<td align="left" valign=middle bgcolor="#FFFFFF"><font color="#333333"><br></font></td>
 	</tr>
@@ -809,7 +841,7 @@ echo date_format($date, 'H:i:s'); ?>"></font></b></td>
 		<td align="left" valign=middle bgcolor="#FFFFFF"><font color="#333333"><br></font></td>
 		<td align="left" valign=middle bgcolor="#FFFFFF"><font color="#333333"><br></font></td>
 		<td align="left" valign=middle bgcolor="#FFFFFF"><font color="#333333"><br></font></td>
-		<td align="left" valign=middle bgcolor="#FFFFFF"><font color="#333333"><br></font></td>
+		<td align="left" valign=middle bgcolor="#FFFFFF"><font color="#000000"><br></font></td>
 		<td align="left" valign=middle bgcolor="#FFFFFF"><font color="#333333"><br></font></td>
 		<td align="left" valign=middle bgcolor="#FFFFFF"><font color="#333333"><br></font></td>
 		<td align="left" valign=middle bgcolor="#FFFFFF"><font color="#333333"><br></font></td>
@@ -876,30 +908,92 @@ echo date_format($date, 'H:i:s'); ?>"></font></b></td>
 		<td align="left" valign=middle bgcolor="#FFFFFF"><font color="#333333"><br></font></td>
 		<td align="left" valign=middle bgcolor="#FFFFFF"><font color="#333333"><br></font></td>
 	</tr>
+	<br><br>
+	<br><br>
+	<br><br>
+	<br><br>
+	<br><br>
+	<br><br>
+
 </table>
+<center>
+<button  style="margin-top:-14% " type="submit" class="btn btn-primary guardar" >Guardar</button></center>
+
+</center>
+{!! Form::close() !!} 
+<button  id="print"  class="btn btn-default" style="margin-top:-14%;"> <i class="fa fa-print"></i> Imprimir </button> 
+
+
 
 </div>
+
+<br>
+<br>
+<br>
+<br>
+<br><br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+	<br>
+<br>
+<br>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 <div id="imagen">
+	
 <img src="{{ asset('img/con_servicio.jpg')}}"class="horizontal"  width ="2050px" >
 </div>
+
+</div>
+
+
+
 </body>
-<script src="//code.jquery.com/jquery-2.2.1.min.js" crossorigin="anonymous"></script>
-    <script src="//unpkg.com/sweetalert2@7.1.2/dist/sweetalert2.all.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/js/foundation.min.js"></script>
-     <script>
-       $(document).foundation();
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="//unpkg.com/sweetalert2@7.1.2/dist/sweetalert2.all.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/js/foundation.min.js"></script>
+<script type="text/javascript" src="{{ asset('js/printThis.js')}}"></script>
+<script>
+	$(document).ready(function () {
+		$('#print').on("click", function () {
+			 $('.contenido').printThis({
+			 	 importCSS: true,
+                  importStyle: true,
+                 loadCSS: "public/css/documento.css"
+			 });
+		
+		})
+	});
+  swal({
+    title: 'Importante',
+    type: 'question',
+  html: "<strong>1.</strong> Se recomienda Guardar la información <br>  <strong>2 .</strong> Dar clic en el botón de Imprimir <br> <strong>3.</strong> se  recomienda imprimir en orientación vertical <br> <strong>4.</strong>se  recomienda imprimir con una ESCALA de 38 ",
 
-   </script>
-<script >
-swal({
-  title: 'Importante',
-  type: 'question',
-html: "<strong>1.</strong> se recomienda imprimir en google chrome <br>  <strong>2 .</strong> Ctlr + P para imprimir<br> <strong>3.</strong> se  recomienda imprimir en orientación vertical <br> <strong>4.</strong>se  recomienda imprimir con una ESCALA de 40 ",
+  })
 
-})
+//   $(function($) {
 
+// $("body").on("blur", "#blurs", function(e) {
+//   $("#Form").submit();
+
+// });
+
+// })(jQuery);
 
 </script>
 

@@ -81,7 +81,7 @@
 
           <td><a  href="{{ route('Escolta.edit',$row->id) }}"   class="btn btn-success"><i class="fa fa-pencil" aria-hidden="true"> Edición</i></a></td> <td>
            <td><a  href="{{route('escoltapdf', $row->id )}}" class="btn btn-default" ><i class="fa  fa-file-pdf-o" aria-hidden="true"> Presentación de escoltas</a></td>
-          @if ( Auth::user()->email == 'leonidas.fiquitiva@omnitempus.com')
+          @if(Auth::user()->id == 4 || Auth::user()->id == 1)
 
           <td>@include('escolta.destroy')</td>
 

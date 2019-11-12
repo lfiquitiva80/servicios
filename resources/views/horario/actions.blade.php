@@ -1,0 +1,1 @@
+<a class="btn btn-success" data-toggle="modal" data-target="#JornadaUpdate"  data-escolta="{{$escoltaid}}"  data-horainicila="{{$hora_inicial}}" data-horafin="{{$hora_final}}" data-fecha="{{$fecha}}" data-id="{{$id}}" ><i class="fa fa-pencil" aria-hidden="true"> Edición</i></a>

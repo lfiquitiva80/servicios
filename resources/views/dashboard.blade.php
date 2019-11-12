@@ -323,6 +323,12 @@
     <!-- /.content -->
   </div>
 
+  <div>
+    <h1>CUADRO SERVICIOS PROGRAMADOS</h1>
+    <iframe width="1300" height="600" src="https://app.powerbi.com/view?r=eyJrIjoiNTJjYzNjYWItZjg3Mi00MTczLWJmOWItZmY5ZjE1OTI4NjRiIiwidCI6IjIwNTk5MzcyLTgzM2ItNGIxYy1iY2QxLTZmN2Y1YjE1ZDhmYSIsImMiOjR9" frameborder="0" allowFullScreen="true"></iframe>
+
+  </div>
+
 
 
 @endsection

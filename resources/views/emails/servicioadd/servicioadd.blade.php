@@ -1,11 +1,11 @@
 @component('mail::message')
-# Ingreso de una nueva solicitud
+
 
 ##Ingreso el siguiente servicio a Command Center:
 
 <div>
     cliente: <?php $cliente = \App\cliente::find($cliente); echo $cliente->nombre; ?><br>
-    Orden de Trabajo : {{ $wo }}<br>
+    <strong>Orden de Trabajo : {{ $wo }}</strong><br>
     ciudad_destino: {{ $ciudad_destino }}<br>
     fecha_solicitud: {{ $fecha_solicitud }}<br>
     fecha_inicio_servicio: {{ $fecha_inicio_servicio }}<br>

@@ -5,6 +5,15 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\cliente;
+use App\User;
+use App\estadoservicio;
+use App\vehiculo;
+use App\tipodevehiculo;
+use App\tiposervicio;
+use App\solicitanteinterno;
+use App\wo;
+use App\armas;
+use App\c_costo;
 use Alert;
 
 class ClienteController extends Controller
@@ -16,8 +25,10 @@ class ClienteController extends Controller
      */
     public function index(Request $request)
     {
+      $usuario = User::orderBy('email','asc')->pluck('email','id');  
+      $costos= c_costo::pluck('centro_de_costos','id'); 
       $Cliente = cliente::search($request->nombre)->orderBy('nombre', 'asc')->paginate(10);
-   return view('cliente.index',compact('Cliente'));
+   return view('cliente.index',compact('Cliente','usuario','costos'));
     }
 
     /**
@@ -96,5 +107,25 @@ class ClienteController extends Controller
           $Cliente->delete();
             Alert::success('', 'el cliente ha sido sido borrado de forma exita!')->persistent('Close');
             return redirect()->route('Clientes.index');
+    }
+
+    public function solicitudserviciocliente(Request $request)
+    {
+            
+        $estadoservicio = estadoservicio::pluck('estadoservicio','id');
+         $cliente = cliente::orderBy('Nombre','ASC')->pluck('Nombre','id');
+         $vehiculo = vehiculo::orderBy('placa','ASC')->pluck('placa','id');
+         $tipodevehiculo = tipodevehiculo::pluck('descripcion_tipo_vehiculo','id');
+         $tiposervicio = tiposervicio::pluck('desc_tipo_serv','id');
+         $solicitanteinterno = solicitanteinterno::pluck('descripcion_solicitante','id');
+         $wo= wo::pluck('descripcion_wo','id');
+         $armas= armas::pluck('descripcion','id');
+
+        $cliente = cliente::orderBy('Nombre','asc')->where('usuario',\Auth::user()->id)->pluck('Nombre','id');
+        $clientes = cliente::orderBy('Nombre','asc')->where('usuario',\Auth::user()->id)->first();
+        //dd($clientes);
+   return view('cliente.solicitud',compact('estadoservicio','cliente','clientes','tipodevehiculo','tiposervicio', 'armas'));      
+
+
     }
 }

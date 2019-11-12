@@ -1,0 +1,2 @@
+<a class="btn btn-success" data-toggle="modal" data-target="#edit_fs"   data-id="{{$id}}" data-descripcion ="{{$descripcion}}"><i class="fa fa-pencil" aria-hidden="true"> Edición</i></a>
+@include('fs.destroy')

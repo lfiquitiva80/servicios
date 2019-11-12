@@ -52,6 +52,12 @@ class User extends Authenticatable
       return $this->type==='1';
      }
 
+    public function supraadmin()
+     {
+      return $this->type==='2';
+     }
+ 
+
      public function USER(){
         return $this->type==='0';
      }
@@ -60,4 +66,9 @@ class User extends Authenticatable
       {
          return $this->HasMany('App\ordenesdeservicio');
       }
+
+     public  function documentos()
+      {
+         return $this->HasMany('App\documento');
+     }
 }

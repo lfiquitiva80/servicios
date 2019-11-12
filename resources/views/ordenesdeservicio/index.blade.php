@@ -74,7 +74,11 @@
           <td>{{$row->fecha_inicio_servicio}}</td>
 
 
-          <td><a href="{{ $url = route('ordenesdeservicio.edit',$row->id) }}" class="btn btn-success"><i class="fa fa-pencil" aria-hidden="true"> Edición</i></a></td> <td>@include('ordenesdeservicio.destroy')</td>
+          <td><a href="{{ $url = route('ordenesdeservicio.edit',$row->id) }}" class="btn btn-success"><i class="fa fa-pencil" aria-hidden="true"> Edición</i></a></td> 
+          
+          @if(Auth::user()->type == 1 || Auth::user()->type == 2)
+          <td>@include('ordenesdeservicio.destroy')</td>
+          @endif
 
     </tr>
   </tbody>

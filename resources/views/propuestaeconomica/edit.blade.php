@@ -1,0 +1,160 @@
+<div class="modal fade" id="editar_propuesta">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Actualizar Propuesta Economica</h4>
+            </div>
+            <div class="modal-body">
+                <form class="" action="{{route('propuestaeconomica.update', 'id' )}}"  id="propuestaeconomicaUpdate" method="post"  >
+                    {{method_field('patch')}}
+                    {{csrf_field()}}
+                    {!! Form::hidden('id',null,['class'=> 'form-control','name'=>'id','id'=>'id'] )!!}  
+  
+                    <div class="form-group has-feedback {{ $errors->has('numero_propuesta') ? ' has-error' : '' }}">
+
+                    <div class="col-xs-4">
+                            <div class="form-group">
+                               <label for="id">N° PROPUESTA ECONOMICA</label>
+                               {!! Form::text('numero_propuesta',null,['class'=> 'form-control','placeholder' => 'N° PROPUESTA ECONOMICA','id'=>'numero_propuesta'] )!!}
+            
+                    @if ($errors->has('numero_propuesta'))
+                        <div class="numeropropuesta" >
+                         <span  id="numero_propuesta"class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true">  </span>
+                         <span class="help-block">
+                         <strong> El numero de la propuesta economica ya esta registrada. </strong>
+                         </span>
+                        </div>
+                       @else
+                       @endif
+                    </div>
+                </div>
+            </div>
+                    <div class="col-xs-4">
+                      <div class="form-group">
+                        <label for="id">CLIENTE</label>
+                        {!! Form::select('id_cliente',$cliente,null,['class'=> 'form-control','placeholder' => 'Seleccione el cliente','name'=>'id_cliente','id'=>'id_cliente'] )!!}
+                      
+                       </div>
+                    </div>
+
+                    <div class="col-xs-4">
+                       <div class="form-group">
+                        <label for="id">ATENCIÓN</label>
+                          {!! Form::text('antencion',null,['class'=> 'form-control','placeholder' => 'ATENCIÓN', 'name'=>'antencion','id'=>'antencion'] )!!}  
+                     
+                         </div>
+                    </div>
+                    <div class="col-xs-4">
+                        <div class="form-group">
+                         <label for="id">EMAIL</label>
+                           {!! Form::text('email',null,['class'=> 'form-control','placeholder' => 'EMAIL', 'name'=>'email','id'=>'email'] )!!}  
+                      
+                          </div>
+                     </div>
+
+                     <div class="col-xs-4">
+                            <div class="form-group">
+                               <label for="id">CONTACTO OT </label>
+                                 {!! Form::text('contacto_ot',null,['class'=> 'form-control','placeholder' => 'CONTACTO OT', 'name'=>'contacto_ot','id'=>'contacto_ot'] )!!}  
+                            
+                             </div>
+                     </div>
+
+                    <div class="col-xs-4">
+                        <div class="form-group">
+                             <label for="id">CARGO </label>
+                              {!! Form::text('cargo',null,['class'=> 'form-control','placeholder' => 'CARGO', 'name'=>'cargo','id'=>'cargo'] )!!}           
+                             
+                            </div>
+                     </div>
+
+                     <div class="col-xs-4">
+                            <div class="form-group">
+                               <label for="id">FECHA </label>
+                               {!! Form::text('fecha',null,['class'=> 'form-control fechapropuesta','placeholder' => 'FECHA', 'name'=>'fecha','id'=>'fecha'] )!!}           
+
+                            </div>
+                         </div>
+                          
+                    {{-- <div class="col-xs-2">
+                         <div class="form-group">
+                               <label for="id">Nº DE DÍAS </label>
+                               {!! Form::text('numero_dia',null,['class'=> 'form-control dia','placeholder' => 'Nº DE DÍAS', 'name'=>'numero_dia','id'=>'numero_dias'] )!!}           
+                              
+                         </div>
+                    </div>
+                          
+                    <div class="col-xs-2">
+                        <div class="form-group">
+                               <label for="id">Nº DE PUESTOS </label>
+                               {!! Form::text('numero_puesto',null,['class'=> 'form-control','placeholder' => 'Nº DE PUESTOS', 'name'=>'numero_puesto','id'=>'numero_puesto'] )!!}           
+
+                         </div>
+                     </div> --}}
+                         
+                     <div class="col-xs-4">
+                            <div class="form-group">
+                                      <label for="id">DESCRIPCIÓN DEL SERVICIO</label>
+                                      {!! Form::text('descripcion',null,['class'=> 'form-control','placeholder' => 'DESCRIPCIÓN DEL SERVICIO','id'=>'descripcion'] )!!}           
+       
+                             </div>
+                        </div>
+    
+                         <div class="col-xs-4">
+                                <div class="form-group">
+                                       <label for="id"> CIUDAD</label>
+                                       {!! Form::select('id_ciudad',$codigociudad,null,['class'=> 'form-control','placeholder'=>'SELECCIONE','id'=>'ciudad'] )!!}           
+        
+                                 </div>
+                             </div>
+    
+                        {{-- <div class="col-xs-4">
+                                <div class="form-group">
+                                       <label for="id"> CONDICIONES SALARIALES</label>
+                                       {!! Form::text('condicion_salarial',null,['class'=> 'form-control','placeholder' => 'CONDICIONES SALARIALES','id'=>'condicion_salarial'] )!!}           
+        
+                                 </div>
+                         </div>     
+                        
+                        <div class="col-xs-4">
+                            <div class="form-group">
+                                   <label for="id">DOTACIÓN DEL SERVICIO</label>
+                                   {!! Form::text('dotacion',null,['class'=> 'form-control','placeholder' => 'DOTACIÓN DEL SERVICIO', 'name'=>'dotacion','id'=>'dotacion'] )!!}           
+     
+                            </div>
+                        </div> 
+    
+                        <div class="col-xs-4">
+                            <div class="form-group">
+                                     <label for="id">UND </label>
+                                     {!! Form::text('und',null,['class' => 'form-control','placeholder' => 'UND','id'=>'und']) !!}              
+                           
+                             </div>
+                        </div>
+    
+                        <div class="col-xs-4">
+                                <div class="form-group">
+                                      <label for="id">VALOR UNITARIO</label>
+                                      {!! Form::text('valor_unitario',null,['class'=> 'form-control vr_unitarios','placeholder' => 'VALOR UNITARIO','id'=>'valor_unitario' ] )!!}  
+                               </div>      
+                        </div>   
+    
+                        <div class="col-xs-4">
+                             <div class="form-group">
+                                   <label for="id">VALOR TOTAL </label>
+                                   {!! Form::text('',null,['class'=> 'form-control vr_totals','placeholder' => 'VALOR TOTAL','id'=>'valor_total','disabled' ] )!!}  
+                                   {!! Form::hidden('valor_total',null,['class'=> 'form-control vr_totals','id'=>'valor_total' ] )!!}  
+                            </div>
+                        </div> --}}
+
+                    <center>
+                           <button type="submit" class="btn btn-primary" >Guardar</button>
+                           <button type="button" class="btn btn-default "data-dismiss="modal" >Close</button>
+                    </center>
+
+                   </form>   
+                </div>
+            </div>
+        </div>
+    </div>

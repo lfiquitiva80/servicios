@@ -1,0 +1,2 @@
+
+<a class="btn btn-success Editar" data-toggle="modal" data-target="#editar_tarifasestandar"  data-id="{{$id}}" data-propuesta_economica="{{$idpropuesta_economica}}" data-tipo="{{$idtipodetarifa}}" data-descripion ="{{$iddescripcion}}" data-ciudad="{{$ciudad}}" data-valorc="{{$valor_ciudad}}" data-year="{{$year}}" data-item_oxy="{{$item_oxy}}"><i class="fa fa-pencil" aria-hidden="true"> Edición</i></a>

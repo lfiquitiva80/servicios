@@ -58,6 +58,7 @@
       <td>  Nombre</td>
       <td>  email</td>
       <td>  Activo</td>
+      <td>  Rol</td>
       <td>  Acción </td>
 
 
@@ -73,9 +74,26 @@
           <td>{{$row->name}}</td>
           <td>{{$row->email}}</td>
           <td>{{$row->activo}}</td>
+          <td>@switch($row->type)
+    @case(0)
+        Usuario Estándar
+        @break
+
+    @case(1)
+        Administrador
+        @break
+    @case(2)
+        Supra-Administrador
+        @break    
+    @default
+        Usuario Consulta
+@endswitch</td>
 
 
-          <td><a    data-toggle="modal" data-target="#editar_usuario"   data-name="{{$row->name}}"   data-activo ="{{$row->activo}}" data-email="{{$row->email}}"  data-id="{{$row->id}}" data-type="{{$row->type}}"data-password="{{$row->password}}" class="btn btn-success"><i class="fa fa-pencil" aria-hidden="true"> Edición</i></a></td> <td>@include('usuario.destroy')</td>
+          <td><a    data-toggle="modal" data-target="#editar_usuario"   data-name="{{$row->name}}"   data-activo ="{{$row->activo}}" data-email="{{$row->email}}"  data-id="{{$row->id}}" data-type="{{$row->type}}"data-password="{{$row->password}}" class="btn btn-success"><i class="fa fa-pencil" aria-hidden="true"> Edición</i></a></td> 
+          @if(Auth::user()->id == 4 || Auth::user()->id == 1)
+          <td>@include('usuario.destroy')</td>
+          @endif
 
     </tr>
   </tbody>

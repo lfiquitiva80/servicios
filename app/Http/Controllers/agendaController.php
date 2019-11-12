@@ -90,7 +90,7 @@ return view('agenda.index');
                     ->join('cliente','cliente.id','=','ordenesdeservicio.cliente')
                     ->join('vehiculo','vehiculo.id','=','ordenesdeservicio.placa')
                     //->select("ordenesdeservicio.Escolta_asignado as id","ordenesdeservicio.Escolta_asignado as resourceId")
-    ->select("ordenesdeservicio.Escolta_asignado as id",DB::raw("CONCAT(vehiculo.placa,'  .Detalle Del Servicio:',ordenesdeservicio.detalle_del_servicio,'  .Nombre Cliente:',cliente.nombre) as title"),"ordenesdeservicio.Escolta_asignado as resourceId","fecha_inicio_servicio as start","color_agenda as color")
+    ->select("ordenesdeservicio.Escolta_asignado as id",DB::raw("CONCAT(vehiculo.placa,'  .Detalle Del Servicio:',ordenesdeservicio.detalle_del_servicio,'  .Nombre Cliente:',cliente.nombre) as title"),"ordenesdeservicio.Escolta_asignado as resourceId","fecha_inicio_servicio as start","color_agenda as color","fecha_final_servicio as end")
                     ->get();
 
       //$data = ordenesdeservicio::select("id","id as resourceId","cliente as title","fecha_inicio_servicio as start" )->get();
@@ -122,7 +122,7 @@ public function  Vehiculos_events(){
                 ->join('cliente','cliente.id','=','ordenesdeservicio.cliente')
                 ->join('escolta','escolta.id','=','ordenesdeservicio.Escolta_asignado')
                 //->select("ordenesdeservicio.Escolta_asignado as id","ordenesdeservicio.Escolta_asignado as resourceId")
-->select("ordenesdeservicio.placa as id",DB::raw("CONCAT(escolta.nombre,'  .Detalle Del Servicio:',ordenesdeservicio.detalle_del_servicio,'  .Nombre Cliente:',cliente.nombre) as title"),"ordenesdeservicio.placa as resourceId","fecha_inicio_servicio as start","color_agenda as color")
+->select("ordenesdeservicio.placa as id",DB::raw("CONCAT(escolta.nombre,'  .Detalle Del Servicio:',ordenesdeservicio.detalle_del_servicio,'  .Nombre Cliente:',cliente.nombre) as title"),"ordenesdeservicio.placa as resourceId","fecha_inicio_servicio as start","color_agenda as color","fecha_final_servicio as end")
                 ->get();
 
   //$data = ordenesdeservicio::select("id","id as resourceId","cliente as title","fecha_inicio_servicio as start" )->get();

@@ -38,8 +38,19 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+     protected function redirectTo()
+            {
 
+          if (\Auth::user()->type == 5) {
+
+        \Log::info(\Auth::user()->name. " El cliente ingreso al sistema de solicitud de servicios adicionales");
+        return '/solicitudserviciocliente';
+  
+         } else {
+            return '/home';
+            \Log::info(\Auth::user()->name. "El usuario de Omnitempus ingreso a HOME");
+         }
+}
     /**
      * Create a new controller instance.
      *
@@ -69,7 +80,7 @@ class LoginController extends Controller
     protected function attemptLogin(Request $request)
     {
         if ($this->username() === 'email') return $this->attemptLoginAtAuthenticatesUsers($request);
-        if ( ! $this->attemptLoginAtAuthenticatesUsers($request)) {
+         if ( ! $this->attemptLoginAtAuthenticatesUsers($request)) {
             return $this->attempLoginUsingUsernameAsAnEmail($request);
         }
         return false;

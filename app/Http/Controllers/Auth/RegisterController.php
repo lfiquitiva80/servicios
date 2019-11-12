@@ -33,8 +33,8 @@ class RegisterController extends Controller
      */
     public function showRegistrationForm()
     {
-        // return view('auth.register');
-        abort(404);
+        return view('auth.register');
+        //abort(404);
     }
 
     /**

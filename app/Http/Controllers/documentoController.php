@@ -2,8 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\ordenesdeservicio;
+use App\documento;
+
+use Alert;
+
+
 
 
 
@@ -24,9 +30,18 @@ class documentoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function crear($id)
     {
-        //
+        $data = documento::all();
+        $edit= ordenesdeservicio::findOrFail($id);
+        foreach ($data as $key => $value) {
+            if ($value->id_ordendeservicio == $id ) {
+                return redirect('documento/'.$value->id.'/edit');
+            }
+            
+        }
+        return view('documento.create', compact('edit'));
+
     }
 
     /**
@@ -37,7 +52,12 @@ class documentoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       
+        $data =  new documento ($request-> all());
+        $data->id_users = Auth::user()->id;
+        $data->save();
+        Alert::success('', 'La información  ha sido registrada  con exito!')->persistent('Close');
+        return redirect('documento/'.$data->id.'/edit');
     }
 
     /**
@@ -59,9 +79,10 @@ class documentoController extends Controller
      */
     public function edit($id)
     {
-        $edit= ordenesdeservicio::findOrFail($id);
-
-        return view('documento.edit', compact('edit'));
+        $edit= documento::findOrFail($id);
+        $date = date_create($edit->fecha_hora);
+        $datetime =date_format($date,"Y-m-d\TH:i:s");
+        return view('documento.edit', compact('edit','datetime'));
     }
 
     /**
@@ -73,7 +94,11 @@ class documentoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = documento::findOrFail($id);
+        $data->id_users = Auth::user()->id;
+        $data->update($request->all());
+        Alert::success('', 'La información  ha sido registrada  con exito!')->persistent('Close');
+        return back()->withInput();
     }
 
     /**

@@ -42,9 +42,9 @@ class MyResetPassword extends Notification
     {
         return (new MailMessage)
          ->subject('Recuperar contraseña')
-          ->greeting('Hola')
+          ->greeting('Estimado(a) Usuario')
           ->line('Estás recibiendo este correo porque hiciste una solicitud de recuperacion de contraseña para tu cuenta.')
-          ->action('Restablecer contraseña', url(config('app.url').route('password.reset', $this->token, false)))
+          ->action('Restablecer contraseña', url(route('password.reset', $this->token, false)))
           ->line('Si no realizaste esta solicitud, no se requiere realizar ninguna otra acción.')
           ->salutation('¡Saludos!');
     }

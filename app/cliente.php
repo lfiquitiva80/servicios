@@ -13,4 +13,10 @@ class cliente extends Model
   {
   return $query ->where('nombre','LIKE' ,  "%$nombre%");
   }
+  
+   public function costos(){
+     return $this->belongsTo('App\c_costo');
+
+   }
+
 }

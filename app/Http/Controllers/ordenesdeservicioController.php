@@ -9,6 +9,9 @@ use App\escolta;
 use App\cliente;
 use App\vehiculo;
 use App\User;
+use App\tipodevehiculo;
+use App\tiposervicio;
+use App\solicitanteinterno;
 use App\Mail\servicioadd;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -22,6 +25,13 @@ use Datatables;
 use Alert;
 use PDF;
 use App\Notifications\notificacionservicio;
+use App\Mail\anticipo;
+use App\estadofacturacion;
+
+
+
+
+
 
 class ordenesdeservicioController extends Controller
 {
@@ -54,8 +64,11 @@ class ordenesdeservicioController extends Controller
 
         $index = DB::table('ordenesdeservicio')->paginate();
         $estadoservicio = estadoservicio::pluck('estadoservicio','id');
-         $escolta = escolta::pluck('nombre','nombre');
-
+        //  $escolta = escolta::pluck('nompbre','nombre');
+         $escola = $escolta = DB::table('escolta')
+         ->where('activo','si')
+         ->orderBy('nombre','asc')
+         ->pluck('nombre', 'nombre');
 
         //dd($index);
         return view('ordenesdeservicio.create', compact('estadoservicio','escolta'));
@@ -86,7 +99,13 @@ class ordenesdeservicioController extends Controller
        Alert::success('Se guardo correctamente el nuevo servicio!')->persistent("Close");
 
      //  \Mail::to($request->get('para'))->send(new part($order));
-   \Mail::to('planeacioncc@omnitempus.com')->send(new servicioadd($store));
+       try {
+        \Mail::to('planeacioncc@omnitempus.com')->send(new servicioadd($store));
+        Log::info('Se envio con exito el correo'); 
+       } catch (Exception $e) {
+           Alert::success('Se guardo correctamente el nuevo servicio!')->persistent("Close");
+       }
+   
 
         return redirect()->route('home-principal');
         //return view('home');
@@ -113,17 +132,33 @@ class ordenesdeservicioController extends Controller
     {
          $edit= ordenesdeservicio::findOrFail($id);
          //dd($edit);
-         $estadoservicio = estadoservicio::pluck('estadoservicio','id');
-         $escolta = escolta::orderBy('nombre','ASC')->pluck('nombre','id');
-         $cliente = cliente::orderBy('Nombre','ASC')->pluck('Nombre','id');
-         $vehiculo = vehiculo::orderBy('placa','ASC')->pluck('placa','id');
+         $estadoservicio = estadoservicio::orderBy('orden','ASC')->pluck('estadoservicio','id');
+        //  $escola = $escolta = DB::table('escolta')
+        //  ->where('activo','si')
+        //  ->orderBy('nombre','ASC')
+        //  ->pluck('nombre', 'id');
+        $escolta = escolta::orderBy('nombre','ASC')->pluck('nombre','id');
+        $cliente = cliente::orderBy('Nombre','ASC')->pluck('Nombre','id');
+        $vehiculo = vehiculo::orderBy('placa','ASC')->pluck('placa','id');
+        // $vehiculo  = DB::table('vehiculo')
+        //  ->where('activo','si')
+        //  ->orderBy('placa','ASC')
+        //  ->pluck('placa', 'id');
+         $tipodevehiculo = tipodevehiculo::pluck('descripcion_tipo_vehiculo','id');
+         $tiposervicio = tiposervicio::orderBy('desc_tipo_serv','ASC')->pluck('desc_tipo_serv','id');
+         $solicitanteinterno = solicitanteinterno::pluck('descripcion_solicitante','id');
          $wo= wo::pluck('descripcion_wo','id');
+         $estadofacturacion = estadofacturacion::
+                               where('id',1)
+                              ->orWhere('id',2)
+                              ->pluck('estado','id');
          Log::info('El usuario ingreso a editar el id => : '. $id.' '. Auth::user()->name);
         //dd($escolta);
          $email=User::find(1);
-    //\Notification::send($email, new notificacionservicio($estadoservicio));
 
-        return view('ordenesdeservicio.edit', compact('edit','estadoservicio','wo','cliente','escolta','vehiculo'));
+         
+    //\Notification::send($email, new notificacionservicio($estadoservicio));
+        return view('ordenesdeservicio.edit', compact('edit','estadoservicio','wo','cliente','escolta','vehiculo','tipodevehiculo','tiposervicio','solicitanteinterno','estadofacturacion'));
     }
 
     /**
@@ -135,13 +170,25 @@ class ordenesdeservicioController extends Controller
      */
     public function update(Request $request, $id)
     {
+        if ($request->anticipo == 1) {
+            $dts =ordenesdeservicio::find($request->id);
+            if ($dts->ev_anticipo == 0) {
+                 $dts->ev_anticipo = 1;  
+                 $dts->save();  
+                \Mail::to('ejemplo@pruebas.com')->send(new anticipo($request));
+            }
+                     
+        }
+       
       $input = $request->all();
+     
         //sires::update($input);
         //sires::find($id)->update($input);
-
+      
         $updates=DB::table('ordenesdeservicio')->where('id',"=",$id)->update($input);
         Alert::success('Actualizo correctamente la orden de servicio!')->persistent("Close");
         Log::info('El usuario actualizo el registro '. $id .': '. Auth::user()->name);
+        
 
         return redirect()->route('home-principal');
     }
@@ -164,6 +211,7 @@ class ordenesdeservicioController extends Controller
     public function continuar($id)
     {
 
+        //dd($id);
 
        $edit= ordenesdeservicio::findOrFail($id);
        //dd($edit);
@@ -210,14 +258,15 @@ class ordenesdeservicioController extends Controller
         'users_id' => $edit->users_id,
         'propuesta_economica' => $edit->propuesta_economica,
          'color_agenda' =>$edit->color_agenda,
-         'solicitante_interno2' =>$edit->solicitante_interno2
+         'solicitante_interno2' =>$edit->solicitante_interno2,
+         'arma_id' =>$edit->arma_id
 
          ];
 
        //DB::table('criterios_evaluacion')->insert($edit);
        $continuar=ordenesdeservicio::create($input);
 
-        Log::info('El usuario duplico el registro: '.' Usuario: '. Auth::user()->name. $continuar);
+        Log::info('El usuario dúplico el registro: '.' Usuario: '. Auth::user()->name. $continuar);
        Alert::success('Se dúplico correctamente el registro!')->persistent("Close");
        //\Mail::to('leonidas.fiquitiva@omnitempus.com')->send(new servicioadd($store));
         return back();
@@ -226,7 +275,10 @@ class ordenesdeservicioController extends Controller
     public function pdf($id){
          $edit= ordenesdeservicio::findOrFail($id);
          $escoltas =escolta::all();
-$pdf = PDF::loadView('ordenesdeservicio.pdf',compact('edit','escoltas'))->setPaper('A4', 'landscape');
+         $pdf = PDF::loadView('ordenesdeservicio.pdf',compact('edit','escoltas'))->setPaper('A4', 'landscape');
          return $pdf->stream('presentacion_escolta_vehiculo.pdf');
     }
+    
+
+
 }

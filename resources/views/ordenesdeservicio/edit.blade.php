@@ -9,7 +9,7 @@
 
 
  <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
-        @include('sweet::alert')
+ @include('sweet::alert')
 
 
 {!! Form::open(['route' => ['ordenesdeservicio.update', $edit->id],'method'=>'PATCH','enctype'=>'multipart/form-data','file'=>true]) !!}
@@ -28,6 +28,7 @@
   <div class="form-group">
     <label for="id">id</label>
     <input type="text" class="form-control" name="id"  id="id" placeholder="Id" readonly="readonly" value="{{$edit->id}}">
+    <input type="hidden"  class="form-control id" value="{{$edit->id}}">
   </div>
 </div>
 
@@ -58,27 +59,48 @@ echo $date->format('Y-m-d\TH:i'); ?>">
 
 <div class="col-xs-1">
 </div>
-<div class="col-xs-4">
+{{-- <div class="col-xs-4">
 <div class="form-group">
-		<label for="id">propuesta económica</label>
-		<input type="text" class="form-control" name="propuesta_economica"  id="propuesta_economica" placeholder="propuesta económica." value="{{$edit->propuesta_economica}}">
+    <label for="id">propuesta económica</label>
+    {!! Form::select('id_propuesta_economica',$propuestaeconomica,$edit->id_propuesta_economica,['class'=> 'form-control','placeholder' => 'Seleccione'] )!!}
+
 	</div>
-</div>
-<div class="col-xs-3">
+</div> --}}
+<div class="col-xs-4">
 <div class="form-group">
 		<label for="id">Color agenda </label>
 		<input class="form-control" type="color" value="{{$edit->color_agenda}}" id="color_agenda" name="color_agenda">
 	</div>
 </div>
-El servicio se debe ejecutar <b>{{ \Carbon\Carbon::parse($edit->fecha_inicio_servicio)->diffForHumans() }} </b>
+
 <div class="col-xs-3">
+  <div class="form-group">
+    <label for="id">fecha_finalizacion_servicio</label>
+    <input   type="datetime-local" class="form-control" name="fecha_final_servicio"  id="fecha_final_servicio" placeholder="Número orden de sercivios" value="<?php $date = new DateTime($edit->fecha_final_servicio);
+echo $date->format('Y-m-d\TH:i'); ?>">
+  </div>
+</div>
+<div class="col-xs-1">
+</div>
+
+<div class="col-xs-1">
+</div>
+<div class="col-xs-3">
+    El servicio se debe ejecutar <b>{{ \Carbon\Carbon::parse($edit->fecha_final_servicio)->diffForHumans() }} </b>
+
 <div class="form-group">
 <br>
     	<a  href="{{route('pdf', $edit->id )}}" class="btn btn-info" target="_blank">PDF Presentación de Escoltas y Vehículos</a>
 
+      <br><br>
+
+      <a  href="{{route('horarios', $edit->id )}}" class="btn btn-default" target="_blank"><i class="fa fa-clock-o" aria-hidden="true"></i> Horarios de Escoltas</a>
+
 
 	</div>
 </div>
+
+
 
 </div>
 </div>
@@ -97,6 +119,8 @@ El servicio se debe ejecutar <b>{{ \Carbon\Carbon::parse($edit->fecha_inicio_ser
     <div class="form-group">
     <label for="id">Hora_inicio_en_OT</label>
     <input type="time" class="form-control" name="Hora_inicio_en_OT"  id="Hora_inicio_en_OT" placeholder="Hora_inicio_en_OT" value="{{$edit->Hora_inicio_en_OT}}">
+    <input type="hidden" class="form-control" name="Hora_inicio_en_OT"  id="Hora_inicioenOT" disabled>
+
   </div>
 </div>
 
@@ -104,6 +128,8 @@ El servicio se debe ejecutar <b>{{ \Carbon\Carbon::parse($edit->fecha_inicio_ser
     <div class="form-group">
     <label for="id">Hora_Final_en_OT</label>
     <input type="time" class="form-control" name="Hora_Final_en_OT"  id="Hora_Final_en_OT" placeholder="Hora_inicio_en_OT" value="{{$edit->Hora_Final_en_OT}}">
+    <input type="hidden" class="form-control"name="Hora_Final_en_OT" id="Hora_FinalenOT" disabled>
+
   </div>
    </div>
  <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
@@ -148,7 +174,7 @@ El servicio se debe ejecutar <b>{{ \Carbon\Carbon::parse($edit->fecha_inicio_ser
   <div class="col-xs-4">
    <div class="form-group">
     <label for="id">Escolta Asignado</label>
-    {!! Form::select('Escolta_asignado',$escolta, $edit->Escolta_asignado, ['class' => 'form-control escoltas','id'=>'escoltas2']) !!}
+    {!! Form::select('Escolta_asignado',$escolta, $edit->Escolta_asignado, ['class' => 'form-control escoltas escoltafecha','id'=>'escoltas2']) !!}
   </div>
   </div>
 
@@ -183,13 +209,18 @@ El servicio se debe ejecutar <b>{{ \Carbon\Carbon::parse($edit->fecha_inicio_ser
   </div>
 </div>
 
-<div class="col-xs-4">
+<div class="col-xs-2">
 <div class="form-group">
     <label for="id">AVANTEL</label>
     <input type="text" class="form-control" name="ID2"  id="ID2" placeholder="AVANTEL" value="{{$edit->ID2}}">
   </div>
 </div>
-
+<div class="col-xs-2">
+  <div class="form-group">
+      <label for="id">Anticipo</label>
+      {!! Form::select('anticipo',['1'=>'SI', '0' =>'NO'],$edit->anticipo,['class'=> 'form-control','name'=>'anticipo'])!!}
+    </div>
+  </div>
 
 <div class="col-xs-4">
 <div class="form-group">
@@ -219,10 +250,21 @@ El servicio se debe ejecutar <b>{{ \Carbon\Carbon::parse($edit->fecha_inicio_ser
     <label for="id">tipo</label>
     <!-- <input type="text" class="form-control" name="tipo"  id="tipo" placeholder="tipo" value="{{$edit->tipo}}">
  -->
-     {!! Form::select('tipo', $tipovehiculo, $edit->tipo, ['class' => 'form-control']) !!}
+   {!! Form::select('tipo', $tipodevehiculo, $edit->tipo, ['class' => 'form-control']) !!}
+   <!--   <select name="tipo" id="tipo" class="form-control">
+       <option value="BLINDADO">BLINDADO</option>
+       <option value="MOTOCICLETA">MOTOCICLETA</option>
+       <option value="CONVENCIONAL">CONVENCIONAL</option>
+       <option value="N/A">N/A</option>
+       <option value="VAN">VAN</option>
+       <option value="SEDAN">SEDAN</option>
+       <option value="AMBULANCIA">AMBULANCIA</option>
+       <option value="BUS">BUS</option>
+       <option value="VAN BLINDADA">VAN BLINDADA</option>
+
+     </select> -->
   </div>
 </div>
-
 
 <div class="col-xs-4">
 <div class="form-group">
@@ -251,7 +293,7 @@ $solicitante_interno = array("N/A",
     <label for="id">solicitante_interno</label>
     <!-- <input type="text" class="form-control" name="solicitante_interno"  id="solicitante_interno" placeholder="solicitante_interno" value="{{$edit->solicitante_interno}}"> -->
 
-    {!! Form::select('solicitante_interno', $solicitante_interno, $edit->solicitante_interno, ['class' => 'form-control']) !!}
+    {!! Form::select('solicitante_interno', $solicitanteinterno, $edit->solicitante_interno, ['class' => 'form-control']) !!}
   </div>
 </div>
 
@@ -298,23 +340,7 @@ echo $date->format('Y-m-d\TH:i'); ?>">
     <label for="id">tipo_de_servicio</label>
 
 
-    @php
-        $tiposervicio= array("AGENDA 8 HORAS","AGENDA 10 HORAS","AGENDA 12 HORAS",
-"AVANZADA",
-"BACK UP",
-"CARGA CRÍTICA",
-"DESPLAZAMIENTO",
-"INTERNO",
-"MEET & GREET",
-"REACCION 911",
-"RELEVO",
-"TRANSFER",
-"SCRAP"
-);
-
-
-
-    @endphp
+  
 
     {!! Form::select('tipo_de_servicio', $tiposervicio, $edit->tipo_de_servicio, ['class' => 'form-control']) !!}
 
@@ -339,7 +365,9 @@ echo $date->format('Y-m-d\TH:i'); ?>">
 
 
 
+@if(Auth::user()->type != 3)
 <center><button type="submit" class="btn btn-info pull-right">Actualizar</button>
+@endif  
 
   <small><b>Usuario que modífico la solicitud</b>:<?php $usuario= App\User::find($edit->users_id); echo $usuario->name; ?><br>  <b>Fecha de Creación</b>: {{$edit->created_at}}
   <br><b>Fecha de la Ultima Actualización:</b> {{$edit->updated_at}}
@@ -357,8 +385,10 @@ echo $date->format('Y-m-d\TH:i'); ?>">
 
 <div class="col-xs-4">
 <div class="form-group">
-    <label for="id">px</label>
-    <input type="text" class="form-control" name="px"  id="px" placeholder="px" value="{{$edit->px}}">
+    <label for="id">Estado de Facturacion</label>
+    {!! Form::select('estado_facturacion',$estadofacturacion,$edit->estado_facturacion,['class'=> 'form-control estado_facturacion','placeholder' => 'Seleccione'] )!!}
+
+    <input type="text" value="{{$edit->estado_facturacion}}" class="form-control id_estado_facturacion"  disabled>
   </div>
 </div>
 
@@ -419,8 +449,11 @@ echo $date->format('Y-m-d\TH:i'); ?>">
 value="{{Auth::user()->id}}">
 
 
+
+@if(Auth::user()->type != 3)
   <center><button type="submit" class="btn btn-info pull-right">Actualizar</button>
   </center><p>
+@endif    
 
 {!! Form::close() !!}
 
@@ -431,7 +464,8 @@ value="{{Auth::user()->id}}">
 //ajax para traerme los escoltas para la vista /ordenesdeservicio/edit
 
 $(document).ready(function() {
-
+  var id_estado_facturacion 
+  
     $('#escoltas2').change(function(event) {
       /* Act on the event */
 
@@ -590,6 +624,60 @@ var result = minutes + ":" + seconds;  // 161:30
   });
 
 
+  
+$(document).ready(function() {
+  var id_estado_facturacion = $('.id_estado_facturacion').val();
+  
+   if (id_estado_facturacion =='' || id_estado_facturacion == 2  || id_estado_facturacion == 1) {
+    $('.id_estado_facturacion').val('');
+    $('.id_estado_facturacion').hide()
+   } 
+   if (id_estado_facturacion == 3) {
+    $('.id_estado_facturacion').show();
+    $('.id_estado_facturacion').val('');
+    $('.id_estado_facturacion').val('PREFACTURACIÓN');
+    $('.estado_facturacion').hide();
+    $('.estado_facturacion').prop('disabled', true);
+
+   }
+   if (id_estado_facturacion == 4) {
+    $('.id_estado_facturacion').show();
+    $('.id_estado_facturacion').val('');
+    $('.id_estado_facturacion').val('DEVOLUCIÓN PREFACTURACIÓN ');
+    $('.estado_facturacion').hide();
+    $('.estado_facturacion').prop('disabled', true);
+
+    }
+    if (id_estado_facturacion == 5) {
+      $('.id_estado_facturacion').val('');
+      $('.id_estado_facturacion').val('FACTURADO');
+      $('.estado_facturacion').hide();
+      $('.id_estado_facturacion').show();
+      $('.form-control').prop('disabled', true);
+      $('#detalle_del_servicio').prop('disabled', true);
+      $('#novedades').prop('disabled', true);
+      $('#observaciones').prop('disabled', true);
+
+
+    }
+    if (id_estado_facturacion == 6) {
+      $('.id_estado_facturacion').val('');
+      $('.id_estado_facturacion').val('NO FACTURADO');
+      $('.estado_facturacion').hide();
+      $('.id_estado_facturacion').show();
+      $('.estado_facturacion').prop('disabled', true);
+
+    }
+
+
+
+
+   });
+
+
+
+
+ 
 </script>
 
 

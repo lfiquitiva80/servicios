@@ -73,7 +73,10 @@
                      
           
           
-          <td><a href="{{ $url = route('wo.edit',$row->id) }}" class="btn btn-success"><i class="fa fa-pencil" aria-hidden="true"> Edición</i></a></td> <td>@include('wo.destroy')</td>
+          <td><a href="{{ $url = route('wo.edit',$row->id) }}" class="btn btn-success"><i class="fa fa-pencil" aria-hidden="true"> Edición</i></a></td>
+          @if(Auth::user()->id == 4 || Auth::user()->id == 1)
+           <td>@include('wo.destroy')</td>
+           @endif
 
     </tr>
   </tbody>

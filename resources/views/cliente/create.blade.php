@@ -3,7 +3,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">CREAR CLIENTE</h4>
+                <h4 class="modal-title">CREAR CLIENTES</h4>
             </div>
             <div class="modal-body">
 
@@ -47,6 +47,15 @@
                                 <label for="id">Coordinador</label>
                                 {!! Form::text('coordinador', null,['class' => 'form-control', 'placeholder' => 'Coordinador','name'=>'coordinador']) !!}
                             </div>
+     <div class="form-group">
+        <label for="id">Asignación Email al Cliente</label>
+        {!! Form::select('usuario',$usuario, null, ['class' => 'form-control','name'=>'usuario']) !!}
+    </div>
+ <!--    <div class="form-group">
+    <label for="id">Centro de costos</label>
+    {!! Form::select('id_centrodecostos',$costos, null, ['class' => 'form-control','placeholder'=>'Seleccione el centro de costos' ,'name'=>'id_centrodecostos']) !!}
+    </div> -->
+                                             
 
     <center><button type="submit" class="btn btn-primary" >Enviar</button>
     <button type="reset" class="btn btn-danger">Borrar</button></center><p>

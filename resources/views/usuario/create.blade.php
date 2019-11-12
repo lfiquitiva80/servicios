@@ -32,6 +32,12 @@
                     @endif
 
                 </div>
+
+       <div class="form-group">
+                                      <label >Tipo de Perfil</label>
+                                      {!! Form::select('type',$perfil,5,['class'=> 'form-control','name'=>'type'] )!!}
+                          </div>
+
       <div class="form-group">
                         <label for="id">Contraseña </label>
                         <input id="password" type="password" class="form-control" name="password" placeholder="Contraseña">

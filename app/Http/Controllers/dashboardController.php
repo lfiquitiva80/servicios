@@ -73,42 +73,42 @@ $datos6 = $denominador6* 100;
 $datos7 =$denominador7* 100;
 $datos8 =$denominador8* 100;
 $datos9 =$denominador9* 100;
-// 2018
-$Enero = DB::table('ordenesdeservicio')->whereYear('fecha_inicio_servicio', '2018')->whereMonth('fecha_inicio_servicio', '01')->where('estadoservicio_id','6')->count();
-$Enero2 = DB::table('ordenesdeservicio')->whereYear('fecha_inicio_servicio', '2018')->whereMonth('fecha_inicio_servicio', '01')->where('estadoservicio_id','!=','6')->count();
+// 2019
+$Enero = DB::table('ordenesdeservicio')->whereYear('fecha_inicio_servicio', '2019')->whereMonth('fecha_inicio_servicio', '01')->where('estadoservicio_id','6')->count();
+$Enero2 = DB::table('ordenesdeservicio')->whereYear('fecha_inicio_servicio', '2019')->whereMonth('fecha_inicio_servicio', '01')->where('estadoservicio_id','!=','6')->count();
 
-$Febrero =DB::table('ordenesdeservicio')->whereYear('fecha_inicio_servicio', '2018')->whereMonth('fecha_inicio_servicio', '02')->where('estadoservicio_id','6')->count();
-$Febrero2 =DB::table('ordenesdeservicio')->whereYear('fecha_inicio_servicio', '2018')->whereMonth('fecha_inicio_servicio', '02')->where('estadoservicio_id','!=','6')->count();
+$Febrero =DB::table('ordenesdeservicio')->whereYear('fecha_inicio_servicio', '2019')->whereMonth('fecha_inicio_servicio', '02')->where('estadoservicio_id','6')->count();
+$Febrero2 =DB::table('ordenesdeservicio')->whereYear('fecha_inicio_servicio', '2019')->whereMonth('fecha_inicio_servicio', '02')->where('estadoservicio_id','!=','6')->count();
 
-$Marzo = DB::table('ordenesdeservicio')->whereYear('fecha_inicio_servicio', '2018')->whereMonth('fecha_inicio_servicio', '03')->where('estadoservicio_id','6')->count();
-$Marzo2 =  DB::table('ordenesdeservicio')->whereYear('fecha_inicio_servicio', '2018')->whereMonth('fecha_inicio_servicio', '03')->where('estadoservicio_id','!=','6')->count();
+$Marzo = DB::table('ordenesdeservicio')->whereYear('fecha_inicio_servicio', '2019')->whereMonth('fecha_inicio_servicio', '03')->where('estadoservicio_id','6')->count();
+$Marzo2 =  DB::table('ordenesdeservicio')->whereYear('fecha_inicio_servicio', '2019')->whereMonth('fecha_inicio_servicio', '03')->where('estadoservicio_id','!=','6')->count();
 
-$Abril = DB::table('ordenesdeservicio')->whereYear('fecha_inicio_servicio', '2018')->whereMonth('fecha_inicio_servicio', '04')->where('estadoservicio_id','6')->count();
-$Abril2 = DB::table('ordenesdeservicio')->whereYear('fecha_inicio_servicio', '2018')->whereMonth('fecha_inicio_servicio', '04')->where('estadoservicio_id','!=','6')->count();
+$Abril = DB::table('ordenesdeservicio')->whereYear('fecha_inicio_servicio', '2019')->whereMonth('fecha_inicio_servicio', '04')->where('estadoservicio_id','6')->count();
+$Abril2 = DB::table('ordenesdeservicio')->whereYear('fecha_inicio_servicio', '2019')->whereMonth('fecha_inicio_servicio', '04')->where('estadoservicio_id','!=','6')->count();
 
-$Mayo = DB::table('ordenesdeservicio')->whereYear('fecha_inicio_servicio', '2018')->whereMonth('fecha_inicio_servicio', '05')->where('estadoservicio_id','6')->count();
-$Mayo2= DB::table('ordenesdeservicio')->whereYear('fecha_inicio_servicio', '2018')->whereMonth('fecha_inicio_servicio', '05')->where('estadoservicio_id','!=','6')->count();
+$Mayo = DB::table('ordenesdeservicio')->whereYear('fecha_inicio_servicio', '2019')->whereMonth('fecha_inicio_servicio', '05')->where('estadoservicio_id','6')->count();
+$Mayo2= DB::table('ordenesdeservicio')->whereYear('fecha_inicio_servicio', '2019')->whereMonth('fecha_inicio_servicio', '05')->where('estadoservicio_id','!=','6')->count();
 
-$Junio = DB::table('ordenesdeservicio')->whereYear('fecha_inicio_servicio', '2018')->whereMonth('fecha_inicio_servicio', '06')->where('estadoservicio_id','6')->count();
-$Junio2 = DB::table('ordenesdeservicio')->whereYear('fecha_inicio_servicio', '2018')->whereMonth('fecha_inicio_servicio', '06')->where('estadoservicio_id','!=','6')->count();
+$Junio = DB::table('ordenesdeservicio')->whereYear('fecha_inicio_servicio', '2019')->whereMonth('fecha_inicio_servicio', '06')->where('estadoservicio_id','6')->count();
+$Junio2 = DB::table('ordenesdeservicio')->whereYear('fecha_inicio_servicio', '2019')->whereMonth('fecha_inicio_servicio', '06')->where('estadoservicio_id','!=','6')->count();
 
-$Julio = DB::table('ordenesdeservicio')->whereYear('fecha_inicio_servicio', '2018')->whereMonth('fecha_inicio_servicio', '07')->where('estadoservicio_id','6')->count();
-$Julio2 = DB::table('ordenesdeservicio')->whereYear('fecha_inicio_servicio', '2018')->whereMonth('fecha_inicio_servicio', '07')->where('estadoservicio_id','!=','6')->count();
+$Julio = DB::table('ordenesdeservicio')->whereYear('fecha_inicio_servicio', '2019')->whereMonth('fecha_inicio_servicio', '07')->where('estadoservicio_id','6')->count();
+$Julio2 = DB::table('ordenesdeservicio')->whereYear('fecha_inicio_servicio', '2019')->whereMonth('fecha_inicio_servicio', '07')->where('estadoservicio_id','!=','6')->count();
 
-$Agosto = DB::table('ordenesdeservicio')->whereYear('fecha_inicio_servicio', '2018')->whereMonth('fecha_inicio_servicio', '08')->where('estadoservicio_id','6')->count();
-$Agosto2 = DB::table('ordenesdeservicio')->whereYear('fecha_inicio_servicio', '2018')->whereMonth('fecha_inicio_servicio', '08')->where('estadoservicio_id','!=','6')->count();
+$Agosto = DB::table('ordenesdeservicio')->whereYear('fecha_inicio_servicio', '2019')->whereMonth('fecha_inicio_servicio', '08')->where('estadoservicio_id','6')->count();
+$Agosto2 = DB::table('ordenesdeservicio')->whereYear('fecha_inicio_servicio', '2019')->whereMonth('fecha_inicio_servicio', '08')->where('estadoservicio_id','!=','6')->count();
 
-$Sept = DB::table('ordenesdeservicio')->whereYear('fecha_inicio_servicio', '2018')->whereMonth('fecha_inicio_servicio', '09')->where('estadoservicio_id','6')->count();
-$Sept2 = DB::table('ordenesdeservicio')->whereYear('fecha_inicio_servicio', '2018')->whereMonth('fecha_inicio_servicio', '09')->where('estadoservicio_id','!=','6')->count();
+$Sept = DB::table('ordenesdeservicio')->whereYear('fecha_inicio_servicio', '2019')->whereMonth('fecha_inicio_servicio', '09')->where('estadoservicio_id','6')->count();
+$Sept2 = DB::table('ordenesdeservicio')->whereYear('fecha_inicio_servicio', '2019')->whereMonth('fecha_inicio_servicio', '09')->where('estadoservicio_id','!=','6')->count();
 
-$Oct = DB::table('ordenesdeservicio')->whereYear('fecha_inicio_servicio', '2018')->whereMonth('fecha_inicio_servicio', '10')->where('estadoservicio_id','6')->count();
-$Oct2 = DB::table('ordenesdeservicio')->whereYear('fecha_inicio_servicio', '2018')->whereMonth('fecha_inicio_servicio', '10')->where('estadoservicio_id','!=','6')->count();
+$Oct = DB::table('ordenesdeservicio')->whereYear('fecha_inicio_servicio', '2019')->whereMonth('fecha_inicio_servicio', '10')->where('estadoservicio_id','6')->count();
+$Oct2 = DB::table('ordenesdeservicio')->whereYear('fecha_inicio_servicio', '2019')->whereMonth('fecha_inicio_servicio', '10')->where('estadoservicio_id','!=','6')->count();
 
-$Nov = DB::table('ordenesdeservicio')->whereYear('fecha_inicio_servicio', '2018')->whereMonth('fecha_inicio_servicio', '11')->where('estadoservicio_id','6')->count();
-$Nov2= DB::table('ordenesdeservicio')->whereYear('fecha_inicio_servicio', '2018')->whereMonth('fecha_inicio_servicio', '11')->where('estadoservicio_id','!=','6')->count();
+$Nov = DB::table('ordenesdeservicio')->whereYear('fecha_inicio_servicio', '2019')->whereMonth('fecha_inicio_servicio', '11')->where('estadoservicio_id','6')->count();
+$Nov2= DB::table('ordenesdeservicio')->whereYear('fecha_inicio_servicio', '2019')->whereMonth('fecha_inicio_servicio', '11')->where('estadoservicio_id','!=','6')->count();
 
-$Dic = DB::table('ordenesdeservicio')->whereYear('fecha_inicio_servicio', '2018')->whereMonth('fecha_inicio_servicio', '12')->where('estadoservicio_id','6')->count();
-$Dic2 = DB::table('ordenesdeservicio')->whereYear('fecha_inicio_servicio', '2018')->whereMonth('fecha_inicio_servicio', '12')->where('estadoservicio_id','!=','6')->count();
+$Dic = DB::table('ordenesdeservicio')->whereYear('fecha_inicio_servicio', '2019')->whereMonth('fecha_inicio_servicio', '12')->where('estadoservicio_id','6')->count();
+$Dic2 = DB::table('ordenesdeservicio')->whereYear('fecha_inicio_servicio', '2019')->whereMonth('fecha_inicio_servicio', '12')->where('estadoservicio_id','!=','6')->count();
     $chartjs = app()->chartjs
         ->name('pieChartTest')
         ->type('pie')

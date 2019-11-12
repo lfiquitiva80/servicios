@@ -32,7 +32,7 @@ class servicioadd extends Mailable implements ShouldQueue
     public function build()
     {
         //dd($this->store);
-        return $this->markdown('emails.servicioadd.servicioadd')->subject('Servicio Adicional Command Center '.$this->store->ciudad_destino.' #'.$this->store->id)->with([
+        return $this->markdown('emails.servicioadd.servicioadd')->subject('Servicio Adicional Command Center '.$this->store->ciudad_destino.' # Orden de Trabajo: '.$this->store->No_de_orden_de_servicio)->with([
                         'estado' => $this->store->estadoservicio_id,
                         'cliente' => $this->store->cliente,
                         'ciudad_destino' => $this->store->ciudad_destino,

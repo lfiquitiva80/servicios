@@ -76,8 +76,11 @@
           <td>{{$row->solicitante}}</td>
           <td>{{$row->activo}}</td>
 
-
-          <td><a    data-toggle="modal" data-target="#editar_cliente"   data-name="{{$row->nombre}}"  data-solicitante="{{$row->solicitante}}"  data-activo ="{{$row->activo}}" data-email="{{$row->email}}" data-notas ="{{$row->notas}}" data-telefono ="{{$row->telefono}}" data-coordinador="{{$row->coordinador}}" data-id="{{$row->id}}" data-nit="{{$row->nit}}" class="btn btn-success"><i class="fa fa-pencil" aria-hidden="true"> Edición</i></a></td> <td>@include('cliente.destroy')</td>
+          
+          <td><a    data-toggle="modal" data-target="#editar_cliente"   data-name="{{$row->nombre}}"  data-solicitante="{{$row->solicitante}}"  data-activo ="{{$row->activo}}" data-email="{{$row->email}}" data-notas ="{{$row->notas}}" data-telefono ="{{$row->telefono}}" data-coordinador="{{$row->coordinador}}" data-id="{{$row->id}}" data-usuario="{{$row->usuario}}" data-nit="{{$row->nit}}" data-costo="{{$row->id_centrodecostos}}" class="btn btn-success"><i class="fa fa-pencil" aria-hidden="true"> Edición</i></a></td> 
+          @if(Auth::user()->id == 4 || Auth::user()->id == 1)
+          <td>@include('cliente.destroy')</td>
+          @endif
 
     </tr>
   </tbody>
@@ -94,7 +97,32 @@
 
 </div>
 </div>
+<script type="text/javascript">
+  
+  
+$(document).ready(function() {
 
+    $('#editar_controlhorario').on('show.bs.modal', function (event) {
+   alert(hola);
+var button = $(event.relatedTarget)
+var id = button.data('id')
+var fecha_registro = button.data('fecha_registro')
+
+// Extract info from data-* attributes
+// If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+// Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+var modal = $(this)
+modal.find('.modal-body #id').val(id);
+modal.find('.modal-body #fecha_registro').val(fecha_registro);
+
+})
+  
+});
+
+
+
+
+</script>
 
 
 @endsection

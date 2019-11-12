@@ -53,6 +53,14 @@
                                 <label for="id">Coordinador</label>
                                 {!! Form::text('coordinador', null,['class' => 'form-control', 'placeholder' => 'Coordinador','id' => 'coordinador','name'=>'coordinador']) !!}
                             </div>
+     <div class="form-group">
+        <label for="id">Asignación Email al Cliente</label>
+        {!! Form::select('usuario',$usuario, null, ['class' => 'form-control','id' => 'usuario','name'=>'usuario']) !!}
+    </div>
+ <!--    <div class="form-group">
+        <label for="id">Centro de costos</label>
+        {!! Form::select('id_centrodecostos',$costos,null,['class' => 'form-control','placeholder'=>'Seleccione el centro de costos' ,'name'=>'id_centrodecostos','id'=>'id_centrodecostos']) !!}
+        </div> -->
 
     <center><button type="submit" class="btn btn-primary" >Enviar</button>
     <button type="button" class="btn btn-default "data-dismiss="modal" >Close</button></center><p>

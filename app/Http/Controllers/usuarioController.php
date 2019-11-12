@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\User;
+use App\perfil;
 use Alert;
 
 
@@ -18,7 +19,8 @@ class usuarioController extends Controller
     public function index(Request $request)
     {
         $usuario =User::search($request->name)->orderBy('id', 'asc')->paginate(10);
-         return view('usuario.index',compact('usuario'));
+        $perfil =perfil::pluck('perfil','id');
+         return view('usuario.index',compact('usuario','perfil'));
     }
 
     /**

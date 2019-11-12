@@ -53,7 +53,7 @@
     <tr>
       <td>  id  </td>
       <td>  Rentadora</td>
-      <td>Foto</td>
+      <td>  Foto</td>
       <td>  Placa</td>
       <td>  Activo</td>
       <td>  Acción </td>

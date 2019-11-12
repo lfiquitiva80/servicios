@@ -36,7 +36,7 @@
               </div>
       <div class="form-group">
                         <label for="id">Contraseña </label>
-                        <input  type="password" class="form-control" name="password" placeholder="Contraseña">
+                        <input  type="password" class="form-control" name="password" placeholder="Contraseña" required>
 </div>
 
       <div class="form-group">
@@ -45,7 +45,7 @@
                 </div>
                 <div class="form-group">
                                       <label for="id">Tipo de usuario</label>
-                                      {!! Form::select('type',[ ''=>'SELECCIONE','0'=>'usuario', '1' =>'administrator'],null,['class'=> 'form-control','id' => 'type','name'=>'type'] )!!}
+                                      {!! Form::select('type',$perfil,null,['class'=> 'form-control','id' => 'type','name'=>'type'] )!!}
                           </div>
 
     <center><button type="submit" class="btn btn-primary" >Enviar</button>
